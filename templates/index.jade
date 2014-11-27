@@ -1,0 +1,10 @@
+extends layout
+block content
+  each article in collections.articles
+    article.post
+      header
+        h2.post-title
+          a(href='/' + article.path)= article.title
+        time.timestamp(datetime=article.date)= moment(article.date).format('MMMM D, YYYY')
+
+      != article.contents
