@@ -15,7 +15,7 @@ legacy problem), so I have to communicate with it.
 
 ### ActiveRecord/AREL
 For all of its perceived shortcomings,
-{ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) is an
+[ActiveRecord](https://github.com/rails/rails/tree/master/activerecord) is an
 excellent piece of software.  More importantly, [arel](https://github.com/rails/arel),
 the relational library that drives it is a very well architected masterpiece.
 Together, they do a lot of magic that makes interacting with SQL data sources
