@@ -1,7 +1,9 @@
 extends layout
 block content
-  article.content-article
+  article.post
     header
-      span.timestamp= date
-      h2= title
-    !=content
+      h2.post-title
+        != title
+      time.timestamp(datetime=date)= moment(date).format('MMMM D, YYYY')
+
+    != contents
