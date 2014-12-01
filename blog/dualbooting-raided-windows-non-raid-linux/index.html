@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width initial-scale=1">
-    <title>Dual-booting Raided Windows/Non-Raid Linux</title>
+    <title>CodingPrime</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/highlight.js.solarized.css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -14,11 +14,11 @@
     <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand">Dual-booting Raided Windows/Non-Raid Linux</a>
+          <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand">CodingPrime</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="/">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -26,20 +26,88 @@
       </div>
     </nav>
     <div class="container">
-      <article class="content-article">
-        <header><span class="timestamp">2010-08-21 18:12</span>
-          <h2>Dual-booting Raided Windows/Non-Raid Linux</h2>
-        </header>
+      <article class="post">
+        <header>
+          <h2 class="post-title">Dual-booting Raided Windows/Non-Raid Linux
+          </h2>
+          <time datetime="2010-08-21 18:12" class="timestamp">August 21, 2010</time>
+        </header><p>If you&#39;re following along at home, I got my Gentoo install
+<a href="moving-from-virtualbox-to-physical-disk">extracted</a> and running on physical
+disk.  Now I have a problem to solve: Dual booting with Windows.  This is
+only a problem because my Windows install is on a RAID0 array using an Intel
+fakeraid controller.  I found all kinds of info on dual-booting Windows/Linux
+while both are installed in the raid array, but nothing to help with my
+situation.  So here we go.</p>
+<h3 id="attempt-1-grub-on-the-linux-drive">Attempt #1 :: GRUB on the Linux drive</h3>
+<p>My first attempt was to setup GRUB on the Linux drive, and tell the BIOS to
+boot off that.  I knew I should add an entry to <code>grub.conf</code> to reference the
+Windows drive and call <code>chainloader+</code>, but as I was typing it out I realized
+that I didn&#39;t have a way to reference it.  My Spidey Sense&#0153; was telling
+me I&#39;d need an initrd with all the raid info in it, so GRUB would know how to
+talk to the entire RAID drive.  That sounds like work.  Moving on.</p>
+<h3 id="attempt-2-grub-loaded-from-windows-boot-ini">Attempt #2 :: GRUB loaded from Windows boot.ini</h3>
+<p>Next, I tried <a href="http://www.linux.com/archive/feature/113945">this</a> trick, which
+has worked for me in the past.  This basically involves saving GRUB&#39;s MBR into
+a file, and loading it up from Windows&#39; boot.ini, so it shows up as a bootable
+entry on startup.  So I created a grub.bin from my Linux drive, copied it over,
+and added the entry to boot.ini.  After a reboot, I received the dreaded
+<code>GRUB Error 21</code> (which, by the way, is the most frustrating error ever
+conceived by man).  Strike 2.</p>
+<h3 id="attempt-3-grub-on-windows-mbr-success-">Attempt #3 :: GRUB on Windows MBR (Success!)</h3>
+<p>Once I thought about what I was trying to do, I realized the solution was to
+just install GRUB in the MBR of the Windows RAID0 array.  This was a little
+more involved, but much less painful than creating a hacky <code>initrd</code>.  So here
+goes.</p>
+<h4 id="install-dmraid-and-generate-your-device-mappings">Install dmraid and generate your device mappings</h4>
+<p>You&#39;re going to need <code>dmraid</code> to allow Linux to see your RAID0
+drives/partitions for what they are.  On Gentoo:</p>
+<pre><code class="hljs bash">$ <span class="hljs-built_in">sudo</span> emerge dmraid</code></pre>
+
+<p>A full explanation of dmraid is outside the scope of this post, and an exercise
+I leave to the reader.  In a nutshell, it creates device nodes in <code>/dev/mapper</code>
+that reverence your RAID drives/partitions.  On my system:</p>
+<pre><code class="hljs bash">$ <span class="hljs-built_in">sudo</span> dmraid -ay
+$ ls /dev/mapper
+control  isw_bbgfjaijea_Volume0  isw_bbgfjaijea_Volume01  isw_bbgfjaijea_Volume02</code></pre>
+
+<p><code>isw_bbgfjaijea_Volume0</code> is the entire RAID array and
+<code>isw_bbgfjaijea_Volume01/isw_bbgfjaijea_Volume02</code> are my Windows partitions.</p>
+<h4 id="copy-grub-s-mbr-to-windows-mbr-dominate-">Copy GRUB&#39;s MBR to Windows MBR + DOMINATE!</h4>
+<p>Rather than go to all the trouble of setting up GRUB&#39;s device mappings to get
+the setup process to run, I took a shortcut.  I installed GRUB to the boot
+partition on my Linux install (/dev/sdc1 in this case), and used <code>dd</code> to copy
+that to the Windows MBR.</p>
+<pre><code class="hljs bash">$ <span class="hljs-built_in">sudo</span> grub
+grub&gt; root(hd2,<span class="hljs-number">0</span>)
+grub&gt; setup(hd2,<span class="hljs-number">0</span>)
+grub&gt; quit
+$ <span class="hljs-built_in">sudo</span> dd <span class="hljs-keyword">if</span>=/dev/sdc1 of=/dev/mapper/isw_bbgfjaijea_Volume0 bs=<span class="hljs-number">512</span> count=<span class="hljs-number">1</span>
+<span class="hljs-number">1</span>+<span class="hljs-number">0</span> records <span class="hljs-keyword">in</span>
+<span class="hljs-number">1</span>+<span class="hljs-number">0</span> records out
+<span class="hljs-number">512</span> bytes (<span class="hljs-number">512</span> B) copied, <span class="hljs-number">3.8321</span>e-<span class="hljs-number">05</span> s, <span class="hljs-number">13.4</span> MB/s</code></pre>
+
+<p>At this point I shut down the machine, switched the BIOS to boot from the RAID
+array as the primary boot device, and crossed my fingers.</p>
+<p>Of course it didn&#39;t work!  I forgot to adjust the <code>grub.conf</code> to account for
+the Linux drive being moved to the third physical slot (hd2 vs hd0) after I
+plugged the Windows drives back in.  While I was fixing that, I also changed
+the <code>fstab</code> file accordingly.  One more reboot, and SHAZAM!  It works.  It&#39;s
+worth noting that my first attempt at doing to GRUB install/switcheroo
+failed.  I installed it to the MBR of the entire drive (sdc), and after doing
+the <code>dd</code> dance, the entire system refused to boot.  I&#39;m not sure why, and
+somebody is probably going to berate me for not knowing.  It works now,
+so I&#39;m finished.</p>
+
       </article>
     </div>
     <footer class="site-footer">
       <div class="container">
-        <h2 class="footer-heading">Dual-booting Raided Windows/Non-Raid Linux</h2>
+        <h2 class="footer-heading">CodingPrime</h2>
         <div class="footer-col-wrapper">
           <div class="footer-col footer-col-1">
             <ul class="contact-list">
-              <li>Dual-booting Raided Windows/Non-Raid Linux</li>
-              <li><a href="#">vmizzle@gmail.com</a></li>
+              <li>CodingPrime</li>
+              <li><a href="#">site.email_address</a></li>
             </ul>
           </div>
           <div class="footer-col footer-col-2">
@@ -55,7 +123,7 @@
             </ul>
           </div>
           <div class="footer-col footer-col-3">
-            <p class="text">Write an awesome description for your new site here. You   can edit this line in _config.yml. It will appear in your document   head meta (for Google search results) and in your feed.xml site   description.</p>
+            <p class="text">Write an awesome description for your new site here. You     can edit this line in _config.yml. It will appear in your document     head meta (for Google search results) and in your feed.xml site   description.</p>
           </div>
         </div>
       </div>

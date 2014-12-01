@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width initial-scale=1">
-    <title>ModelMe...why?</title>
+    <title>CodingPrime</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/highlight.js.solarized.css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -14,11 +14,11 @@
     <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand">ModelMe...why?</a>
+          <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand">CodingPrime</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="/">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -26,20 +26,69 @@
       </div>
     </nav>
     <div class="container">
-      <article class="content-article">
-        <header><span class="timestamp">2013-08-31 11:46</span>
-          <h2>ModelMe...why?</h2>
-        </header>
+      <article class="post">
+        <header>
+          <h2 class="post-title">ModelMe...why?
+          </h2>
+          <time datetime="2013-08-31 11:46" class="timestamp">August 31, 2013</time>
+        </header><p>My day job consists of architecting and maintaining several Rails
+applications.  Some of these must deal with custom data sources that
+were architected before there were standards for inter-application
+communication (SOAP, REST, XML-RPC, etc).  One in particular is is a custom TCP
+server that responds to method calls (using XML as the transport mechanism).
+Replacing the service is not an option (as is usually the case with any
+<a href="http://fc05.deviantart.net/fs71/f/2012/013/0/7/pain_in_the_ass_by_sk8rnerd-d4m9ag5.jpg">PITA</a>
+legacy problem), so I have to communicate with it.</p>
+<h3 id="activerecord-arel">ActiveRecord/AREL</h3>
+<p>For all of its perceived shortcomings,
+{ActiveRecord](<a href="https://github.com/rails/rails/tree/master/activerecord">https://github.com/rails/rails/tree/master/activerecord</a>) is an
+excellent piece of software.  More importantly, <a href="https://github.com/rails/arel">arel</a>,
+the relational library that drives it is a very well architected masterpiece.
+Together, they do a lot of magic that makes interacting with SQL data sources
+fairly effortless.</p>
+<p>While arel allows for adding custom <em>visitors</em> (which allow you to customize
+the &quot;SQL&quot; generated to perform queries/updates), both libraries are tightly
+coupled to the RDBMS data store.</p>
+<h3 id="datamapper">DataMapper</h3>
+<p>Another wonderful little gem is <a href="http://datamapper.org/">DataMapper</a>.  This
+thing solves the problems above by taking a different approach to modeling
+data.  Instead of inferring structure from the database (as ActiveRecord
+does), it puts this responsibility back in the hands of the user.  It also
+delegates the job of interacting with the data store to custom &quot;adapters&quot;,
+which understand how to communicate with whatever <em>thingie</em> has the
+data you want.  If you have to work in a mixed environment and can get away
+with it, DataMapper is definitely the way to go.</p>
+<h3 id="stuck-">Stuck?</h3>
+<p>Unfortunately, I find myself stuck dealing with code that uses ActiveRecord
+to deal with the local application data, but still needs to be able to access
+data stored in the custom service described above.  I could use DataMapper for
+just those areas of the app, but this just feels...dirty.  As a developer, I
+have enough to think about.  I&#39;d rather not have to try and remember which DSL
+is used for which models.  One application, one syntax for dealing with data.
+And it should just work.</p>
+<h3 id="modelme">ModelMe</h3>
+<p>After several attempts to bridge the gap, and digging around the source of
+several projects on Github (notably <a href="https://github.com/maccman/supermodel">supermodel</a>),
+I decided to just write some fucking code.  The result is <em><a href="https://github.com/t3hpr1m3/model_me">ModelMe</a></em>.
+It&#39;s basically everything from ActiveModel I could squeeze in, with a lot of
+the relationship/query/association logic inspired by (read: stolen from)
+ActiveRecord.  It follows the same methodology as DataMapper (explicit
+attribute definition/delegation of datastore interaction) but looks, smells,
+and tastes like ActiveRecord.  It&#39;s fairly stable, and is currently being used
+in several mission critical applications dealing with financial data (yes, my
+sphincter puckers from time to time).</p>
+<p>Is it perfect?  Hell no.  But it&#39;s good enough to get through the day.</p>
+
       </article>
     </div>
     <footer class="site-footer">
       <div class="container">
-        <h2 class="footer-heading">ModelMe...why?</h2>
+        <h2 class="footer-heading">CodingPrime</h2>
         <div class="footer-col-wrapper">
           <div class="footer-col footer-col-1">
             <ul class="contact-list">
-              <li>ModelMe...why?</li>
-              <li><a href="#">vmizzle@gmail.com</a></li>
+              <li>CodingPrime</li>
+              <li><a href="#">site.email_address</a></li>
             </ul>
           </div>
           <div class="footer-col footer-col-2">
@@ -55,7 +104,7 @@
             </ul>
           </div>
           <div class="footer-col footer-col-3">
-            <p class="text">Write an awesome description for your new site here. You   can edit this line in _config.yml. It will appear in your document   head meta (for Google search results) and in your feed.xml site   description.</p>
+            <p class="text">Write an awesome description for your new site here. You     can edit this line in _config.yml. It will appear in your document     head meta (for Google search results) and in your feed.xml site   description.</p>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width initial-scale=1">
-    <title>RSpec, Autotest, Rails3, and Engines</title>
+    <title>CodingPrime</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/highlight.js.solarized.css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -14,11 +14,11 @@
     <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand">RSpec, Autotest, Rails3, and Engines</a>
+          <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand">CodingPrime</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="/">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -26,20 +26,63 @@
       </div>
     </nav>
     <div class="container">
-      <article class="content-article">
-        <header><span class="timestamp">2010-12-06 18:19</span>
-          <h2>RSpec, Autotest, Rails3, and Engines</h2>
-        </header>
+      <article class="post">
+        <header>
+          <h2 class="post-title">RSpec, Autotest, Rails3, and Engines
+          </h2>
+          <time datetime="2010-12-06 18:19" class="timestamp">December 6, 2010</time>
+        </header><p>I&#39;ve got an app I&#39;m building that is comprised of several engines running in
+<em>vendor/nsweb</em>.  I want each engine to have its own specs, without cluttering
+up the main app&#39;s <em>spec</em> folder.  I also want to be able to run tests for ALL
+engines at once, both using rake and through autotest.  To accomplish the first
+task, I added the following:</p>
+<pre><code class="hljs ruby"><span class="hljs-comment"># lib/tasks/rspec.rake</span>
+<span class="hljs-constant">RSpec::Core::RakeTask</span>.module_eval <span class="hljs-keyword">do</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>pattern
+    extras = []
+    <span class="hljs-constant">Dir</span>[<span class="hljs-constant">File</span>.join( <span class="hljs-constant">File</span>.expand_path( <span class="hljs-string">'vendor'</span> ), <span class="hljs-string">'nsweb'</span>, <span class="hljs-string">'*'</span> )].flatten.each <span class="hljs-keyword">do</span> |dir|
+      <span class="hljs-keyword">if</span> <span class="hljs-constant">File</span>.directory?( dir )
+        extras += <span class="hljs-constant">File</span>.join( dir, <span class="hljs-string">'spec'</span>, <span class="hljs-string">'**'</span>, <span class="hljs-string">'*_spec.rb'</span> ).to_s
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+    [<span class="hljs-variable">@pattern</span>] | extras
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+
+<p>Now, if I run</p>
+<pre><code><span class="hljs-preprocessor"># rake spec</span></code></pre>
+
+<p>the specs from my engines will be run as well.</p>
+<p>For autotest, I added this:</p>
+<pre><code class="hljs ruby"><span class="hljs-comment"># .autotest</span>
+
+<span class="hljs-constant">Autotest</span>.add_hook <span class="hljs-symbol">:initialize</span> <span class="hljs-keyword">do</span> |autotest|
+  autotest.add_mapping( %r%^vendor/nsweb/(.*)/app/controllers/(.*)\.rb<span class="hljs-variable">$%</span> ) <span class="hljs-keyword">do</span> |<span class="hljs-number">_</span>, m|
+    [<span class="hljs-string">"vendor/nsweb/<span class="hljs-subst">#{m[<span class="hljs-number">1</span>]}</span>/spec/controllers/<span class="hljs-subst">#{m[<span class="hljs-number">2</span>]}</span>_spec.rb"</span>]
+  <span class="hljs-keyword">end</span>
+
+  autotest.add_mapping( %r%^vendor/nsweb/(.*)/app/models/(.*)\.rb<span class="hljs-variable">$%</span> ) <span class="hljs-keyword">do</span> |<span class="hljs-number">_</span>, m|
+    [<span class="hljs-string">"vendor/nsweb/<span class="hljs-subst">#{m[<span class="hljs-number">1</span>]}</span>/spec/models/<span class="hljs-subst">#{m[<span class="hljs-number">2</span>]}</span>_spec.rb"</span>]
+  <span class="hljs-keyword">end</span>
+
+  autotest.add_mapping( %r%^vendor/nsweb/(.*)/lib/(.*)\.rb<span class="hljs-variable">$%</span> ) <span class="hljs-keyword">do</span> |<span class="hljs-number">_</span>, m|
+    [<span class="hljs-string">"vendor/nsweb/<span class="hljs-subst">#{m[<span class="hljs-number">1</span>]}</span>/spec/lib/<span class="hljs-subst">#{m[<span class="hljs-number">2</span>]}</span>_spec.rb"</span>]
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+
+<p>There is probably a much more elegant way to do both of these things, but this
+worked for me.</p>
+
       </article>
     </div>
     <footer class="site-footer">
       <div class="container">
-        <h2 class="footer-heading">RSpec, Autotest, Rails3, and Engines</h2>
+        <h2 class="footer-heading">CodingPrime</h2>
         <div class="footer-col-wrapper">
           <div class="footer-col footer-col-1">
             <ul class="contact-list">
-              <li>RSpec, Autotest, Rails3, and Engines</li>
-              <li><a href="#">vmizzle@gmail.com</a></li>
+              <li>CodingPrime</li>
+              <li><a href="#">site.email_address</a></li>
             </ul>
           </div>
           <div class="footer-col footer-col-2">
@@ -55,7 +98,7 @@
             </ul>
           </div>
           <div class="footer-col footer-col-3">
-            <p class="text">Write an awesome description for your new site here. You   can edit this line in _config.yml. It will appear in your document   head meta (for Google search results) and in your feed.xml site   description.</p>
+            <p class="text">Write an awesome description for your new site here. You     can edit this line in _config.yml. It will appear in your document     head meta (for Google search results) and in your feed.xml site   description.</p>
           </div>
         </div>
       </div>
