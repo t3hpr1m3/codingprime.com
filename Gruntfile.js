@@ -36,14 +36,35 @@ module.exports = function(grunt) {
               outputDir: 'assets/css/',
               outputStyle: 'expanded'
             }
-          }
+          },
+          clean: false
         },
         src: 'src',
         dest: 'build'
+      }
+    },
+    watch: {
+      src: {
+        files: ['src/**/*.md', 'templates/**/*.jade'],
+        tasks: ['default']
+      }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 3003,
+          base: {
+            path: 'build'
+          },
+          keepalive: true
+        }
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-metalsmith');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.registerTask('default', ['metalsmith']);
+  grunt.registerTask('serve', ['connect']);
 };
