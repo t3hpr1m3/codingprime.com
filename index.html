@@ -28,6 +28,132 @@
     <div class="container">
       <article class="post">
         <header>
+          <h2 class="post-title"><a href="/blog/modelmewhy">ModelMe...why?</a></h2>
+          <time datetime="2013-08-31 11:46" class="timestamp">August 31, 2013</time>
+        </header><p>My day job consists of architecting and maintaining several Rails
+applications.  Some of these must deal with custom data sources that
+were architected before there were standards for inter-application
+communication (SOAP, REST, XML-RPC, etc).  One in particular is is a custom TCP
+server that responds to method calls (using XML as the transport mechanism).
+Replacing the service is not an option (as is usually the case with any
+<a href="http://fc05.deviantart.net/fs71/f/2012/013/0/7/pain_in_the_ass_by_sk8rnerd-d4m9ag5.jpg">PITA</a>
+legacy problem), so I have to communicate with it.</p>
+<h3 id="activerecord-arel">ActiveRecord/AREL</h3>
+<p>For all of its perceived shortcomings,
+{ActiveRecord](<a href="https://github.com/rails/rails/tree/master/activerecord">https://github.com/rails/rails/tree/master/activerecord</a>) is an
+excellent piece of software.  More importantly, <a href="https://github.com/rails/arel">arel</a>,
+the relational library that drives it is a very well architected masterpiece.
+Together, they do a lot of magic that makes interacting with SQL data sources
+fairly effortless.</p>
+<p>While arel allows for adding custom <em>visitors</em> (which allow you to customize
+the &quot;SQL&quot; generated to perform queries/updates), both libraries are tightly
+coupled to the RDBMS data store.</p>
+<h3 id="datamapper">DataMapper</h3>
+<p>Another wonderful little gem is <a href="http://datamapper.org/">DataMapper</a>.  This
+thing solves the problems above by taking a different approach to modeling
+data.  Instead of inferring structure from the database (as ActiveRecord
+does), it puts this responsibility back in the hands of the user.  It also
+delegates the job of interacting with the data store to custom &quot;adapters&quot;,
+which understand how to communicate with whatever <em>thingie</em> has the
+data you want.  If you have to work in a mixed environment and can get away
+with it, DataMapper is definitely the way to go.</p>
+<h3 id="stuck-">Stuck?</h3>
+<p>Unfortunately, I find myself stuck dealing with code that uses ActiveRecord
+to deal with the local application data, but still needs to be able to access
+data stored in the custom service described above.  I could use DataMapper for
+just those areas of the app, but this just feels...dirty.  As a developer, I
+have enough to think about.  I&#39;d rather not have to try and remember which DSL
+is used for which models.  One application, one syntax for dealing with data.
+And it should just work.</p>
+<h3 id="modelme">ModelMe</h3>
+<p>After several attempts to bridge the gap, and digging around the source of
+several projects on Github (notably <a href="https://github.com/maccman/supermodel">supermodel</a>),
+I decided to just write some fucking code.  The result is <em><a href="https://github.com/t3hpr1m3/model_me">ModelMe</a></em>.
+It&#39;s basically everything from ActiveModel I could squeeze in, with a lot of
+the relationship/query/association logic inspired by (read: stolen from)
+ActiveRecord.  It follows the same methodology as DataMapper (explicit
+attribute definition/delegation of datastore interaction) but looks, smells,
+and tastes like ActiveRecord.  It&#39;s fairly stable, and is currently being used
+in several mission critical applications dealing with financial data (yes, my
+sphincter puckers from time to time).</p>
+<p>Is it perfect?  Hell no.  But it&#39;s good enough to get through the day.</p>
+
+      </article>
+      <article class="post">
+        <header>
+          <h2 class="post-title"><a href="/blog/skipping-asset-precompile">Skipping asset precompile</a></h2>
+          <time datetime="2012-07-12 17:20" class="timestamp">July 12, 2012</time>
+        </header><p>Waiting on asset precompilation is a PITA, especially if no assets have been
+changed.  Thankfully,
+<a href="http://www.bencurtis.com/2011/12/skipping-asset-compilation-with-capistrano/">Ben Curtis</a>
+came up with a workable solution.  Except...</p>
+<p>Ben&#39;s method fails on the initial deployment, because <em>current_revision</em> tries to
+read <em>/path/to/app/current/REVISION</em>, which won&#39;t exist yet.  After trying several
+approaches, I have arrived at one which works for me.  There are probably other,
+more elegant approaches, but this one seems clear enough for my purposes. 
+Posting it here for posterity.</p>
+<pre><code class="hljs ruby">namespace <span class="hljs-symbol">:deploy</span> <span class="hljs-keyword">do</span>
+  namespace <span class="hljs-symbol">:assets</span> <span class="hljs-keyword">do</span>
+    task <span class="hljs-symbol">:precompile</span>, <span class="hljs-symbol">roles:</span> <span class="hljs-symbol">:web</span>, <span class="hljs-symbol">except:</span> {<span class="hljs-symbol">no_release:</span> <span class="hljs-keyword">true</span>} <span class="hljs-keyword">do</span>
+      from = source.next_revision(current_revision) <span class="hljs-keyword">if</span> capture(<span class="hljs-string">"[ -f <span class="hljs-subst">#{<span class="hljs-constant">File</span>.join(current_path, <span class="hljs-string">'REVISION'</span>)}</span> ] || echo '1'"</span>).empty?
+      <span class="hljs-keyword">if</span> from.<span class="hljs-keyword">nil</span>? || capture(<span class="hljs-string">"cd <span class="hljs-subst">#{latest_release}</span> &amp;&amp; <span class="hljs-subst">#{source.local.log(from)}</span> vendor/assets app/assets lib/assets | wc -l"</span>).to_i &gt; <span class="hljs-number">0</span>
+        run <span class="hljs-string">%Q{cd <span class="hljs-subst">#{latest_release}</span> &amp;&amp; <span class="hljs-subst">#{rake}</span> RAILS_ENV=<span class="hljs-subst">#{rails_env}</span> <span class="hljs-subst">#{asset_env}</span> assets:precompile}</span>
+      <span class="hljs-keyword">else</span>
+        logger.info <span class="hljs-string">"Skipping asset pre-compilation because there were no asset changes."</span>
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+      </article>
+      <article class="post">
+        <header>
+          <h2 class="post-title"><a href="/blog/rspec-autotest-rails3-and-engines">RSpec, Autotest, Rails3, and Engines</a></h2>
+          <time datetime="2010-12-06 18:19" class="timestamp">December 6, 2010</time>
+        </header><p>I&#39;ve got an app I&#39;m building that is comprised of several engines running in
+<em>vendor/nsweb</em>.  I want each engine to have its own specs, without cluttering
+up the main app&#39;s <em>spec</em> folder.  I also want to be able to run tests for ALL
+engines at once, both using rake and through autotest.  To accomplish the first
+task, I added the following:</p>
+<pre><code class="hljs ruby"><span class="hljs-comment"># lib/tasks/rspec.rake</span>
+<span class="hljs-constant">RSpec::Core::RakeTask</span>.module_eval <span class="hljs-keyword">do</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>pattern
+    extras = []
+    <span class="hljs-constant">Dir</span>[<span class="hljs-constant">File</span>.join( <span class="hljs-constant">File</span>.expand_path( <span class="hljs-string">'vendor'</span> ), <span class="hljs-string">'nsweb'</span>, <span class="hljs-string">'*'</span> )].flatten.each <span class="hljs-keyword">do</span> |dir|
+      <span class="hljs-keyword">if</span> <span class="hljs-constant">File</span>.directory?( dir )
+        extras += <span class="hljs-constant">File</span>.join( dir, <span class="hljs-string">'spec'</span>, <span class="hljs-string">'**'</span>, <span class="hljs-string">'*_spec.rb'</span> ).to_s
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+    [<span class="hljs-variable">@pattern</span>] | extras
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+
+<p>Now, if I run</p>
+<pre><code><span class="hljs-preprocessor"># rake spec</span></code></pre>
+
+<p>the specs from my engines will be run as well.</p>
+<p>For autotest, I added this:</p>
+<pre><code class="hljs ruby"><span class="hljs-comment"># .autotest</span>
+
+<span class="hljs-constant">Autotest</span>.add_hook <span class="hljs-symbol">:initialize</span> <span class="hljs-keyword">do</span> |autotest|
+  autotest.add_mapping( %r%^vendor/nsweb/(.*)/app/controllers/(.*)\.rb<span class="hljs-variable">$%</span> ) <span class="hljs-keyword">do</span> |<span class="hljs-number">_</span>, m|
+    [<span class="hljs-string">"vendor/nsweb/<span class="hljs-subst">#{m[<span class="hljs-number">1</span>]}</span>/spec/controllers/<span class="hljs-subst">#{m[<span class="hljs-number">2</span>]}</span>_spec.rb"</span>]
+  <span class="hljs-keyword">end</span>
+
+  autotest.add_mapping( %r%^vendor/nsweb/(.*)/app/models/(.*)\.rb<span class="hljs-variable">$%</span> ) <span class="hljs-keyword">do</span> |<span class="hljs-number">_</span>, m|
+    [<span class="hljs-string">"vendor/nsweb/<span class="hljs-subst">#{m[<span class="hljs-number">1</span>]}</span>/spec/models/<span class="hljs-subst">#{m[<span class="hljs-number">2</span>]}</span>_spec.rb"</span>]
+  <span class="hljs-keyword">end</span>
+
+  autotest.add_mapping( %r%^vendor/nsweb/(.*)/lib/(.*)\.rb<span class="hljs-variable">$%</span> ) <span class="hljs-keyword">do</span> |<span class="hljs-number">_</span>, m|
+    [<span class="hljs-string">"vendor/nsweb/<span class="hljs-subst">#{m[<span class="hljs-number">1</span>]}</span>/spec/lib/<span class="hljs-subst">#{m[<span class="hljs-number">2</span>]}</span>_spec.rb"</span>]
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre>
+
+<p>There is probably a much more elegant way to do both of these things, but this
+worked for me.</p>
+
+      </article>
+      <article class="post">
+        <header>
           <h2 class="post-title"><a href="/blog/form-cancel-button-without-javascript">Form cancel button (without Javascript)</a></h2>
           <time datetime="2010-09-02 08:38" class="timestamp">September 2, 2010</time>
         </header><p>Found <a href="http://rubypond.com/blog/capturing-a-form-cancel">this</a> today, and
