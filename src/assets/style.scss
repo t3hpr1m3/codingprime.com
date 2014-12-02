@@ -41,7 +41,11 @@ pre {
 	border: 1px solid #cccccc;
 	border-radius: 4px;
 	padding: 10px;
+	overflow: auto;
+	word-wrap: normal;
+	white-space: pre;
 }
+
 code {
 	font-family: 'Source Code Pro', monospace, serif;
 	font-size: .8em;
