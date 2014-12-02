@@ -28,6 +28,7 @@ module.exports = function(grunt) {
               grm: true,
               tables: true
             },
+            'metalsmith-snippet': {},
             'metalsmith-permalinks': {},
             'metalsmith-templates': {
               engine: 'jade',
@@ -47,7 +48,7 @@ module.exports = function(grunt) {
     },
     watch: {
       src: {
-        files: ['src/**/*.md', 'templates/**/*.jade'],
+        files: ['src/**/*.*', 'templates/**/*.jade'],
         tasks: ['default']
       }
     },
