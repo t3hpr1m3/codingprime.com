@@ -404,7 +404,10 @@ pre {
   background-color: #f5f5f5;
   border: 1px solid #cccccc;
   border-radius: 4px;
-  padding: 10px; }
+  padding: 10px;
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre; }
 
 code {
   font-family: 'Source Code Pro', monospace, serif;
