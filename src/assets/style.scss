@@ -69,7 +69,8 @@ body > header {
 	color: $grey-color;
 	border-bottom: 2px inset $grey-color-dark;
 	section.container {
-		padding: .5em 0;
+		padding-top: .5em;
+		padding-bottom: .5em;
 	}
 	h1 {
 		font-family: 'Helvetica Neue', Helvetica, sans-serif;
