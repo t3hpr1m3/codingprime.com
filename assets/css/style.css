@@ -426,7 +426,8 @@ body > header {
   color: #828282;
   border-bottom: 2px inset #424242; }
   body > header section.container {
-    padding: 0.5em 0; }
+    padding-top: 0.5em;
+    padding-bottom: 0.5em; }
   body > header h1 {
     font-family: 'Helvetica Neue', Helvetica, sans-serif;
     margin: 0.5em 0; }
