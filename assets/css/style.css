@@ -392,9 +392,6 @@ html {
   font-size: 100%;
   color: #333333; }
 
-body {
-  padding-top: 50px; }
-
 @media screen and (min-width: 1200px) {
   .container {
     max-width: 890px; }
@@ -419,25 +416,25 @@ code {
   max-width: 50em; }
 
 a {
-  color: #801515;
+  color: #aa3939;
   text-decoration: none; }
   a:hover {
-    color: #aa3939; }
+    color: #d46a6a; }
 
-nav.banner {
-  background-color: #222222;
-  border-color: #090909;
-  position: fixed;
-  right: 0;
-  left: 0;
-  z-index: 1030;
-  min-height: 40px;
-  line-height: 40px;
-  top: 0; }
-  nav.banner a {
-    color: #aa6c39; }
-    nav.banner a:hover {
-      color: #ffffff; }
+body > header {
+  background-color: #226666;
+  color: #828282;
+  border-bottom: 2px inset #424242; }
+  body > header section.container {
+    padding: 0.5em 0; }
+  body > header h1 {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    margin: 0.5em 0; }
+    body > header h1 a {
+      color: #e8e8e8; }
+  body > header span {
+    font-family: 'Inconsolata', monospace, serif;
+    text-shadow: 1px 1px 0px #000000; }
 
 article.post {
   border-bottom: 1px solid #e8e8e8;
