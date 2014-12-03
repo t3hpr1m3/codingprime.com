@@ -2,8 +2,8 @@
 @import 'reset';
 
 $spacing-unit:     30px;
-$link-color:       #801515;
-$link-color-hover: #aa3939;
+$link-color:       #aa3939;
+$link-color-hover: #d46a6a;
 $grey-color:       #828282;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark:  darken($grey-color, 25%);
@@ -27,7 +27,6 @@ html {
 }
 
 body {
-	padding-top: 50px;
 }
 
 @media screen and (min-width: 1200px) {
@@ -65,24 +64,26 @@ a {
 	}
 }
 
-nav.banner {
-	background-color: #222222;
-	border-color: #090909;
-	position: fixed;
-	right: 0;
-	left: 0;
-	z-index: 1030;
-	min-height: 40px;
-	line-height: 40px;
-	top: 0;
-
-	a {
-		color: #aa6c39;
-		&:hover {
-			color: #ffffff;
+body > header {
+	background-color: #226666;
+	color: $grey-color;
+	border-bottom: 2px inset $grey-color-dark;
+	section.container {
+		padding: .5em 0;
+	}
+	h1 {
+		font-family: 'Helvetica Neue', Helvetica, sans-serif;
+		margin: .5em 0;
+		a {
+			color: $grey-color-light;
 		}
 	}
+	span {
+		font-family: 'Inconsolata', monospace, serif;
+		text-shadow: 1px 1px 0px #000000;
+	}
 }
+
 
 article.post {
 	border-bottom: 1px solid $grey-color-light;
