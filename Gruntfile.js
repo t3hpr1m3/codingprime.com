@@ -30,6 +30,15 @@ module.exports = function(grunt) {
             },
             'metalsmith-snippet': {},
             'metalsmith-permalinks': {},
+            'metalsmith-pagination': {
+              'collections.articles': {
+                perPage: 5,
+                template: 'index.jade',
+                first: 'index.html',
+                path: 'blog/page/:num/index.html'
+              }
+            },
+            'metalsmith-ignore': ['blog/page/1/index.html'],
             'metalsmith-templates': {
               engine: 'jade',
               directory: 'templates',

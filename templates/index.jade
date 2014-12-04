@@ -1,6 +1,6 @@
 extends layout
 block content
-  each article in collections.articles
+  each article in pagination.files
     article.post
       header
         time(datetime=article.date)= moment(article.date).format('MMMM D, YYYY')
@@ -9,3 +9,8 @@ block content
 
       section
         p!= article.snippet
+  nav.pagination
+    if pagination.next
+      a.btn.pull-right(href='/' + pagination.next.path) Older &raquo;
+    if pagination.previous
+      a.btn.pull-left(href='/' + pagination.previous.path) &laquo; Newer
