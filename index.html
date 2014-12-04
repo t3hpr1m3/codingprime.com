@@ -19,7 +19,7 @@
       <article class="post">
         <header>
           <time datetime="2013-08-31 11:46">August 31, 2013</time>
-          <h2><a href="/blog/modelmewhy">ModelMe...why?</a></h2>
+          <h2><a href="/blog/2013/08/modelmewhy">ModelMe...why?</a></h2>
         </header>
         <section>
           <p>My day job consists of architecting and maintaining several Rails&#10;applications.  Some of these must deal with custom data sources that&#10;were architected before there were standards for inter-application&#10;communication (SOAP, REST, XML-RPC, etc).  One in particular is is a custom TCP&#10;server that&#8230;</p>
@@ -28,7 +28,7 @@
       <article class="post">
         <header>
           <time datetime="2012-07-12 17:20">July 12, 2012</time>
-          <h2><a href="/blog/skipping-asset-precompile">Skipping asset precompile</a></h2>
+          <h2><a href="/blog/2012/07/skipping-asset-precompile">Skipping asset precompile</a></h2>
         </header>
         <section>
           <p>Waiting on asset precompilation is a PITA, especially if no assets have been&#10;changed.  Thankfully,&#10;Ben Curtis&#10;came up with a workable solution.  Except...&#10;Ben&#39;s method fails on the initial deployment, because current_revision tries to&#10;read /path/to/app/current/REVISION, which won&#39;t exist yet.  After&#8230;</p>
@@ -37,7 +37,7 @@
       <article class="post">
         <header>
           <time datetime="2010-12-06 18:19">December 6, 2010</time>
-          <h2><a href="/blog/rspec-autotest-rails3-and-engines">RSpec, Autotest, Rails3, and Engines</a></h2>
+          <h2><a href="/blog/2010/12/rspec-autotest-rails3-and-engines">RSpec, Autotest, Rails3, and Engines</a></h2>
         </header>
         <section>
           <p>I&#39;ve got an app I&#39;m building that is comprised of several engines running in&#10;vendor/nsweb.  I want each engine to have its own specs, without cluttering&#10;up the main app&#39;s spec folder.  I also want to be able to run tests for ALL&#10;engines at once, both using rake and through autotest.  To accomplish&#8230;</p>
@@ -46,7 +46,7 @@
       <article class="post">
         <header>
           <time datetime="2010-09-02 08:38">September 2, 2010</time>
-          <h2><a href="/blog/form-cancel-button-without-javascript">Form cancel button (without Javascript)</a></h2>
+          <h2><a href="/blog/2010/09/form-cancel-button-without-javascript">Form cancel button (without Javascript)</a></h2>
         </header>
         <section>
           <p>Found this today, and&#10;banged my head on the desk for never thinking of this when trying to add a&#10;cancel button to a form, regardless of the language.</p>
@@ -55,7 +55,7 @@
       <article class="post">
         <header>
           <time datetime="2010-08-22 19:00">August 22, 2010</time>
-          <h2><a href="/blog/custom-requireauthenticationfor-rspec-matcher">Custom RSpec matcher:  require_authentication_for</a></h2>
+          <h2><a href="/blog/2010/08/custom-requireauthenticationfor-rspec-matcher">Custom RSpec matcher:  require_authentication_for</a></h2>
         </header>
         <section>
           <p>Like everyone, I have a bunch of controller actions that need to be protected&#10;from unauthorized users.  I&#39;ve got RSpec tests around these methods that look&#10;like this:&#10;&#10;&#10;Does exactly what I want it to do.  If I ever screw up and remove index from&#10;the before_filter :authenticate, I&#39;ll know it when I&#8230;</p>
@@ -64,7 +64,7 @@
       <article class="post">
         <header>
           <time datetime="2010-08-21 23:20">August 21, 2010</time>
-          <h2><a href="/blog/site-config-configyml-for-rails">Site Config (config.yml) for Rails</a></h2>
+          <h2><a href="/blog/2010/08/site-config-configyml-for-rails">Site Config (config.yml) for Rails</a></h2>
         </header>
         <section>
           <p>Over at Railscasts, The Honourable Ryan Bates,&#10;Esquire1 has been churning out quality screencasts FOREVER.  And&#10;while some of them become somewhat obsolete as Rails itself changes, they&#39;re&#10;still a better starting point than most of what&#39;s available on the web.&#10;One that I happened to view recently&#8230;</p>
@@ -73,7 +73,7 @@
       <article class="post">
         <header>
           <time datetime="2010-08-21 18:12">August 21, 2010</time>
-          <h2><a href="/blog/dualbooting-raided-windows-non-raid-linux">Dual-booting Raided Windows/Non-Raid Linux</a></h2>
+          <h2><a href="/blog/2010/08/dualbooting-raided-windows-non-raid-linux">Dual-booting Raided Windows/Non-Raid Linux</a></h2>
         </header>
         <section>
           <p>If you&#39;re following along at home, I got my Gentoo install&#10;extracted and running on physical&#10;disk.  Now I have a problem to solve: Dual booting with Windows.  This is&#10;only a problem because my Windows install is on a RAID0 array using an Intel&#10;fakeraid controller.  I found all kinds of info on&#8230;</p>
@@ -82,7 +82,7 @@
       <article class="post">
         <header>
           <time datetime="2010-08-21 15:50">August 21, 2010</time>
-          <h2><a href="/blog/moving-from-virtualbox-to-physical-disk">Moving from Virtualbox to Physical Disk</a></h2>
+          <h2><a href="/blog/2010/08/moving-from-virtualbox-to-physical-disk">Moving from Virtualbox to Physical Disk</a></h2>
         </header>
         <section>
           <p>I decided to convert one of my Gentoo VirtualBox installs to physical disk&#10;(ie. convert Virtual -&#62; Physical ).  This sounded pretty straightforward,&#10;but after a bit of Googling, all I had found were a bunch of articlesi&#10;explaining how to take a physical partition and convert it to a .vdi.  This&#10;was&#8230;</p>
@@ -90,8 +90,26 @@
       </article>
       <article class="post">
         <header>
+          <time datetime="2010-08-18 09:36">August 18, 2010</time>
+          <h2><a href="/blog/2010/08/windows-updates-failing">Windows Updates Failing</a></h2>
+        </header>
+        <section>
+          <p>I was having some updates fail on my machine here at work (KB983583, KB2279264,&#10;KB2277947, and KB2251419 specifically), and couldn&#39;t seem to find any&#10;resolution.  All the &#34;FixIt&#34;s from Microsoft crashed, and nothing in&#10;this&#10;article seemed to help either.&#10;Turns out, reinstalling the WindowsInstaller&#8230;</p>
+        </section>
+      </article>
+      <article class="post">
+        <header>
+          <time datetime="2010-08-13 23:08">August 13, 2010</time>
+          <h2><a href="/blog/2010/08/findable-plugin">Findable plugin</a></h2>
+        </header>
+        <section>
+          <p>Probably the strangest first blog post ever, but here goes.  I&#39;m migrating a&#10;product from Classic ASP to Rails.  The bulk of its data is accessed via a&#10;TCP service, which accepts/responds with XML.  Unfortunately, it&#39;s a custom&#10;protocol, so I&#39;m forced to do all the packet building/transport myself. &#8230;</p>
+        </section>
+      </article>
+      <article class="post">
+        <header>
           <time datetime="2010-02-18 00:45">February 18, 2010</time>
-          <h2><a href="/blog/first-post">First Post</a></h2>
+          <h2><a href="/blog/2010/02/first-post">First Post</a></h2>
         </header>
         <section>
           <p>Yep. It&#39;s live.</p>
