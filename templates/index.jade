@@ -11,6 +11,6 @@ block content
         p!= article.snippet
   nav.pagination
     if pagination.next
-      a.btn.pull-right(href='/' + pagination.next.path) Older &raquo;
+      a.btn.pull-right(href='/' + pagination.next.path.replace(/index.html$/, '')) Older &raquo;
     if pagination.previous
-      a.btn.pull-left(href='/' + pagination.previous.path) &laquo; Newer
+      a.btn.pull-left(href='/' + pagination.previous.path.replace(/index.html$/, '')) &laquo; Newer
