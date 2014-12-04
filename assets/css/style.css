@@ -383,43 +383,24 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-/**
- * Clearfix
- */
-html {
-  line-height: 1.6em;
-  font-family: Oxygen, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 100%;
-  color: #333333; }
-
 @media screen and (min-width: 1200px) {
   .container {
     max-width: 890px; }
  }
 
-pre {
-  background-color: #f5f5f5;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  padding: 10px;
-  overflow: auto;
-  word-wrap: normal;
-  white-space: pre; }
+/**
+ * Clearfix
+ */
+nav.pagination:after {
+  content: "";
+  display: table;
+  clear: both; }
 
-code {
-  font-family: 'Source Code Pro', monospace, serif;
-  font-size: 0.8em; }
-
-.container {
-  margin: 0 auto;
-  padding: 0 1.5em;
-  max-width: 50em; }
-
-a {
-  color: #aa3939;
-  text-decoration: none; }
-  a:hover {
-    color: #d46a6a; }
+html {
+  line-height: 1.6em;
+  font-family: Oxygen, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  color: #333333; }
 
 body > header {
   background-color: #226666;
@@ -436,6 +417,32 @@ body > header {
   body > header span {
     font-family: 'Inconsolata', monospace, serif;
     text-shadow: 1px 1px 0px #000000; }
+
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 10px;
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre; }
+
+code {
+  font-family: 'Source Code Pro', monospace, serif;
+  font-size: 0.8em; }
+
+a {
+  color: #aa3939;
+  text-decoration: none;
+  transition-property: color, background-color;
+  transition-duration: 0.2s; }
+  a:hover {
+    color: #d46a6a; }
+
+.container {
+  margin: 0 auto;
+  padding: 0 1.5em;
+  max-width: 50em; }
 
 article.post {
   border-bottom: 1px solid #e8e8e8;
@@ -459,3 +466,17 @@ footer.site-footer {
       line-height: 3em; }
     footer.site-footer p.text a {
       float: right; }
+
+nav.pagination {
+  margin-bottom: 1.5em; }
+
+a.btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  color: #828282;
+  background-color: #424242;
+  border-radius: 3px;
+  text-decoration: none; }
+  a.btn:hover {
+    background-color: #828282;
+    color: #ffffff; }
