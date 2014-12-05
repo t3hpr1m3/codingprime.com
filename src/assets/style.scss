@@ -118,11 +118,6 @@ footer.site-footer {
 	}
 }
 
-nav.pagination {
-	@extend %clearfix;
-	margin-bottom: 1.5em;
-}
-
 a.btn {
 	display: inline-block;
 	padding: .5em 1em;
@@ -133,5 +128,16 @@ a.btn {
 	&:hover {
 		background-color: $grey-color;
 		color: #ffffff;
+	}
+}
+
+nav.pagination {
+	@extend %clearfix;
+	margin-bottom: 1.5em;
+	a.btn.pull-right i.fa {
+		margin-left: 5px;
+	}
+	a.btn.pull-left i.fa {
+		margin-right: 5px;
 	}
 }
