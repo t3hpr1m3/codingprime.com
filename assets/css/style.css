@@ -467,9 +467,6 @@ footer.site-footer {
     footer.site-footer p.text a {
       float: right; }
 
-nav.pagination {
-  margin-bottom: 1.5em; }
-
 a.btn {
   display: inline-block;
   padding: 0.5em 1em;
@@ -480,3 +477,10 @@ a.btn {
   a.btn:hover {
     background-color: #828282;
     color: #ffffff; }
+
+nav.pagination {
+  margin-bottom: 1.5em; }
+  nav.pagination a.btn.pull-right i.fa {
+    margin-left: 5px; }
+  nav.pagination a.btn.pull-left i.fa {
+    margin-right: 5px; }
