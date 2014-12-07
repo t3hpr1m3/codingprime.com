@@ -19,6 +19,8 @@ I had a spare SATA drive laying around, so I powered off the machine and popped
 it in.  Using my trusty Gentoo install CD, I partitioned the Linux disk.  My
 Virtualbox install had a disk layout like this:
 
+<!--more-->
+
     /dev/sda1   /boot
     /dev/sda2   <swap>
     /dev/sda3   /

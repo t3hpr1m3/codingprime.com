@@ -19,6 +19,8 @@ my ApplicationConfiguration class.<sup>2</sup>  It basically gives you a global
 settings from a single place.  It supports nested configuration,
 and automatically selects the right environment (test, production, etc).
 
+<!--more-->
+
 ```ruby
 # config/initializers/_init_app_config.rb
 class ApplicationConfigurationNode

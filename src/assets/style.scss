@@ -99,6 +99,14 @@ article.post {
 			color: $grey-color;
 		}
 	}
+	nav {
+		.btn {
+			margin-bottom: 10px;
+			i {
+				margin-left: 5px;
+			}
+		}
+	}
 }
 
 footer.site-footer {
@@ -125,6 +133,7 @@ a.btn {
 	background-color: $grey-color-dark;
 	border-radius: 3px;
 	text-decoration: none;
+	font-weight: bold;
 	&:hover {
 		background-color: $grey-color;
 		color: #ffffff;

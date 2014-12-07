@@ -28,7 +28,9 @@ module.exports = function(grunt) {
               grm: true,
               tables: true
             },
-            'metalsmith-snippet': {},
+            'metalsmith-more': {
+              alwaysAddKey: true
+            },
             'metalsmith-permalinks': {},
             'metalsmith-pagination': {
               'collections.articles': {

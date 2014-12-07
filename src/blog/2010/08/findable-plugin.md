@@ -18,6 +18,7 @@ method, which took a hash of arguments.  This works, but looks weird next to
 all the other ActiveRecord goodness in the app.  Enter:
 [Findable](http://www.github.com/t3hpr1m3/findable).
 
+<!--more-->
 My Account model looks similar to this:
 
 ```ruby

@@ -25,6 +25,8 @@ RSpec::Core::RakeTask.module_eval do
 end
 ```
 
+<!--more-->
+
 Now, if I run
 
 ```shell

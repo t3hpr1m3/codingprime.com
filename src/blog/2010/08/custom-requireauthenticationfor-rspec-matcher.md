@@ -37,6 +37,8 @@ describe UsersController, 'as guest' do
 end
 ```
 
+<!--more-->
+
 Does exactly what I want it to do.  If I ever screw up and remove `index` from
 the `before_filter :authenticate`, I'll know it when I re-run the tests.  But
 I've got lots and lots of methods like this, and wanted a more concise way to

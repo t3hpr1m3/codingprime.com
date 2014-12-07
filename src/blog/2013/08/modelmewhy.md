@@ -12,6 +12,7 @@ server that responds to method calls (using XML as the transport mechanism).
 Replacing the service is not an option (as is usually the case with any
 [PITA](http://fc05.deviantart.net/fs71/f/2012/013/0/7/pain_in_the_ass_by_sk8rnerd-d4m9ag5.jpg)
 legacy problem), so I have to communicate with it.
+<!--more-->
 
 ### ActiveRecord/AREL
 For all of its perceived shortcomings,

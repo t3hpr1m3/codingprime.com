@@ -5,7 +5,7 @@ author: Josh Williams
 template: post.jade
 ---
 If you're following along at home, I got my Gentoo install
-[extracted](moving-from-virtualbox-to-physical-disk) and running on physical
+[extracted](../moving-from-virtualbox-to-physical-disk) and running on physical
 disk.  Now I have a problem to solve: Dual booting with Windows.  This is
 only a problem because my Windows install is on a RAID0 array using an Intel
 fakeraid controller.  I found all kinds of info on dual-booting Windows/Linux
@@ -20,6 +20,8 @@ Windows drive and call `chainloader+`, but as I was typing it out I realized
 that I didn't have a way to reference it.  My Spidey Sense&#0153; was telling
 me I'd need an initrd with all the raid info in it, so GRUB would know how to
 talk to the entire RAID drive.  That sounds like work.  Moving on.
+
+<!--more-->
 
 ### Attempt #2 :: GRUB loaded from Windows boot.ini
 

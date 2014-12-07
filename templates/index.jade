@@ -8,7 +8,12 @@ block content
           a(href='/' + article.path)= article.title
 
       section
-        p!= article.snippet
+        p!= article.less
+      footer
+        nav
+          a.btn(href='/' + article.path)
+            | Read More/Comment
+            i.fa.fa-arrow-right
   nav.pagination
     if pagination.next
       a.btn.pull-right(href='/' + pagination.next.path.replace(/index.html$/, ''))

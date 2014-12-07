@@ -15,6 +15,8 @@ approaches, I have arrived at one which works for me.  There are probably other,
 more elegant approaches, but this one seems clear enough for my purposes. 
 Posting it here for posterity.
 
+<!--more-->
+
 ```ruby
 namespace :deploy do
   namespace :assets do
