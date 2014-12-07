@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CodingPrime</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata%7COswald%7COxygen%7CSource+Code+Pro">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/highlight.js.solarized.css">
+  </head>
+  <body>
+    <header>
+      <section class="container">
+        <h1><a href="/">CodingPrime</a></h1><span>&lt;strong&gt;kung fu&lt;/strong&gt;</span><a href="https://github.com/t3hpr1m3/codingprime.com"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+      </section>
+    </header>
+    <main class="container">
+      <article class="post">
+        <header>
+          <time datetime="2014-01-19 08:25">January 19, 2014</time>
+          <h2>Evolution of a Dev (Part 1)
+          </h2>
+        </header>
+        <section><p>I am a career developer.  That makes me extremely lucky, since I get to earn
+a living doing the kind of things I&#39;d be doing anyway.   Basically, I have
+the coolest hobby in the world, and I get paid for it.</p>
+<p>I&#39;ve changed jobs many, many times in my career, and it&#39;s hardly ever been for
+the same reasons.  Sometimes (usually), there has been an increase in salary
+involved.  Others, it was an opportunity to move into a different environment,
+be that technology used, ethos, or a new role to try out.  A few times, it
+wasn&#39;t even a choice (early termination due to philosophical differences would
+be a kind way of putting it).</p>
+<p>Tomorrow, a new challenge awaits, in a new place, with a lot of new faces.
+Starting a new job always triggers a bit of reflection (probably because
+the process involves reviewing your resume), and this time is no exception.
+I know I&#39;m not unique, but that&#39;s kind of the point.  I&#39;ve been around a lot
+of devs throughout the course of my career, and (for the most part) it&#39;s fairly
+easy to tell where they are in their evolution.</p>
+<!--more-->
+
+<h3 id="prologue">Prologue</h3>
+<p>My own journey really began back in the 80&#39;s, hacking away on the family&#39;s 
+<a href="http://en.wikipedia.org/wiki/Commodore_VIC-20">Commodore VIC-20</a>.  I had almost
+no idea what I was doing, but something about making a machine interact with
+you, even though it was entirely scripted, blew my mind.</p>
+<pre><code><span class="hljs-number">10</span> <span class="hljs-constant">INPUT</span> <span class="hljs-string">"What is your name?"</span>, <span class="hljs-constant">NAME</span><span class="hljs-variable">$
+</span><span class="hljs-number">20</span> <span class="hljs-constant">PRINT</span> <span class="hljs-string">"Hello, "</span>; <span class="hljs-constant">NAME</span><span class="hljs-variable">$
+</span><span class="hljs-number">30</span> <span class="hljs-constant">END</span></code></pre>
+
+<p>I upgraded to an IBM 8088 my Dad &quot;borrowed&quot; from the government, and started
+writing things that were a bit more complicated, using dBase to build address
+books and accounting registers.  Nothing worth sharing, but cool enough to
+show me, even then, that a computer guy (I didn&#39;t even know what they were
+called back then) was what I wanted to be when I grew up.</p>
+<h3 id="career-engage-">career.engage()</h3>
+<p>My first real job in computers came in 1995, when I got a job as an operator
+in the Data Processing Department for the local county government (as an aside,
+I was working as a jailor across the street when I accepted the job).  The
+shop consisted of an <a href="http://en.wikipedia.org/wiki/IBM_System/36">IBM System/36</a>,
+<a href="http://en.wikipedia.org/wiki/IBM_System_i">AS/400</a>, and a really, really
+shitty PC running <a href="http://en.wikipedia.org/wiki/NetWare">Novell Netware</a>.  By day,
+I took care of a number of fairly mundane non-programming tasks.</p>
+<ul>
+<li>changing tapes and catalogging their use</li>
+<li>making and replacing twinaxial, coaxial, and cat3 cables</li>
+<li>troubleshooting issues on the few actual PC&#39;s that existed</li>
+<li>babysitting the Netware server (seriously, it was shit)</li>
+</ul>
+<p>By night (and during dead times during the day), I taught myself as much 
+<a href="http://en.wikipedia.org/wiki/Operational_Control_Language">OCL</a>,
+<a href="http://en.wikipedia.org/wiki/IBM_i_Control_Language">CL</a>,
+<a href="http://en.wikipedia.org/wiki/IBM_RPG_II">RPGII</a>,
+and <a href="http://en.wikipedia.org/wiki/Batch_file">DOS</a> as I possibly could.  I
+wrote programs to track inventory, automated the backup process as much as
+possible, and just generally soaked it all in.  I knew absolutely nothing
+about best practices, memory optimization, or even computer architecture.
+I just wrote code.</p>
+<p>I was beginning to start a family, so my expenses (as well as my thirst for
+knowledge) were beginning to outgrow the job.  I moved on to a sort of <em>super-operator</em>
+position with a <a href="https://www.internationalpaper.com/">Fortune 100 company</a>, where
+about half of my job consisted of ops work and simple automation type
+programming tasks.  It was all still CL and RPG, but I was developing.  It was
+this period in my career that I was introduced to 2 technologies that would
+shape the remainder of my career: <a href="http://www.java.com/en/">Java</a> and
+<a href="https://www.kernel.org/">Linux</a>.</p>
+<h3 id="java-love-at-first-sight">Java: love at first sight</h3>
+<p>The guy I shared a cubical with was about 60, and loved his Range Rover.  I mean
+really loved it.  I&#39;d say 20-30% of his day was spent relaying stories about
+how he tracked down parts, or what clubs he belonged to, or how everyone should
+own one, or how awesome it was to have sex with it.  I&#39;d like to say he made up
+for this by being a fountain of technical knowledge, but alas, he was a
+converted stock broker or something (I was young and didn&#39;t really understand...I
+know it had something to do with money).  He hunted and pecked on his keyboard
+with these sausage fingers, and took <em>forever</em> to do anything.  I didn&#39;t hate him,
+I just never fully understood why he was there.  It wasn&#39;t his passion, obviously.</p>
+<p>One day, however, he revealed to me that he had been trying out this new thing called
+Java.  With it, he had created a calculator or something equally boring.  He
+tried to explain how it worked, but </p>
+<ol>
+<li>He was about as captivating as an oak sapling, and</li>
+<li>I don&#39;t think he really understood wtf he was doing.</li>
+</ol>
+<p>I did pick up on the important points, though.  First, this was programming I
+could do <em>ON MY OWN</em>.  No <a href="http://en.wikipedia.org/wiki/Midrange_computer">midrange</a>
+required.  Have PC, will travel.  I don&#39;t want to over-dramatize the moment, but
+it really was life changing.</p>
+<p>Secondly, I realized if this guy could &quot;get it&quot;, surely I could figure it out.
+All I needed was a decent resource to help guide me through the learning
+process.  I honestly don&#39;t remember where I got it, but I acquired a Core Java
+book, and tore through it like I was going to be tested on the entire thing.
+I wasn&#39;t very good, but I was writing a prolific amount of really bad code.
+It was awesome.  For the first time, I could actually write a program and show
+people I know the results.  I consider this the point where I really decided
+programming was what I wanted to do.</p>
+<h3 id="linus-is-my-hero">Linus is my hero</h3>
+<p>At the other end of the spectrum, there was David (I really, really, really
+wish I could remember David&#39;s last name, because he changed my life).  David
+worked with me on the ops side of things, working to keep the mix of AS/400,
+AIX, and Mainframe systems running.  We had a good time finding better ways
+to perform otherwise mundane tasks (using programming, of course), but our
+tinkering was limited to work hours.  Then, one day, the company acquired a
+competitor, and we were tasked with assimilating their fleet of HP/UX machines
+into our datacenter.  On the outside, these systems looked almost the same
+as the rest of the lot.  But once we were at the terminal, the landscape
+was entirely different.  Instead of the very single purpose languages of
+the other systems, these Unix machines felt almost limitless.  The systems
+were malleable.  This was also my first experience with both Bash and C, both
+of which felt amazing.  But I was still only able to monkey around with things
+as long as I was in the office.</p>
+<p>Then, one day, David walked up wo me with a CD he had obviously burned.  Written
+in Sharpie across the front was the label &quot;RedHat 5.1&quot;.</p>
+<pre><code>    Me: &quot;What is it?&quot;
+    David: &quot;Linux.&quot;
+    Me: &quot;What&#39;s &#39;Linux&#39;?&quot;
+    David: &quot;It&#39;s Unix that you can install on your PC.&quot;
+    Me: (I was already running for my laptop)
+</code></pre><p>Overnight, I had an entire operating system I could decipher, from the bowels of
+the kernel all the way up to the <code>ls</code> command.  On the one hand, this was
+like being reborn.  On the other, I started to realize that this world of
+programming had been right in front of me for years while I was stuck in the
+Windows world.  I did my best to make up for time, tinkering with the
+kernel (my first real foray was writing a USB camera driver), writing socket
+libraries, and just diving head-first into being a true developer.</p>
+<p>This was also my first introduction to Open Source in general; millions of
+developers all putting their efforts into developing software solely for the
+joy of it (yes, I was a bit naive on that point, and blind to the politics of OSS).</p>
+<p>Toward the end of this period, I was a horrible developer.  I had no concept of the
+rules, or what role business played in all this.  I just wanted to code.  About the
+only thing I did have going for me was unwavering determination to solve any
+problem, no matter how much reading, searching (Google still hadn&#39;t supplanted
+DogPile as my SE of choice), and trial and error it took.  That would be important,
+since the next phase would not be quite so happy-go-lucky.</p>
+<p>Next up, <a href="../evolution-of-a-dev-part-2/">the real world comes knocking</a>.
+The second magical moment came when a co-worker handed me a homemade CD. </p>
+
+        </section>
+      </article>
+      <div id="disqus_thread">
+        <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = 'codingprime'; // required: replace example with your forum shortname
+          
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the<a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <section class="container clearfix">
+        <p class="text"><span>&copy;2014 Josh Williams</span><a href="https://github.com/t3hpr1m3"><i class="fa fa-github fa-3x"></i></a><a href="https://twitter.com/t3hpr1m3"><i class="fa fa-twitter fa-3x"></i></a></p>
+      </section>
+    </footer>
+  </body>
+</html>

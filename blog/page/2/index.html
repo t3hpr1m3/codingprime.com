@@ -18,48 +18,130 @@
     <main class="container">
       <article class="post">
         <header>
+          <time datetime="2012-07-12 17:20">July 12, 2012</time>
+          <h2><a href="/blog/2012/07/skipping-asset-precompile">Skipping asset precompile</a></h2>
+        </header>
+        <section>
+          <p><p>Waiting on asset precompilation is a PITA, especially if no assets have been
+changed.  Thankfully,
+<a href="http://www.bencurtis.com/2011/12/skipping-asset-compilation-with-capistrano/">Ben Curtis</a>
+came up with a workable solution.  Except...</p>
+<p>Ben&#39;s method fails on the initial deployment, because <em>current_revision</em> tries to
+read <em>/path/to/app/current/REVISION</em>, which won&#39;t exist yet.  After trying several
+approaches, I have arrived at one which works for me.  There are probably other,
+more elegant approaches, but this one seems clear enough for my purposes. 
+Posting it here for posterity.</p></p>
+        </section>
+        <footer>
+          <nav><a href="/blog/2012/07/skipping-asset-precompile" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
+          <time datetime="2010-12-06 18:19">December 6, 2010</time>
+          <h2><a href="/blog/2010/12/rspec-autotest-rails3-and-engines">RSpec, Autotest, Rails3, and Engines</a></h2>
+        </header>
+        <section>
+          <p><p>I&#39;ve got an app I&#39;m building that is comprised of several engines running in
+<em>vendor/nsweb</em>.  I want each engine to have its own specs, without cluttering
+up the main app&#39;s <em>spec</em> folder.  I also want to be able to run tests for ALL
+engines at once, both using rake and through autotest.  To accomplish the first
+task, I added the following:</p>
+<pre><code class="hljs ruby"><span class="hljs-comment"># lib/tasks/rspec.rake</span>
+<span class="hljs-constant">RSpec::Core::RakeTask</span>.module_eval <span class="hljs-keyword">do</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>pattern
+    extras = []
+    <span class="hljs-constant">Dir</span>[<span class="hljs-constant">File</span>.join( <span class="hljs-constant">File</span>.expand_path( <span class="hljs-string">'vendor'</span> ), <span class="hljs-string">'nsweb'</span>, <span class="hljs-string">'*'</span> )].flatten.each <span class="hljs-keyword">do</span> |dir|
+      <span class="hljs-keyword">if</span> <span class="hljs-constant">File</span>.directory?( dir )
+        extras += <span class="hljs-constant">File</span>.join( dir, <span class="hljs-string">'spec'</span>, <span class="hljs-string">'**'</span>, <span class="hljs-string">'*_spec.rb'</span> ).to_s
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+    [<span class="hljs-variable">@pattern</span>] | extras
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre></p>
+        </section>
+        <footer>
+          <nav><a href="/blog/2010/12/rspec-autotest-rails3-and-engines" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
+          <time datetime="2010-09-02 08:38">September 2, 2010</time>
+          <h2><a href="/blog/2010/09/form-cancel-button-without-javascript">Form cancel button (without Javascript)</a></h2>
+        </header>
+        <section>
+          <p><p>Found <a href="http://rubypond.com/blog/capturing-a-form-cancel">this</a> today, and
+banged my head on the desk for never thinking of this when trying to add a
+cancel button to a form, regardless of the language.</p>
+</p>
+        </section>
+        <footer>
+          <nav><a href="/blog/2010/09/form-cancel-button-without-javascript" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
+          <time datetime="2010-08-22 19:00">August 22, 2010</time>
+          <h2><a href="/blog/2010/08/custom-requireauthenticationfor-rspec-matcher">Custom RSpec matcher:  require_authentication_for</a></h2>
+        </header>
+        <section>
+          <p><p>Like everyone, I have a bunch of controller actions that need to be protected
+from unauthorized users.  I&#39;ve got RSpec tests around these methods that look
+like this:</p>
+<pre><code class="hljs ruby">describe <span class="hljs-constant">UsersController</span>, <span class="hljs-string">'as guest'</span> <span class="hljs-keyword">do</span>
+  before( <span class="hljs-symbol">:each</span> ) <span class="hljs-keyword">do</span>
+    controller.stubs( <span class="hljs-symbol">:current_user</span> ).returns( <span class="hljs-keyword">nil</span> )
+  <span class="hljs-keyword">end</span>
+
+  describe <span class="hljs-string">'index'</span> <span class="hljs-keyword">do</span>
+    it <span class="hljs-string">'should prevent access'</span> <span class="hljs-keyword">do</span>
+      lambda { get <span class="hljs-symbol">:index</span> }.should
+        raise_error( <span class="hljs-constant">Exceptions::PermissionDenied</span> )
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  describe <span class="hljs-string">'edit'</span> <span class="hljs-keyword">do</span>
+    it <span class="hljs-string">'should prevent access'</span> <span class="hljs-keyword">do</span>
+      lambda { get <span class="hljs-symbol">:edit</span>, <span class="hljs-symbol">:id</span> =&gt; <span class="hljs-number">1</span> }.should
+        raise_error( <span class="hljs-constant">Exceptions::PermissionDenied</span> )
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  describe <span class="hljs-string">'create'</span> <span class="hljs-keyword">do</span>
+    it <span class="hljs-string">'should prevent access'</span> <span class="hljs-keyword">do</span>
+      lambda { post <span class="hljs-symbol">:create</span>, <span class="hljs-symbol">:id</span> =&gt; <span class="hljs-number">1</span> }.should
+        raise_error( <span class="hljs-constant">Exceptions::PermissionDenied</span> )
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre></p>
+        </section>
+        <footer>
+          <nav><a href="/blog/2010/08/custom-requireauthenticationfor-rspec-matcher" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
           <time datetime="2010-08-21 23:20">August 21, 2010</time>
           <h2><a href="/blog/2010/08/site-config-configyml-for-rails">Site Config (config.yml) for Rails</a></h2>
         </header>
         <section>
-          <p>Over at Railscasts, The Honourable Ryan Bates,&#10;Esquire1 has been churning out quality screencasts FOREVER.  And&#10;while some of them become somewhat obsolete as Rails itself changes, they&#39;re&#10;still a better starting point than most of what&#39;s available on the web.&#10;One that I happened to view recently&#8230;</p>
+          <p><p>Over at <a href="http://railscasts.com/">Railscasts</a>, The Honourable Ryan Bates,
+Esquire<sup>1</sup> has been churning out quality screencasts FOREVER.  And
+while some of them become somewhat obsolete as Rails itself changes, they&#39;re
+still a better starting point than most of what&#39;s available on the web.</p>
+<p>One that I happened to view recently concerned
+<a href="http://railscasts.com/episodes/85-yaml-configuration-file">application configuration</a>
+for your Rails app being stored in a <code>.yml</code> file.  This brings site
+configuration in line with database, fixtures, etc.  As usual, Ryan gives you
+exactly what you need to adapt things to your situation.  So I did.  This is
+my ApplicationConfiguration class.<sup>2</sup>  It basically gives you a global
+<code>::AppConfig</code> object, which allows you to reverence any of your configuration
+settings from a single place.  It supports nested configuration,
+and automatically selects the right environment (test, production, etc).</p></p>
         </section>
-      </article>
-      <article class="post">
-        <header>
-          <time datetime="2010-08-21 18:12">August 21, 2010</time>
-          <h2><a href="/blog/2010/08/dualbooting-raided-windows-non-raid-linux">Dual-booting Raided Windows/Non-Raid Linux</a></h2>
-        </header>
-        <section>
-          <p>If you&#39;re following along at home, I got my Gentoo install&#10;extracted and running on physical&#10;disk.  Now I have a problem to solve: Dual booting with Windows.  This is&#10;only a problem because my Windows install is on a RAID0 array using an Intel&#10;fakeraid controller.  I found all kinds of info on&#8230;</p>
-        </section>
-      </article>
-      <article class="post">
-        <header>
-          <time datetime="2010-08-21 15:50">August 21, 2010</time>
-          <h2><a href="/blog/2010/08/moving-from-virtualbox-to-physical-disk">Moving from Virtualbox to Physical Disk</a></h2>
-        </header>
-        <section>
-          <p>I decided to convert one of my Gentoo VirtualBox installs to physical disk&#10;(ie. convert Virtual -&#62; Physical ).  This sounded pretty straightforward,&#10;but after a bit of Googling, all I had found were a bunch of articlesi&#10;explaining how to take a physical partition and convert it to a .vdi.  This&#10;was&#8230;</p>
-        </section>
-      </article>
-      <article class="post">
-        <header>
-          <time datetime="2010-08-18 09:36">August 18, 2010</time>
-          <h2><a href="/blog/2010/08/windows-updates-failing">Windows Updates Failing</a></h2>
-        </header>
-        <section>
-          <p>I was having some updates fail on my machine here at work (KB983583, KB2279264,&#10;KB2277947, and KB2251419 specifically), and couldn&#39;t seem to find any&#10;resolution.  All the &#34;FixIt&#34;s from Microsoft crashed, and nothing in&#10;this&#10;article seemed to help either.&#10;Turns out, reinstalling the WindowsInstaller&#8230;</p>
-        </section>
-      </article>
-      <article class="post">
-        <header>
-          <time datetime="2010-08-13 23:08">August 13, 2010</time>
-          <h2><a href="/blog/2010/08/findable-plugin">Findable plugin</a></h2>
-        </header>
-        <section>
-          <p>Probably the strangest first blog post ever, but here goes.  I&#39;m migrating a&#10;product from Classic ASP to Rails.  The bulk of its data is accessed via a&#10;TCP service, which accepts/responds with XML.  Unfortunately, it&#39;s a custom&#10;protocol, so I&#39;m forced to do all the packet building/transport myself. &#8230;</p>
-        </section>
+        <footer>
+          <nav><a href="/blog/2010/08/site-config-configyml-for-rails" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
       </article>
       <nav class="pagination"><a href="/blog/page/3/" class="btn pull-right">Older<i class="fa fa-chevron-circle-right"></i></a><a href="/" class="btn pull-left"><i class="fa fa-chevron-circle-left"></i>Newer</a>
       </nav>

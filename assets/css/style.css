@@ -454,6 +454,10 @@ article.post {
       font-family: Oswald, 'Helvetica Neue', Georgia, 'Times New Roman', Times, serif; }
     article.post header time {
       color: #828282; }
+  article.post nav .btn {
+    margin-bottom: 10px; }
+    article.post nav .btn i {
+      margin-left: 5px; }
 
 footer.site-footer {
   border-top: 1px solid #e8e8e8;
@@ -473,7 +477,8 @@ a.btn {
   color: #828282;
   background-color: #424242;
   border-radius: 3px;
-  text-decoration: none; }
+  text-decoration: none;
+  font-weight: bold; }
   a.btn:hover {
     background-color: #828282;
     color: #ffffff; }

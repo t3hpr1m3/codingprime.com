@@ -18,12 +18,108 @@
     <main class="container">
       <article class="post">
         <header>
+          <time datetime="2010-08-21 18:12">August 21, 2010</time>
+          <h2><a href="/blog/2010/08/dualbooting-raided-windows-non-raid-linux">Dual-booting Raided Windows/Non-Raid Linux</a></h2>
+        </header>
+        <section>
+          <p><p>If you&#39;re following along at home, I got my Gentoo install
+<a href="../moving-from-virtualbox-to-physical-disk">extracted</a> and running on physical
+disk.  Now I have a problem to solve: Dual booting with Windows.  This is
+only a problem because my Windows install is on a RAID0 array using an Intel
+fakeraid controller.  I found all kinds of info on dual-booting Windows/Linux
+while both are installed in the raid array, but nothing to help with my
+situation.  So here we go.</p>
+<h3 id="attempt-1-grub-on-the-linux-drive">Attempt #1 :: GRUB on the Linux drive</h3>
+<p>My first attempt was to setup GRUB on the Linux drive, and tell the BIOS to
+boot off that.  I knew I should add an entry to <code>grub.conf</code> to reference the
+Windows drive and call <code>chainloader+</code>, but as I was typing it out I realized
+that I didn&#39;t have a way to reference it.  My Spidey Sense&#0153; was telling
+me I&#39;d need an initrd with all the raid info in it, so GRUB would know how to
+talk to the entire RAID drive.  That sounds like work.  Moving on.</p></p>
+        </section>
+        <footer>
+          <nav><a href="/blog/2010/08/dualbooting-raided-windows-non-raid-linux" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
+          <time datetime="2010-08-21 15:50">August 21, 2010</time>
+          <h2><a href="/blog/2010/08/moving-from-virtualbox-to-physical-disk">Moving from Virtualbox to Physical Disk</a></h2>
+        </header>
+        <section>
+          <p><p>I decided to convert one of my Gentoo VirtualBox installs to physical disk
+(ie. convert Virtual -&gt; Physical ).  This sounded pretty straightforward,
+but after a bit of Googling, all I had found were a bunch of articlesi
+explaining how to take a physical partition and convert it to a .vdi.  This
+was exactly the opposite of what I wanted to do.</p>
+<p>Finally, I found <a href="http://wiki.przemoc.net/tips/linux">this</a>
+wiki article, and it all came together.</p>
+<h3 id="preparing-the-disks">Preparing the disks</h3>
+<p>I had a spare SATA drive laying around, so I powered off the machine and popped
+it in.  Using my trusty Gentoo install CD, I partitioned the Linux disk.  My
+Virtualbox install had a disk layout like this:</p></p>
+        </section>
+        <footer>
+          <nav><a href="/blog/2010/08/moving-from-virtualbox-to-physical-disk" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
+          <time datetime="2010-08-18 09:36">August 18, 2010</time>
+          <h2><a href="/blog/2010/08/windows-updates-failing">Windows Updates Failing</a></h2>
+        </header>
+        <section>
+          <p><p>I was having some updates fail on my machine here at work (KB983583, KB2279264,
+KB2277947, and KB2251419 specifically), and couldn&#39;t seem to find any
+resolution.  All the &quot;FixIt&quot;s from Microsoft crashed, and nothing in
+<a href="http://social.answers.microsoft.com/Forums/en/vistawu/thread/36caf298-a7ce-4952-982d-e37920cfa439">this</a>
+article seemed to help either.</p>
+<p>Turns out, reinstalling the WindowsInstaller from
+<a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=5a58b56f-60b6-4412-95b9-54d056d6f9f4&amp;displaylang=en">here</a>
+did the trick.</p>
+</p>
+        </section>
+        <footer>
+          <nav><a href="/blog/2010/08/windows-updates-failing" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
+          <time datetime="2010-08-13 23:08">August 13, 2010</time>
+          <h2><a href="/blog/2010/08/findable-plugin">Findable plugin</a></h2>
+        </header>
+        <section>
+          <p><p>Probably the strangest first blog post ever, but here goes.  I&#39;m migrating a
+product from Classic ASP to Rails.  The bulk of its data is accessed via a
+TCP service, which accepts/responds with XML.  Unfortunately, it&#39;s a custom
+protocol, so I&#39;m forced to do all the packet building/transport myself.  No big
+deal.</p>
+<p>The top level resource is a list of accounts.  These accounts don&#39;t change over
+the course of a session, so I&#39;m caching them to avoid the round trip.  This
+list of accounts is referenced in some way on every page, so fast access to a
+particular account is important.  I started out by writing a custom <code>find</code>
+method, which took a hash of arguments.  This works, but looks weird next to
+all the other ActiveRecord goodness in the app.  Enter:
+<a href="http://www.github.com/t3hpr1m3/findable">Findable</a>.</p>
+<p></p>
+        </section>
+        <footer>
+          <nav><a href="/blog/2010/08/findable-plugin" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
           <time datetime="2010-02-18 00:45">February 18, 2010</time>
           <h2><a href="/blog/2010/02/first-post">First Post</a></h2>
         </header>
         <section>
-          <p>Yep. It&#39;s live.</p>
+          <p><p>Yep.  It&#39;s live.</p>
+<pre><code><span class="hljs-attribute">josh</span><span class="hljs-variable">@komos</span>: pts/<span class="hljs-number">0</span> -&gt; uptime
+ <span class="hljs-number">00</span>:<span class="hljs-number">44</span>:<span class="hljs-number">31</span> up <span class="hljs-number">20</span> days,  <span class="hljs-number">7</span>:<span class="hljs-number">44</span>,  <span class="hljs-number">2</span> users,  load <span class="hljs-attribute">average</span>: <span class="hljs-number">0.20</span>, <span class="hljs-number">0.06</span>, <span class="hljs-number">0.02</span></code></pre></p>
         </section>
+        <footer>
+          <nav><a href="/blog/2010/02/first-post" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
       </article>
       <nav class="pagination"><a href="/blog/page/2/" class="btn pull-left"><i class="fa fa-chevron-circle-left"></i>Newer</a>
       </nav>
