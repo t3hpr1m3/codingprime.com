@@ -22,6 +22,8 @@ using [homeshick](https://github.com/andsens/homeshick).  This workflow
 allows me to always work in a consistent environment, no matter where I'm
 working from (even from a Putty session).
 
+<!--more-->
+
 ### GUI Gotta Go!
 
 In my quest to find the ultimate dev environment, I decided that, optimally,
