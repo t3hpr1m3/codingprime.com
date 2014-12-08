@@ -15,6 +15,8 @@ For the last few years, my primary dev box has been my [ASUS behemoth](http://ww
 It's nowhere near an ultrabook, but it was mine.  Mine in the sense that it 
 has become an extension of my hands.  It's heavy, it's massive, and I love it.
 
+<!--more-->
+
 The shop I just joined is pretty much Apple-happy.  Cinema displays, Powerbooks,
 Time Capsules, the whole shebang.  On day 1, I was handed a [13" MacBook Air](http://support.apple.com/kb/SP670).
 This thing is everything my ASUS isn't; small, lightweight, possibly even delicate.
