@@ -18,6 +18,25 @@
     <main class="container">
       <article class="post">
         <header>
+          <time datetime="2013-08-31 11:46">August 31, 2013</time>
+          <h2><a href="/blog/2013/08/modelmewhy">ModelMe...why?</a></h2>
+        </header>
+        <section>
+          <p><p>My day job consists of architecting and maintaining several Rails
+applications.  Some of these must deal with custom data sources that
+were architected before there were standards for inter-application
+communication (SOAP, REST, XML-RPC, etc).  One in particular is is a custom TCP
+server that responds to method calls (using XML as the transport mechanism).
+Replacing the service is not an option (as is usually the case with any
+<a href="http://fc05.deviantart.net/fs71/f/2012/013/0/7/pain_in_the_ass_by_sk8rnerd-d4m9ag5.jpg">PITA</a>
+legacy problem), so I have to communicate with it.</p>
+        </section>
+        <footer>
+          <nav><a href="/blog/2013/08/modelmewhy" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
           <time datetime="2012-07-12 17:20">July 12, 2012</time>
           <h2><a href="/blog/2012/07/skipping-asset-precompile">Skipping asset precompile</a></h2>
         </header>
@@ -117,30 +136,6 @@ like this:</p>
         </section>
         <footer>
           <nav><a href="/blog/2010/08/custom-requireauthenticationfor-rspec-matcher" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
-        </footer>
-      </article>
-      <article class="post">
-        <header>
-          <time datetime="2010-08-21 23:20">August 21, 2010</time>
-          <h2><a href="/blog/2010/08/site-config-configyml-for-rails">Site Config (config.yml) for Rails</a></h2>
-        </header>
-        <section>
-          <p><p>Over at <a href="http://railscasts.com/">Railscasts</a>, The Honourable Ryan Bates,
-Esquire<sup>1</sup> has been churning out quality screencasts FOREVER.  And
-while some of them become somewhat obsolete as Rails itself changes, they&#39;re
-still a better starting point than most of what&#39;s available on the web.</p>
-<p>One that I happened to view recently concerned
-<a href="http://railscasts.com/episodes/85-yaml-configuration-file">application configuration</a>
-for your Rails app being stored in a <code>.yml</code> file.  This brings site
-configuration in line with database, fixtures, etc.  As usual, Ryan gives you
-exactly what you need to adapt things to your situation.  So I did.  This is
-my ApplicationConfiguration class.<sup>2</sup>  It basically gives you a global
-<code>::AppConfig</code> object, which allows you to reverence any of your configuration
-settings from a single place.  It supports nested configuration,
-and automatically selects the right environment (test, production, etc).</p></p>
-        </section>
-        <footer>
-          <nav><a href="/blog/2010/08/site-config-configyml-for-rails" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
         </footer>
       </article>
       <nav class="pagination"><a href="/blog/page/3/" class="btn pull-right">Older<i class="fa fa-chevron-circle-right"></i></a><a href="/" class="btn pull-left"><i class="fa fa-chevron-circle-left"></i>Newer</a>
