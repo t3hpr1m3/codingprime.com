@@ -67,7 +67,7 @@ it was decided that I be given some leeway to pursue the Rails course.
 In the course of this decision, I was given my own department (management again?), and,
 as far as the rest of the management team was concerned, just enough rope to hang myself.
 I hired a [really good dev](http://joshwlewis.com/), recruited another [from within](https://www.linkedin.com/pub/joshua-bryant/40/a65/401),
-and even roped in [my brother](https://www.linkedin.com/pub/joshua-bryant/40/a65/401) to handle
+and even roped in [my brother](http://www.linkedin.com/pub/jacob-williams/80/b08/436) to handle
 PM stuff.
 
 A short list of the technologies we used:
