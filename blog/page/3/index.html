@@ -18,6 +18,46 @@
     <main class="container">
       <article class="post">
         <header>
+          <time datetime="2010-08-22 19:00">August 22, 2010</time>
+          <h2><a href="/blog/2010/08/custom-requireauthenticationfor-rspec-matcher">Custom RSpec matcher:  require_authentication_for</a></h2>
+        </header>
+        <section>
+          <p><p>Like everyone, I have a bunch of controller actions that need to be protected
+from unauthorized users.  I&#39;ve got RSpec tests around these methods that look
+like this:</p>
+<pre><code class="hljs ruby">describe <span class="hljs-constant">UsersController</span>, <span class="hljs-string">'as guest'</span> <span class="hljs-keyword">do</span>
+  before( <span class="hljs-symbol">:each</span> ) <span class="hljs-keyword">do</span>
+    controller.stubs( <span class="hljs-symbol">:current_user</span> ).returns( <span class="hljs-keyword">nil</span> )
+  <span class="hljs-keyword">end</span>
+
+  describe <span class="hljs-string">'index'</span> <span class="hljs-keyword">do</span>
+    it <span class="hljs-string">'should prevent access'</span> <span class="hljs-keyword">do</span>
+      lambda { get <span class="hljs-symbol">:index</span> }.should
+        raise_error( <span class="hljs-constant">Exceptions::PermissionDenied</span> )
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  describe <span class="hljs-string">'edit'</span> <span class="hljs-keyword">do</span>
+    it <span class="hljs-string">'should prevent access'</span> <span class="hljs-keyword">do</span>
+      lambda { get <span class="hljs-symbol">:edit</span>, <span class="hljs-symbol">:id</span> =&gt; <span class="hljs-number">1</span> }.should
+        raise_error( <span class="hljs-constant">Exceptions::PermissionDenied</span> )
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  describe <span class="hljs-string">'create'</span> <span class="hljs-keyword">do</span>
+    it <span class="hljs-string">'should prevent access'</span> <span class="hljs-keyword">do</span>
+      lambda { post <span class="hljs-symbol">:create</span>, <span class="hljs-symbol">:id</span> =&gt; <span class="hljs-number">1</span> }.should
+        raise_error( <span class="hljs-constant">Exceptions::PermissionDenied</span> )
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre></p>
+        </section>
+        <footer>
+          <nav><a href="/blog/2010/08/custom-requireauthenticationfor-rspec-matcher" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
           <time datetime="2010-08-21 23:20">August 21, 2010</time>
           <h2><a href="/blog/2010/08/site-config-configyml-for-rails">Site Config (config.yml) for Rails</a></h2>
         </header>
@@ -105,30 +145,6 @@ did the trick.</p>
         </section>
         <footer>
           <nav><a href="/blog/2010/08/windows-updates-failing" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
-        </footer>
-      </article>
-      <article class="post">
-        <header>
-          <time datetime="2010-08-13 23:08">August 13, 2010</time>
-          <h2><a href="/blog/2010/08/findable-plugin">Findable plugin</a></h2>
-        </header>
-        <section>
-          <p><p>Probably the strangest first blog post ever, but here goes.  I&#39;m migrating a
-product from Classic ASP to Rails.  The bulk of its data is accessed via a
-TCP service, which accepts/responds with XML.  Unfortunately, it&#39;s a custom
-protocol, so I&#39;m forced to do all the packet building/transport myself.  No big
-deal.</p>
-<p>The top level resource is a list of accounts.  These accounts don&#39;t change over
-the course of a session, so I&#39;m caching them to avoid the round trip.  This
-list of accounts is referenced in some way on every page, so fast access to a
-particular account is important.  I started out by writing a custom <code>find</code>
-method, which took a hash of arguments.  This works, but looks weird next to
-all the other ActiveRecord goodness in the app.  Enter:
-<a href="http://www.github.com/t3hpr1m3/findable">Findable</a>.</p>
-<p></p>
-        </section>
-        <footer>
-          <nav><a href="/blog/2010/08/findable-plugin" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
         </footer>
       </article>
       <nav class="pagination"><a href="/blog/page/4/" class="btn pull-right">Older<i class="fa fa-chevron-circle-right"></i></a><a href="/blog/page/2/" class="btn pull-left"><i class="fa fa-chevron-circle-left"></i>Newer</a>

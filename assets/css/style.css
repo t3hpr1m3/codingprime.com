@@ -458,6 +458,9 @@ article.post {
     margin-bottom: 10px; }
     article.post nav .btn i {
       margin-left: 5px; }
+  article.post img {
+    display: block;
+    max-width: 100%; }
 
 footer.site-footer {
   border-top: 1px solid #e8e8e8;

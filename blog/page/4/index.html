@@ -18,6 +18,30 @@
     <main class="container">
       <article class="post">
         <header>
+          <time datetime="2010-08-13 23:08">August 13, 2010</time>
+          <h2><a href="/blog/2010/08/findable-plugin">Findable plugin</a></h2>
+        </header>
+        <section>
+          <p><p>Probably the strangest first blog post ever, but here goes.  I&#39;m migrating a
+product from Classic ASP to Rails.  The bulk of its data is accessed via a
+TCP service, which accepts/responds with XML.  Unfortunately, it&#39;s a custom
+protocol, so I&#39;m forced to do all the packet building/transport myself.  No big
+deal.</p>
+<p>The top level resource is a list of accounts.  These accounts don&#39;t change over
+the course of a session, so I&#39;m caching them to avoid the round trip.  This
+list of accounts is referenced in some way on every page, so fast access to a
+particular account is important.  I started out by writing a custom <code>find</code>
+method, which took a hash of arguments.  This works, but looks weird next to
+all the other ActiveRecord goodness in the app.  Enter:
+<a href="http://www.github.com/t3hpr1m3/findable">Findable</a>.</p>
+<p></p>
+        </section>
+        <footer>
+          <nav><a href="/blog/2010/08/findable-plugin" class="btn">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
           <time datetime="2010-02-18 00:45">February 18, 2010</time>
           <h2><a href="/blog/2010/02/first-post">First Post</a></h2>
         </header>

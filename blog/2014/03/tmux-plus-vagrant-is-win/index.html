@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CodingPrime</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata%7COswald%7COxygen%7CSource+Code+Pro">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/highlight.js.solarized.css">
+  </head>
+  <body>
+    <header>
+      <section class="container">
+        <h1><a href="/">CodingPrime</a></h1><span>&lt;strong&gt;kung fu&lt;/strong&gt;</span><a href="https://github.com/t3hpr1m3/codingprime.com"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+      </section>
+    </header>
+    <main class="container">
+      <article class="post">
+        <header>
+          <time datetime="2014-03-16 16:33">March 16, 2014</time>
+          <h2>Tmux + Vagrant = win!
+          </h2>
+        </header>
+        <section><p>In my quest to <a href="../adapting-to-mac/">become one with my Air</a>, I&#39;ve been in
+search of the best tooling to keep my workflow smooth.  I did some playing
+around with MacVim, running rbenv in OSX, and various IRC clients.  After
+a lot of hand-wringing and head-scratching, I think I&#39;ve come up with the
+best solution.</p>
+<h3 id="cheaters-always-win-">Cheaters always win!</h3>
+<p>My fix is to give up and give in.  <a href="https://www.vagrantup.com/">Vagrant</a> to
+the rescue!  In all fairness, the choice to use Vagrant was sort of a team
+decision.  We have quite a few devs, and find a way for them to work
+consistently seems like the perfect use case for Vagrant.  So for
+day-to-day work, I spin up the project specific VM using the Vagrantfile in
+the repo, then just pull in <a href="https://github.com/t3hpr1m3/dotfiles">my dotfiles</a>
+using <a href="https://github.com/andsens/homeshick">homeshick</a>.  This workflow
+allows me to always work in a consistent environment, no matter where I&#39;m
+working from (even from a Putty session).</p>
+<h3 id="gui-gotta-go-">GUI Gotta Go!</h3>
+<p>In my quest to find the ultimate dev environment, I decided that, optimally,
+I should only need 2 windows open at any given time: a terminal and a browser.
+In order to accomplish this, I had to find console based replacements for
+everything I currently had gui apps for.  This list included:</p>
+<ul>
+<li>Colloquy (IRC)</li>
+<li>Mail (duh)</li>
+<li>Pandora (yeah, I&#39;m one of those people)</li>
+</ul>
+<p><a href="http://irssi.org/">Irssi</a> filled the first need nicely, as I&#39;ve used it
+extensively in the past.  I should have been using it anyway.</p>
+<p><a href="http://www.mutt.org/">Mutt</a> took care of mail.  I still have Gmail running
+in a browser window for complicated attachments and alternate accounts, but
+Mutt is my primary mail reader, and it works great.</p>
+<p>Pandora was a little harder, but I was finally able to get
+<a href="http://6xq.net/projects/pianobar/">pianobar</a> working, and working well.  I was
+finally ready to commit to using the terminal to handle everything.  The
+problem was visibility.  Constantly switching tabs to check email or skip a
+song was becoming a huge chore.  There had to be a better way.  Then I remembered
+multiplexers.</p>
+<h3 id="tmux-is-the-new-screen">Tmux is the new screen</h3>
+<p>I&#39;ve been using <a href="http://www.gnu.org/software/screen/">screen</a> for years to
+crank up long-running processes on servers, so my terminal wasn&#39;t tied up 
+waiting for some 12 hour database rebuild to finish, only for the connection
+to drop at 99.7%, forcing me to start the whole thing over again.  I had also
+used it to do some quick and dirty pair programming, but nothing fancy.</p>
+<p>I rediscovered <a href="http://tmux.sourceforge.net/">tmux</a>, pushed through the initial
+pain of learning something new, and found the awesomeness that is true
+multiplexing.</p>
+<p><img src="http://i.imgur.com/4helvtT.png" alt="Tmux is AWESOME!"></p>
+<p>It took some getting used to, and my setup would require a post all on its own,
+but I&#39;m back to being productive again.</p>
+
+        </section>
+      </article>
+      <div id="disqus_thread">
+        <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = 'codingprime'; // required: replace example with your forum shortname
+          
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the<a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <section class="container clearfix">
+        <p class="text"><span>&copy;2014 Josh Williams</span><a href="https://github.com/t3hpr1m3"><i class="fa fa-github fa-3x"></i></a><a href="https://twitter.com/t3hpr1m3"><i class="fa fa-twitter fa-3x"></i></a></p>
+      </section>
+    </footer>
+  </body>
+</html>
