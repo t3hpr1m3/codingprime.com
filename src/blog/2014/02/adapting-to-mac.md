@@ -9,7 +9,8 @@ My home router/firewall is a [Gentoo box](http://www.gentoo.org), ffs.  For
 servers, I've migrated from [VPSLink](http://vpslink.com) to
 [Linode](https://www.linode.com), with a few one off droplets on
 [DigitalOcean](http://www.digitalocean.com).  There isn't a machine in my
-house that doesn't at least dual-boot Linux.
+house that doesn't at least dual-boot Linux.  In fact, I inherited a Mac Mini
+when one of the startups I joined closed its doors, and even it runs Linux.
 
 For the last few years, my primary dev box has been my [ASUS behemoth](http://www.asus.com/ROG_ROG/G74SX/).
 It's nowhere near an ultrabook, but it was mine.  Mine in the sense that it 
