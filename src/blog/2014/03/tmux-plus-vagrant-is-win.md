@@ -4,7 +4,7 @@ date: 2014-03-16 16:33
 author: Josh Williams
 template: post.jade
 ---
-In my quest to [become one with my Air](../adapting-to-mac/), I've been in
+In my quest to [become one with my Air](../../02/adapting-to-mac/), I've been in
 search of the best tooling to keep my workflow smooth.  I did some playing
 around with MacVim, running rbenv in OSX, and various IRC clients.  After
 a lot of hand-wringing and head-scratching, I think I've come up with the
