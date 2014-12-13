@@ -1,0 +1,5 @@
+.git
+node_modules
+Vagrantfile
+Vagrantfile.host
+fig.yml
