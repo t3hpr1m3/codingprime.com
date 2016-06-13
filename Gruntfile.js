@@ -40,7 +40,10 @@ module.exports = function(grunt) {
                 path: 'blog/page/:num/index.html'
               }
             },
-            'metalsmith-ignore': ['blog/page/1/index.html'],
+            'metalsmith-ignore': [
+              'blog/page/1/index.html',
+              '*.swp'
+            ],
             'metalsmith-templates': {
               engine: 'jade',
               directory: 'templates',
