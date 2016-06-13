@@ -61,7 +61,7 @@ I rediscovered [tmux](http://tmux.sourceforge.net/), pushed through the initial
 pain of learning something new, and found the awesomeness that is true
 multiplexing.
 
-![Tmux is AWESOME!](http://i.imgur.com/4helvtT.png)
+[![Tmux is AWESOME!](http://i.imgur.com/4helvtT.png)](http://i.imgur.com/4helvtT.png)
 
 It took some getting used to, and my setup would require a post all on its own,
 but I'm back to being productive again.
