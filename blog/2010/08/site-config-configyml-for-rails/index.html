@@ -25,8 +25,8 @@
         </header>
         <section><p>Over at <a href="http://railscasts.com/">Railscasts</a>, The Honourable Ryan Bates,
 Esquire<sup>1</sup> has been churning out quality screencasts FOREVER.  And
-while some of them become somewhat obsolete as Rails itself changes, they&#39;re
-still a better starting point than most of what&#39;s available on the web.</p>
+while some of them become somewhat obsolete as Rails itself changes, they're
+still a better starting point than most of what's available on the web.</p>
 <p>One that I happened to view recently concerned
 <a href="http://railscasts.com/episodes/85-yaml-configuration-file">application configuration</a>
 for your Rails app being stored in a <code>.yml</code> file.  This brings site
@@ -37,56 +37,54 @@ my ApplicationConfiguration class.<sup>2</sup>  It basically gives you a global
 settings from a single place.  It supports nested configuration,
 and automatically selects the right environment (test, production, etc).</p>
 <!--more-->
-
 <pre><code class="hljs ruby"><span class="hljs-comment"># config/initializers/_init_app_config.rb</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationConfigurationNode</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize( data )
-    data.each <span class="hljs-keyword">do</span> |k,v|
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span><span class="hljs-params">( data )</span></span>
+    data.each <span class="hljs-keyword">do</span> <span class="hljs-params">|k,v|</span>
       <span class="hljs-keyword">self</span>.assign_value( k, v )
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>assign_value( name, val )
-    <span class="hljs-keyword">if</span> val.is_a?( <span class="hljs-constant">Hash</span> )
-      <span class="hljs-keyword">self</span>.instance_variable_set( <span class="hljs-string">"@<span class="hljs-subst">#{name.to_s}</span>"</span>.to_sym, <span class="hljs-constant">ApplicationConfiguration</span>.new( val ) )
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">assign_value</span><span class="hljs-params">( name, val )</span></span>
+    <span class="hljs-keyword">if</span> val.is_a?( Hash )
+      <span class="hljs-keyword">self</span>.instance_variable_set( <span class="hljs-string">"@<span class="hljs-subst">#{name.to_s}</span>"</span>.to_sym, ApplicationConfiguration.new( val ) )
     <span class="hljs-keyword">else</span>
       <span class="hljs-keyword">self</span>.instance_variable_set( <span class="hljs-string">"@<span class="hljs-subst">#{name.to_s}</span>"</span>.to_sym, val )
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>method_missing( name, *args )
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">method_missing</span><span class="hljs-params">( name, *args )</span></span>
     <span class="hljs-keyword">if</span> name.to_s =~ <span class="hljs-regexp">/(.*)=$/</span>
-      <span class="hljs-keyword">self</span>.assign_value( <span class="hljs-variable">$1</span>, args.first )
+      <span class="hljs-keyword">self</span>.assign_value( $1, args.first )
     <span class="hljs-keyword">else</span>
       <span class="hljs-keyword">if</span> <span class="hljs-keyword">self</span>.instance_variable_defined?( <span class="hljs-string">"@<span class="hljs-subst">#{name.to_s}</span>"</span>.to_sym )
         <span class="hljs-keyword">self</span>.instance_variable_get( <span class="hljs-string">"@<span class="hljs-subst">#{name.to_s}</span>"</span>.to_sym )
       <span class="hljs-keyword">else</span>
-        <span class="hljs-keyword">nil</span>
+        <span class="hljs-literal">nil</span>
       <span class="hljs-keyword">end</span>
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationConfiguration</span> <span class="hljs-inheritance">&lt; <span class="hljs-parent">Rails::OrderedOptions</span></span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize
-    config_file = <span class="hljs-string">"<span class="hljs-subst">#{<span class="hljs-constant">RAILS_ROOT</span>}</span>/config/config.yml"</span>
-    <span class="hljs-keyword">if</span> <span class="hljs-constant">File</span>.exists?( config_file )
-      config_hash = <span class="hljs-constant">YAML</span>.load_file( config_file )
-      <span class="hljs-keyword">if</span> config_hash.has_key?( <span class="hljs-constant">RAILS_ENV</span> )
-        <span class="hljs-variable">@parameters</span> = <span class="hljs-constant">ApplicationConfigurationNode</span>.new( config_hash[<span class="hljs-constant">RAILS_ENV</span>] )
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApplicationConfiguration</span> &lt; Rails::OrderedOptions</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span></span>
+    config_file = <span class="hljs-string">"<span class="hljs-subst">#{RAILS_ROOT}</span>/config/config.yml"</span>
+    <span class="hljs-keyword">if</span> File.exists?( config_file )
+      config_hash = YAML.load_file( config_file )
+      <span class="hljs-keyword">if</span> config_hash.has_key?( RAILS_ENV )
+        @parameters = ApplicationConfigurationNode.new( config_hash[RAILS_ENV] )
       <span class="hljs-keyword">end</span>
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>method_missing( name, *args )
-    <span class="hljs-variable">@parameters</span>.method_missing( name, args.first )
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">method_missing</span><span class="hljs-params">( name, *args )</span></span>
+    @parameters.method_missing( name, args.first )
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-constant">::AppConfig</span> = <span class="hljs-constant">ApplicationConfiguration</span>.new</code></pre>
-
+<span class="hljs-symbol">:</span><span class="hljs-symbol">:AppConfig</span> = ApplicationConfiguration.new</code></pre>
 <p>I put this in <code>config/initializers/_init_app_config.rb</code>, so that it gets loaded
- before everything else, and I&#39;m done.  Now I&#39;m free to add whatever I want to
+before everything else, and I'm done.  Now I'm free to add whatever I want to
 <code>config.yml</code> and reference it from anywhere in my app.</p>
 <pre><code class="hljs ruby"><span class="hljs-comment"># config/config.yml</span>
 <span class="hljs-symbol">test:</span>
@@ -95,15 +93,13 @@ and automatically selects the right environment (test, production, etc).</p>
 <span class="hljs-symbol">production:</span>
   <span class="hljs-symbol">harsh:</span>
     <span class="hljs-symbol">theme:</span> <span class="hljs-string">'spacecadet'</span></code></pre>
-
 <pre><code class="hljs ruby"><span class="hljs-comment"># app/views/layouts/_stylesheets.html.erb</span>
 <span class="hljs-comment"># ...</span>
-&lt;%= stylesheet_link_tag <span class="hljs-string">'harsh/<span class="hljs-subst">#{<span class="hljs-constant">::AppConfig</span>.harsh.theme}</span>'</span> %&gt;
+&lt;%= stylesheet_link_tag <span class="hljs-string">'harsh/<span class="hljs-subst">#{<span class="hljs-symbol">:</span><span class="hljs-symbol">:AppConfig</span>.harsh.theme}</span>'</span> %&gt;
 <span class="hljs-comment"># ...</span></code></pre>
-
 <p><sup>1</sup>All titles bestowed only by me.  Keep your attorneys to yourself.</p>
 <p><sup>2</sup>I know I saw someone doing something similar to this, but for the
- life of me I can&#39;t find it.  If it was you, I apologize for not giving credit.</p>
+life of me I can't find it.  If it was you, I apologize for not giving credit.</p>
 
         </section>
       </article>

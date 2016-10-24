@@ -32,43 +32,42 @@ so I really had no idea what to expect.  Thankfully, I found out my first day th
 <li>They had some server components written in C++, and</li>
 <li>They also had a &quot;web&quot; department, which allegedly did internet stuff.</li>
 </ol>
-<p>Rather than summarize what I actually DID during my time there, I&#39;ll instead
+<p>Rather than summarize what I actually DID during my time there, I'll instead
 highlight some of the issues I encountered, my attempts to solve their problems,
-and the ultimate reason for my departure.  I won&#39;t address the fact they were
-still using Microsoft&#39;s Visual SourceSafe for version control.  I think it speaks for
+and the ultimate reason for my departure.  I won't address the fact they were
+still using Microsoft's Visual SourceSafe for version control.  I think it speaks for
 itself.</p>
 <!--more-->
-
-<h3 id="propietary-much-">Propietary much?</h3>
+<h3 id="propietary-much">Propietary much? <a class="header-anchor" href="#propietary-much" aria-hidden="true">&#128279;</a></h3>
 <p>Ok, so this was rampant.  This place seriously suffered from <a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0CB4QFjAA&amp;url=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FNot_invented_here&amp;ei=JNCEVODoG8qgNsC8gIgO&amp;usg=AFQjCNE0yQm5D4-SULmI8By1wQVTN3k-sg&amp;bvm=bv.80642063,d.eXY">NIV</a>
 syndrome.  First of all, they were still using this really strangely concocted
 pseudo ORM to abstract SQL.  I say strangely concocted because it was not really an ORM, nor
 was it really a query builder.  It was this sort of abomination that made little
 sense to anyone but the guy who created it (who, coincidentally, gave birth to a few of
-the other monstosities I&#39;ll cover later).  About its only redeeming quality was that
+the other monstosities I'll cover later).  About its only redeeming quality was that
 it was written in C++, so I could almost understand what it was doing.</p>
 <p>They also had a sort of network API for communicating with the core system.  Problem was,
-it didn&#39;t use any sort of standard mechanism of communication (HTTP, SOAP, XML-RPC, etc).
+it didn't use any sort of standard mechanism of communication (HTTP, SOAP, XML-RPC, etc).
 It was this really limited and fragile service that needed constant tweaking to stay
 in sync with the core, and for which no even semi-standard tools existed for interfacing
 with it.</p>
-<h3 id="standards-i-don-t-understand-">Standards?  I don&#39;t understand.</h3>
-<p>Then there was the web department.  First of all, there wasn&#39;t a single employee on 
+<h3 id="standards-i-dont-understand">Standards?  I don't understand. <a class="header-anchor" href="#standards-i-dont-understand" aria-hidden="true">&#128279;</a></h3>
+<p>Then there was the web department.  First of all, there wasn't a single employee on
 staff that had any professional experience developing web apps, yet they were offering,
 as one of their cornerstone products, an online banking solution.  When I joined the team,
 I joined a converted graphical artist (read: ad designer) and recovering DBA.  Seriously.
 These guys were trying to kludge together a cohesive <strong>banking</strong> application, in Classic
 ASP, with no real understanding of web technology.  I could immediately tell that
-almost all the Javascript and CSS was copypasta, and simple things like includes weren&#39;t
+almost all the Javascript and CSS was copypasta, and simple things like includes weren't
 being used anywhere.  It was horrible.</p>
 <p>But the biggest issue was the apparent distaste for anything Open Source.  After I got
-the current web offerings under control (within reason), I set about finding a more 
+the current web offerings under control (within reason), I set about finding a more
 modern environment to start building in.  Since they were a self-proclaimed Microsoft
 Shop (seriously?  In the 21st century, how can that still be a thing?), I tried
 to get ASP.NET MVC to work, but at that time it was just too immature to be viable.
 I proposed moving to Linux as a platform and Rails as a framework for building the
 new version of the app.  I was immediately labeled a heretic and sent to my room.</p>
-<h3 id="let-s-do-this-">Let&#39;s do this.</h3>
+<h3 id="lets-do-this">Let's do this. <a class="header-anchor" href="#lets-do-this" aria-hidden="true">&#128279;</a></h3>
 <p>Luckily, being the only person qualified to have an opinion, and based on several
 conversations I had with the President/CEO (who is actually <a href="https://www.linkedin.com/vsearch/p?firstName=Daryl&amp;lastName=Tanner&amp;orig=SEO_SN&amp;trk=SEO_SN&amp;domainCountryName=&amp;csrfToken=ajax%3A5966742831050947461">extremely knowledgeable</a>,
 and highly <a href="http://www.cutimes.com/2012/12/11/daryl-tanner-retiring-from-share-one-at-years-end">respected</a>,
@@ -91,45 +90,45 @@ It was beautiful.  We were effecient.  TDD worked.  In essence, we manged to wri
 of production quality code in &lt; 12 months.  At the time I turned in my notice, JIRA contained a
 whopping total of 2 bugs, and 1 of those was actually due to an issue one of our partners had
 with their web service.  Considering, for most of us, it was our first real foray into
-full-on agile, I&#39;m extremely proud of our accomplishments.</p>
-<h3 id="we-are-not-impressed-">We are not impressed.</h3>
-<p>So after all of that, you&#39;d think that the powers that be would be overjoyed at the
-success of the &quot;experiment&quot;, right?  Well, no.  As expected, the status quo is 
+full-on agile, I'm extremely proud of our accomplishments.</p>
+<h3 id="we-are-not-impressed">We are not impressed. <a class="header-anchor" href="#we-are-not-impressed" aria-hidden="true">&#128279;</a></h3>
+<p>So after all of that, you'd think that the powers that be would be overjoyed at the
+success of the &quot;experiment&quot;, right?  Well, no.  As expected, the status quo is
 difficult to upset.  And we punched it in the face.  Most of the management team (the CTO
 in particular) took even the smallest opportunities to undermine our progress.</p>
-<p>However, it wasn&#39;t all bad.  Quietly, certain other groups within the organization
+<p>However, it wasn't all bad.  Quietly, certain other groups within the organization
 borrowed some of our methods.  Educational services started using Camtasia to put together
 tutorials, instead of putting on giant webinars, multiple times, to explain new features.</p>
 <p>The other development teams migrated away from VSS to Subversion, and started implementing
 unit tests in their code.  The manager even tried implementing Scrum (short lived, but A for effort).</p>
-<p>Since my departure, I&#39;ve found that the plan is to dismantle everything we accomplished, and
+<p>Since my departure, I've found that the plan is to dismantle everything we accomplished, and
 migrate back to VisualSourcesafe, with the original ASP code being migrated to ASP.NET (again,
 by non-web people).  Sigh.</p>
-<h3 id="there-s-always-a-silver-lining">There&#39;s always a silver lining</h3>
-<p>It hasn&#39;t been a total loss.  I learned a lot about mentoring, and about when to stand
+<h3 id="theres-always-a-silver-lining">There's always a silver lining <a class="header-anchor" href="#theres-always-a-silver-lining" aria-hidden="true">&#128279;</a></h3>
+<p>It hasn't been a total loss.  I learned a lot about mentoring, and about when to stand
 your ground.  There was a point where I threw down the gauntlet, and could just as easily
 have been unemployed again.  The difference this time was that, unlike before, I
 never made it personal.  I merely let the facts speak for themselves, and offered
 up my job as collateral.  Maybe it was maturity.  Or I just liked the people I worked with.
 Whatever the reason, I tried something, and in my opinion, the record will record it
 as a success.</p>
-<p>I also, however, learned even more about the relationship between development and 
+<p>I also, however, learned even more about the relationship between development and
 business.  Especially in a product-focused company.  Every minute I spend at work has
-to be financed by someone.  If we&#39;re not turning a profit on the product, or the time
-I&#39;m spending won&#39;t directly raise the bottom line, I&#39;m wasting both time and money,
-and that&#39;s a no-no.  In short, you can experiment all you want, so long as there&#39;s
+to be financed by someone.  If we're not turning a profit on the product, or the time
+I'm spending won't directly raise the bottom line, I'm wasting both time and money,
+and that's a no-no.  In short, you can experiment all you want, so long as there's
 a profitable product at the end.</p>
-<h3 id="the-next-chapter">The next chapter</h3>
-<p>I&#39;m moving on to a new opportunity, but on much unlike my last.  As a self-proclaimed
-<a href="http://www.webopedia.com/TERM/S/skunkworks.html">skunkworks</a>, I don&#39;t expect to 
-be required to justify my actions quite as much, and there probably won&#39;t be as
+<h3 id="the-next-chapter">The next chapter <a class="header-anchor" href="#the-next-chapter" aria-hidden="true">&#128279;</a></h3>
+<p>I'm moving on to a new opportunity, but on much unlike my last.  As a self-proclaimed
+<a href="http://www.webopedia.com/TERM/S/skunkworks.html">skunkworks</a>, I don't expect to
+be required to justify my actions quite as much, and there probably won't be as
 many rediculous practices in place that need fixing.</p>
-<p>I&#39;m also entering with that &quot;Senior&quot; title I coveted so long ago, but it has a much
+<p>I'm also entering with that &quot;Senior&quot; title I coveted so long ago, but it has a much
 different meaning for me now.  Most of my new team is younger (quite younger), but eager
-to learn.  Mentoring is something I&#39;ve grown quite fond of.  Not because I think I know it
+to learn.  Mentoring is something I've grown quite fond of.  Not because I think I know it
 all, but because I understand the value of someone helping you learn the right way to
 approach a problem, which is an intangible that usually takes years of trial and error.</p>
-<p>More than anything, I&#39;m excited to be moving into an environment where its mostly about
+<p>More than anything, I'm excited to be moving into an environment where its mostly about
 the code, which is where my heart still truly lies.</p>
 
         </section>

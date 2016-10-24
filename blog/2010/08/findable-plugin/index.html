@@ -23,20 +23,20 @@
           <h2>Findable plugin
           </h2>
         </header>
-        <section><p>Probably the strangest first blog post ever, but here goes.  I&#39;m migrating a
+        <section><p>Probably the strangest first blog post ever, but here goes.  I'm migrating a
 product from Classic ASP to Rails.  The bulk of its data is accessed via a
-TCP service, which accepts/responds with XML.  Unfortunately, it&#39;s a custom
-protocol, so I&#39;m forced to do all the packet building/transport myself.  No big
+TCP service, which accepts/responds with XML.  Unfortunately, it's a custom
+protocol, so I'm forced to do all the packet building/transport myself.  No big
 deal.</p>
-<p>The top level resource is a list of accounts.  These accounts don&#39;t change over
-the course of a session, so I&#39;m caching them to avoid the round trip.  This
+<p>The top level resource is a list of accounts.  These accounts don't change over
+the course of a session, so I'm caching them to avoid the round trip.  This
 list of accounts is referenced in some way on every page, so fast access to a
 particular account is important.  I started out by writing a custom <code>find</code>
 method, which took a hash of arguments.  This works, but looks weird next to
 all the other ActiveRecord goodness in the app.  Enter:
 <a href="http://www.github.com/t3hpr1m3/findable">Findable</a>.</p>
-<p><!--more-->
-My Account model looks similar to this:</p>
+<!--more-->
+<p>My Account model looks similar to this:</p>
 <pre><code class="hljs ruby"><span class="hljs-keyword">require</span> <span class="hljs-string">'builder'</span>
 <span class="hljs-keyword">require</span> <span class="hljs-string">'nokogiri'</span>
 
@@ -48,15 +48,15 @@ My Account model looks similar to this:</p>
 
   <span class="hljs-keyword">self</span>.build_request
     xml_text = <span class="hljs-string">""</span>
-    <span class="hljs-constant">Builder::XmlMarkup</span>.new( <span class="hljs-symbol">:target</span> =&gt; xml_text ) { |x|
+    Builder::XmlMarkup.new( <span class="hljs-symbol">:target</span> =&gt; xml_text ) { <span class="hljs-params">|x|</span>
       x.instruct!
-      x.getaccounts { |g| g.context( <span class="hljs-constant">Config</span>.context ) }
+      x.getaccounts { <span class="hljs-params">|g|</span> g.context( Config.context ) }
     }
     xml_text
   <span class="hljs-keyword">end</span>
 
   <span class="hljs-keyword">self</span>.from_xml(n)
-    a = <span class="hljs-constant">Account</span>.new
+    a = Account.new
     a.account_id = n.at_xpath(<span class="hljs-string">"id"</span>).text.to_i
     a.account_type = n.at_xpath(<span class="hljs-string">"type"</span>).text
     a.description = n.at_xpath(<span class="hljs-string">"description"</span>).text
@@ -65,27 +65,27 @@ My Account model looks similar to this:</p>
   <span class="hljs-keyword">end</span>
 
   <span class="hljs-keyword">self</span>.accounts
-    <span class="hljs-constant">Rails</span>.cache.fetch( <span class="hljs-string">"accounts"</span> ) {
+    Rails.cache.fetch( <span class="hljs-string">"accounts"</span> ) {
       req = <span class="hljs-keyword">self</span>.build_request
       resp = send_and_receive(req) <span class="hljs-comment"># custom library function</span>
-      <span class="hljs-constant">Nokogiri::XML</span>(resp).xpath(<span class="hljs-string">"accounts/account"</span>).collect <span class="hljs-keyword">do</span> |account|
+      Nokogiri::XML(resp).xpath(<span class="hljs-string">"accounts/account"</span>).collect <span class="hljs-keyword">do</span> <span class="hljs-params">|account|</span>
         from_xml(account)
       <span class="hljs-keyword">end</span>
     }
   <span class="hljs-keyword">end</span>
 
   <span class="hljs-keyword">self</span>.find( options = {} )
-    <span class="hljs-keyword">if</span> accounts.<span class="hljs-keyword">nil</span>?
-      <span class="hljs-keyword">nil</span>
+    <span class="hljs-keyword">if</span> accounts.<span class="hljs-literal">nil</span>?
+      <span class="hljs-literal">nil</span>
     <span class="hljs-keyword">else</span>
       <span class="hljs-keyword">if</span> options.keys.length == <span class="hljs-number">0</span>
         accounts
       <span class="hljs-keyword">else</span>
-        accounts.select { |a|
-          is_match = <span class="hljs-keyword">true</span>
-          options.each { |key, value|
+        accounts.select { <span class="hljs-params">|a|</span>
+          is_match = <span class="hljs-literal">true</span>
+          options.each { <span class="hljs-params">|key, value|</span>
             <span class="hljs-keyword">if</span> a.instance_variable_get( <span class="hljs-string">"@<span class="hljs-subst">#{key}</span>"</span> ) != value
-              is_match = <span class="hljs-keyword">false</span>
+              is_match = <span class="hljs-literal">false</span>
               <span class="hljs-keyword">break</span>
             <span class="hljs-keyword">end</span>
           }
@@ -95,18 +95,16 @@ My Account model looks similar to this:</p>
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span></code></pre>
-
-<p>I&#39;ve stripped this down to bare bones for clarity, leaving out all the sanity
+<p>I've stripped this down to bare bones for clarity, leaving out all the sanity
 checking.  You can probably guess what a call to <code>find</code> looks like:</p>
-<pre><code class="hljs ruby"><span class="hljs-variable">@account</span> = <span class="hljs-constant">Account</span>.find( { <span class="hljs-symbol">:account_id</span> =&gt; <span class="hljs-number">34529</span> } )</code></pre>
-
-<p>This works just fine, but it obviously needs some work.  First of all, there&#39;s
+<pre><code class="hljs ruby">@account = Account.find( { <span class="hljs-symbol">:account_id</span> =&gt; <span class="hljs-number">34529</span> } )</code></pre>
+<p>This works just fine, but it obviously needs some work.  First of all, there's
 no way for me to request just 1 account.  <code>@account</code> here would always be an
-array, and I&#39;d always be referencing <code>@account[0]</code>.  I&#39;ve also got several
+array, and I'd always be referencing <code>@account[0]</code>.  I've also got several
 other models that work similarly, so I need a way to generically apply this
-<code>finder</code> logic to several models.  There&#39;s probably a way to do this that I&#39;m
-not aware of, and if anyone ever actually reads this post, I&#39;ll probably be
-ridiculed horribly, but since I couldn&#39;t find anything, I decided to write
+<code>finder</code> logic to several models.  There's probably a way to do this that I'm
+not aware of, and if anyone ever actually reads this post, I'll probably be
+ridiculed horribly, but since I couldn't find anything, I decided to write
 <a href="http://www.github.com/t3hpr1m3/findable">Findable</a>.</p>
 <p>Basically, it throws a bunch of ActiveRecord-ish finders onto your model, so
 you can treat it as if it were an ActiveRecord for the purposes of filtering.
@@ -136,53 +134,48 @@ Implementing Finder is pretty easy:</p>
     <span class="hljs-comment"># ...</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span></code></pre>
-
 <p>The find method disappears entirely, replaced by brand new magic finders:</p>
-<pre><code class="hljs ruby"><span class="hljs-constant">Account</span>.find(<span class="hljs-symbol">:first</span>, <span class="hljs-symbol">:account_type</span> =&gt; <span class="hljs-string">'checking'</span>)
-<span class="hljs-constant">Account</span>.find_by_account_type(<span class="hljs-string">'checking'</span>)
-<span class="hljs-constant">Account</span>.find(<span class="hljs-symbol">:last</span>)
-<span class="hljs-constant">Account</span>.all</code></pre>
-
-<p>And so on.  If you have an attribute that you&#39;d like to use as a resource ID
+<pre><code class="hljs ruby">Account.find(<span class="hljs-symbol">:first</span>, <span class="hljs-symbol">:account_type</span> =&gt; <span class="hljs-string">'checking'</span>)
+Account.find_by_account_type(<span class="hljs-string">'checking'</span>)
+Account.find(<span class="hljs-symbol">:last</span>)
+Account.all</code></pre>
+<p>And so on.  If you have an attribute that you'd like to use as a resource ID
 for a restful route, just pass <code>true</code> as the second argument to
 <code>findable_attribute</code>:</p>
 <pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Account</span></span>
   <span class="hljs-comment"># ...</span>
-  findable_attribute <span class="hljs-symbol">:account_id</span>, <span class="hljs-keyword">true</span>
+  findable_attribute <span class="hljs-symbol">:account_id</span>, <span class="hljs-literal">true</span>
   <span class="hljs-comment"># ...</span>
 <span class="hljs-keyword">end</span></code></pre>
-
 <p>and now in your controller:</p>
-<pre><code class="hljs ruby"><span class="hljs-variable">@account</span> = <span class="hljs-constant">Account</span>.find(params[<span class="hljs-symbol">:id</span>])</code></pre>
-
+<pre><code class="hljs ruby">@account = Account.find(params[<span class="hljs-symbol">:id</span>])</code></pre>
 <p>works!  If your <code>findable_method</code> would somehow benefit from having the
 <code>options</code> hash passed in (possibly using it to filter the results before
-they&#39;re actually received), just pass <code>true</code> in your call to <code>findable_method</code>.</p>
+they're actually received), just pass <code>true</code> in your call to <code>findable_method</code>.</p>
 <pre><code class="hljs ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Account</span></span>
-  findable_method <span class="hljs-symbol">:accounts</span>, <span class="hljs-keyword">true</span>
+  findable_method <span class="hljs-symbol">:accounts</span>, <span class="hljs-literal">true</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>build_request(options)
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">build_request</span><span class="hljs-params">(options)</span></span>
     xml_text = <span class="hljs-string">""</span>
-    <span class="hljs-constant">Builder::XmlMarkup</span>.new( <span class="hljs-symbol">:target</span> =&gt; xml_text ) { |x|
+    Builder::XmlMarkup.new( <span class="hljs-symbol">:target</span> =&gt; xml_text ) { <span class="hljs-params">|x|</span>
       x.instruct!
-      x.getaccounts { |g|
-        g.context(<span class="hljs-constant">Config</span>.context)
+      x.getaccounts { <span class="hljs-params">|g|</span>
+        g.context(Config.context)
         g.account_type(options[<span class="hljs-symbol">:account_type</span>]) <span class="hljs-keyword">if</span> options.keys.<span class="hljs-keyword">include</span>?(<span class="hljs-symbol">:account_type</span>)
       }
     }
     xml_text
   <span class="hljs-keyword">end</span>
 
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>accounts(options)
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">accounts</span><span class="hljs-params">(options)</span></span>
     req = <span class="hljs-keyword">self</span>.build_request(options)
     resp = send_and_receive(req) <span class="hljs-comment"># custom library function</span>
-    <span class="hljs-constant">Nokogiri::XML</span>(resp).xpath(<span class="hljs-string">"accounts/account"</span>).collect <span class="hljs-keyword">do</span> |account|
+    Nokogiri::XML(resp).xpath(<span class="hljs-string">"accounts/account"</span>).collect <span class="hljs-keyword">do</span> <span class="hljs-params">|account|</span>
       from_xml(account)
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span></code></pre>
-
-<p>This is my first plugin, and it&#39;s probably redundant, but if anyone finds it
+<p>This is my first plugin, and it's probably redundant, but if anyone finds it
 useful, or wants to point me in the direction of the pre-existing solution to
 the problem, let me know.</p>
 

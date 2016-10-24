@@ -23,47 +23,43 @@
           <h2>RSpec, Autotest, Rails3, and Engines
           </h2>
         </header>
-        <section><p>I&#39;ve got an app I&#39;m building that is comprised of several engines running in
+        <section><p>I've got an app I'm building that is comprised of several engines running in
 <em>vendor/nsweb</em>.  I want each engine to have its own specs, without cluttering
-up the main app&#39;s <em>spec</em> folder.  I also want to be able to run tests for ALL
+up the main app's <em>spec</em> folder.  I also want to be able to run tests for ALL
 engines at once, both using rake and through autotest.  To accomplish the first
 task, I added the following:</p>
 <pre><code class="hljs ruby"><span class="hljs-comment"># lib/tasks/rspec.rake</span>
-<span class="hljs-constant">RSpec::Core::RakeTask</span>.module_eval <span class="hljs-keyword">do</span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>pattern
+RSpec::Core::RakeTask.module_eval <span class="hljs-keyword">do</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pattern</span></span>
     extras = []
-    <span class="hljs-constant">Dir</span>[<span class="hljs-constant">File</span>.join( <span class="hljs-constant">File</span>.expand_path( <span class="hljs-string">'vendor'</span> ), <span class="hljs-string">'nsweb'</span>, <span class="hljs-string">'*'</span> )].flatten.each <span class="hljs-keyword">do</span> |dir|
-      <span class="hljs-keyword">if</span> <span class="hljs-constant">File</span>.directory?( dir )
-        extras += <span class="hljs-constant">File</span>.join( dir, <span class="hljs-string">'spec'</span>, <span class="hljs-string">'**'</span>, <span class="hljs-string">'*_spec.rb'</span> ).to_s
+    Dir[File.join( File.expand_path( <span class="hljs-string">'vendor'</span> ), <span class="hljs-string">'nsweb'</span>, <span class="hljs-string">'*'</span> )].flatten.each <span class="hljs-keyword">do</span> <span class="hljs-params">|dir|</span>
+      <span class="hljs-keyword">if</span> File.directory?( dir )
+        extras += File.join( dir, <span class="hljs-string">'spec'</span>, <span class="hljs-string">'**'</span>, <span class="hljs-string">'*_spec.rb'</span> ).to_s
       <span class="hljs-keyword">end</span>
     <span class="hljs-keyword">end</span>
-    [<span class="hljs-variable">@pattern</span>] | extras
+    [@pattern] <span class="hljs-params">| extras
   <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span></code></pre>
-
+<span class="hljs-keyword">end</span></span></code></pre>
 <!--more-->
-
 <p>Now, if I run</p>
-<pre><code><span class="hljs-preprocessor"># rake spec</span></code></pre>
-
+<pre><code><span class="hljs-meta"># rake spec</span></code></pre>
 <p>the specs from my engines will be run as well.</p>
 <p>For autotest, I added this:</p>
 <pre><code class="hljs ruby"><span class="hljs-comment"># .autotest</span>
 
-<span class="hljs-constant">Autotest</span>.add_hook <span class="hljs-symbol">:initialize</span> <span class="hljs-keyword">do</span> |autotest|
-  autotest.add_mapping( %r%^vendor/nsweb/(.*)/app/controllers/(.*)\.rb<span class="hljs-variable">$%</span> ) <span class="hljs-keyword">do</span> |<span class="hljs-number">_</span>, m|
+Autotest.add_hook <span class="hljs-symbol">:initialize</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|autotest|</span>
+  autotest.add_mapping( %r%^vendor/nsweb/(.*)/app/controllers/(.*)\.rb$% ) <span class="hljs-keyword">do</span> <span class="hljs-params">|_, m|</span>
     [<span class="hljs-string">"vendor/nsweb/<span class="hljs-subst">#{m[<span class="hljs-number">1</span>]}</span>/spec/controllers/<span class="hljs-subst">#{m[<span class="hljs-number">2</span>]}</span>_spec.rb"</span>]
   <span class="hljs-keyword">end</span>
 
-  autotest.add_mapping( %r%^vendor/nsweb/(.*)/app/models/(.*)\.rb<span class="hljs-variable">$%</span> ) <span class="hljs-keyword">do</span> |<span class="hljs-number">_</span>, m|
+  autotest.add_mapping( %r%^vendor/nsweb/(.*)/app/models/(.*)\.rb$% ) <span class="hljs-keyword">do</span> <span class="hljs-params">|_, m|</span>
     [<span class="hljs-string">"vendor/nsweb/<span class="hljs-subst">#{m[<span class="hljs-number">1</span>]}</span>/spec/models/<span class="hljs-subst">#{m[<span class="hljs-number">2</span>]}</span>_spec.rb"</span>]
   <span class="hljs-keyword">end</span>
 
-  autotest.add_mapping( %r%^vendor/nsweb/(.*)/lib/(.*)\.rb<span class="hljs-variable">$%</span> ) <span class="hljs-keyword">do</span> |<span class="hljs-number">_</span>, m|
+  autotest.add_mapping( %r%^vendor/nsweb/(.*)/lib/(.*)\.rb$% ) <span class="hljs-keyword">do</span> <span class="hljs-params">|_, m|</span>
     [<span class="hljs-string">"vendor/nsweb/<span class="hljs-subst">#{m[<span class="hljs-number">1</span>]}</span>/spec/lib/<span class="hljs-subst">#{m[<span class="hljs-number">2</span>]}</span>_spec.rb"</span>]
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span></code></pre>
-
 <p>There is probably a much more elegant way to do both of these things, but this
 worked for me.</p>
 

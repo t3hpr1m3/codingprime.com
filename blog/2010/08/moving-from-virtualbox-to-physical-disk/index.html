@@ -30,77 +30,76 @@ explaining how to take a physical partition and convert it to a .vdi.  This
 was exactly the opposite of what I wanted to do.</p>
 <p>Finally, I found <a href="http://wiki.przemoc.net/tips/linux">this</a>
 wiki article, and it all came together.</p>
-<h3 id="preparing-the-disks">Preparing the disks</h3>
+<h3 id="preparing-the-disks">Preparing the disks <a class="header-anchor" href="#preparing-the-disks" aria-hidden="true">&#128279;</a></h3>
 <p>I had a spare SATA drive laying around, so I powered off the machine and popped
 it in.  Using my trusty Gentoo install CD, I partitioned the Linux disk.  My
 Virtualbox install had a disk layout like this:</p>
 <!--more-->
-
 <pre><code>/dev/sda1   /boot
 /dev/sda2   &lt;swap&gt;
 /dev/sda3   /
 /dev/sda4   &lt;Extended&gt;
 /dev/sda5   /usr
 /dev/sda6   /var
-</code></pre><p>I basically mirrored that on the Linux drive.  It&#39;s not necessary to be exact,
-but make sure each partition has AT LEAST enough space to hold the data you&#39;ll
+</code></pre>
+<p>I basically mirrored that on the Linux drive.  It's not necessary to be exact,
+but make sure each partition has AT LEAST enough space to hold the data you'll
 be moving to it.  I also created one extra partition to hold the .vdi images
 temporarily while I got the Linux data extracted.  I would be sure and create
 this partition LAST, and at the end of the drive, because once you delete,
 renumbering Linux partitions is a pain in the ass.</p>
-<h3 id="copying-the-vdi-files">Copying the .vdi files</h3>
+<h3 id="copying-the-vdi-files">Copying the .vdi files <a class="header-anchor" href="#copying-the-vdi-files" aria-hidden="true">&#128279;</a></h3>
 <p>Since my windows install is full of games, and reinstalling would be a bitch,
 I wanted to get Gentoo copied over and working with my 2 Windows drives
 detached from the system to prevent me from accidentally overwriting, say, the
 partition table on one of them.</p>
 <p>What I did is use the <a href="http://www.fs-driver.org/">IFS driver</a> to mount the
 extra partition I created above inside Windows, and copied my 2 Virtualbox
-.vdi&#39;s to it (Gentoo.vdi and Gentoo2.vdi).  At this point, I shut down the
+.vdi's to it (Gentoo.vdi and Gentoo2.vdi).  At this point, I shut down the
 machine and disconnected the 2 SATA cables from my Windows drives.  Better safe
 than sorry.</p>
-<h3 id="copying-the-gentoo-system">Copying the Gentoo system</h3>
+<h3 id="copying-the-gentoo-system">Copying the Gentoo system <a class="header-anchor" href="#copying-the-gentoo-system" aria-hidden="true">&#128279;</a></h3>
 <p>Again, I booted the box with the Gentoo install CD in the drive.  It
 recognized its HDD as <code>sda</code> (as expected).  Now it was time to start copying
 files.  To make things easier, inside the Gentoo LiveCD environment, I made two
 directories, <code>/mnt/old</code> and <code>/mnt/new</code>.  The names should be pretty self
 explanatory.  Based on the wiki article above, I wrote a little shell script to
-make mounting the .vdi partitions easier.  I&#39;ll include the script at the
+make mounting the .vdi partitions easier.  I'll include the script at the
 end of the post.  For instance, to get the /boot partition mounted from the
 .vdi image and copied to the new Linux drive:</p>
 <pre><code class="hljs bash">saturn-gentoo ~ <span class="hljs-comment"># ./vdi.sh -v /mnt/cdrom/Virtual\ Disks/Gentoo.vdi </span>
 PART          OFFSET ID
-<span class="hljs-number">1</span>              <span class="hljs-number">65536</span> <span class="hljs-number">83</span>
-<span class="hljs-number">2</span>           <span class="hljs-number">34095616</span> <span class="hljs-number">82</span>
-<span class="hljs-number">3</span>          <span class="hljs-number">571351552</span> <span class="hljs-number">83</span>
-Which partition to you want to mount? (Enter to skip)&gt; <span class="hljs-number">1</span>
-Offset: <span class="hljs-number">65536</span>
+1              65536 83
+2           34095616 82
+3          571351552 83
+Which partition to you want to mount? (Enter to skip)&gt; 1
+Offset: 65536
 Enter a mountpoint &gt; /mnt/old
 Filesystem <span class="hljs-built_in">type</span> (ex. ext3) &gt; ext2
-Mount command:
+Mount <span class="hljs-built_in">command</span>:
    mount <span class="hljs-string">"/mnt/cdrom/Virtual Disks/Gentoo.vdi"</span> <span class="hljs-string">"/mnt/old"</span> -t ext2 \
-      -o loop,offset=<span class="hljs-number">65536</span>
+      -o loop,offset=65536
 Execute now? (Yn) &gt; Y
 Mount successful
 saturn-gentoo ~ <span class="hljs-comment"># mount /dev/sda1 /mnt/new</span>
 saturn-gentoo ~ <span class="hljs-comment"># cp -axr /mnt/old/* /mnt/new</span>
 saturn-gentoo ~ <span class="hljs-comment"># umount /mnt/old</span>
 saturn-gentoo ~ <span class="hljs-comment"># umount /mnt/new</span></code></pre>
-
 <p>Rinse and repeat for the remainder of the partitions.</p>
-<h3 id="system-configuration">System configuration</h3>
+<h3 id="system-configuration">System configuration <a class="header-anchor" href="#system-configuration" aria-hidden="true">&#128279;</a></h3>
 <p>Since the drive identifier (sda) was the same between VirtualBox and the
-physical install, I didn&#39;t have to touch <code>fstab</code> or <code>grub</code>.  I made sure
+physical install, I didn't have to touch <code>fstab</code> or <code>grub</code>.  I made sure
 all partitions were unmounted and rebooted.  With the CD out of the drive, I
 was pleasantly surprised to see the Grub prompt, and even more surprised when
 everything just booted normally.  I had to do some minimal tweaking to X to
 move away from the virtualbox video/input drivers, but other than that, things
-Just Worked &reg;.</p>
-<h3 id="vdi-script">VDI script</h3>
-<p>Here&#39;s the script I used to mount my .vdi partitions.  If anyone finds it
+Just Worked ®.</p>
+<h3 id="vdi-script">VDI script <a class="header-anchor" href="#vdi-script" aria-hidden="true">&#128279;</a></h3>
+<p>Here's the script I used to mount my .vdi partitions.  If anyone finds it
 useful, please let me know.</p>
 <p><strong>Disclaimer</strong>: This script may wipe out the ozone layer and promote anarchy
 among the masses.  Use at your own risk.</p>
-<pre><code class="hljs bash"><span class="hljs-shebang">#!/bin/bash</span>
+<pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 <span class="hljs-comment">#==============================================================================</span>
 <span class="hljs-comment"># Copyright 2010 Josh Williams &lt;theprime@codingprime.com&gt;</span>
 <span class="hljs-comment">#</span>
@@ -122,7 +121,7 @@ among the masses.  Use at your own risk.</p>
 
 TEMP_FILENAME=<span class="hljs-string">'/tmp/vdimage'</span>
 VDI_FILENAME=<span class="hljs-string">''</span>
-DUMP_ONLY=<span class="hljs-number">0</span>
+DUMP_ONLY=0
 
 <span class="hljs-comment">#</span>
 <span class="hljs-comment"># Print the script usage information</span>
@@ -158,29 +157,29 @@ EOF
     print_partitions <span class="hljs-variable">${valid_partitions[@]}</span>
     <span class="hljs-built_in">read</span> -p <span class="hljs-string">"Which partition to you want to mount? (Enter to skip)&gt; "</span> part_num
     <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">"<span class="hljs-variable">${part_num}</span>"</span> ]; <span class="hljs-keyword">then</span>
-      <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">0</span> ; i &lt; <span class="hljs-variable">${#valid_partitions[@]}</span> ; i++ )); <span class="hljs-keyword">do</span>
+      <span class="hljs-keyword">for</span> (( i = 0 ; i &lt; <span class="hljs-variable">${#valid_partitions[@]}</span> ; i++ )); <span class="hljs-keyword">do</span>
         part=<span class="hljs-variable">${valid_partitions[i]}</span>
         part_id=`<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">${part}</span>"</span> | awk -F: <span class="hljs-string">'{print $1;}'</span>`
         <span class="hljs-keyword">if</span> [ <span class="hljs-variable">${part_id}</span> == <span class="hljs-variable">$part_num</span> ]; <span class="hljs-keyword">then</span>
           num=`<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">${part}</span>"</span> | awk -F: <span class="hljs-string">'{print $1;}'</span>`
           offset=`<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">${part}</span>"</span> | awk -F: <span class="hljs-string">'{print $2;}'</span>`
           typ_id=`<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">${part}</span>"</span> | awk -F: <span class="hljs-string">'{print $3;}'</span>`
-
+      
           selected_partition=( <span class="hljs-variable">$num</span> <span class="hljs-variable">$offset</span> <span class="hljs-variable">$typ_id</span> )
-          <span class="hljs-keyword">break</span>
+          <span class="hljs-built_in">break</span>
         <span class="hljs-keyword">fi</span>
       <span class="hljs-keyword">done</span>
     <span class="hljs-keyword">fi</span>
 
     <span class="hljs-keyword">if</span> [ -z <span class="hljs-string">"<span class="hljs-variable">${selected_partition}</span>"</span> ]; <span class="hljs-keyword">then</span>
       <span class="hljs-keyword">if</span> [ -z <span class="hljs-string">"<span class="hljs-variable">${part_num}</span>"</span> ]; <span class="hljs-keyword">then</span>
-        <span class="hljs-keyword">break</span>
+        <span class="hljs-built_in">break</span>
       <span class="hljs-keyword">else</span>
         <span class="hljs-built_in">echo</span> <span class="hljs-string">"Invalid partition number: <span class="hljs-variable">${part_num}</span>"</span>
-        <span class="hljs-keyword">continue</span>
+        <span class="hljs-built_in">continue</span>
       <span class="hljs-keyword">fi</span>
     <span class="hljs-keyword">else</span>
-      <span class="hljs-keyword">break</span>
+      <span class="hljs-built_in">break</span>
     <span class="hljs-keyword">fi</span>
   <span class="hljs-keyword">done</span>
 }
@@ -193,14 +192,14 @@ EOF
   <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; <span class="hljs-keyword">do</span>
     <span class="hljs-built_in">read</span> -p <span class="hljs-string">"Enter a mountpoint &gt; "</span> mountpoint
     <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">"<span class="hljs-variable">${mountpoint}</span>"</span> ]; <span class="hljs-keyword">then</span>
-      <span class="hljs-keyword">if</span> [ <span class="hljs-operator">-d</span> <span class="hljs-string">"<span class="hljs-variable">${mountpoint}</span>"</span> ]; <span class="hljs-keyword">then</span>
-        <span class="hljs-keyword">break</span>
+      <span class="hljs-keyword">if</span> [ <span class="hljs-_">-d</span> <span class="hljs-string">"<span class="hljs-variable">${mountpoint}</span>"</span> ]; <span class="hljs-keyword">then</span>
+        <span class="hljs-built_in">break</span>
       <span class="hljs-keyword">else</span>
         <span class="hljs-built_in">echo</span> <span class="hljs-string">"Not a valid directory: <span class="hljs-variable">${mountpoint}</span>"</span>
-        <span class="hljs-keyword">continue</span>
+        <span class="hljs-built_in">continue</span>
       <span class="hljs-keyword">fi</span>
     <span class="hljs-keyword">else</span>
-      <span class="hljs-keyword">break</span>
+      <span class="hljs-built_in">break</span>
     <span class="hljs-keyword">fi</span>
   <span class="hljs-keyword">done</span>
 }
@@ -212,24 +211,24 @@ EOF
   supported_filesystems=`cat /proc/filesystems | \
     sed <span class="hljs-string">'s/^nodev//'</span> | awk <span class="hljs-string">'{print $1;}'</span>`
   <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; <span class="hljs-keyword">do</span>
-    valid_fs_<span class="hljs-built_in">type</span>=<span class="hljs-number">0</span>
-    <span class="hljs-built_in">read</span> -p <span class="hljs-string">"Filesystem type (ex. ext3) &gt; "</span> fs_<span class="hljs-built_in">type</span>
+    valid_fs_type=0
+    <span class="hljs-built_in">read</span> -p <span class="hljs-string">"Filesystem type (ex. ext3) &gt; "</span> fs_type
     <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">"<span class="hljs-variable">$fs_type</span>"</span> ]; <span class="hljs-keyword">then</span>
       <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-variable">${supported_filesystems}</span>; <span class="hljs-keyword">do</span>
         <span class="hljs-keyword">if</span> [[ <span class="hljs-variable">$i</span> == <span class="hljs-variable">${fs_type}</span> ]]; <span class="hljs-keyword">then</span>
-          valid_fs_<span class="hljs-built_in">type</span>=<span class="hljs-number">1</span>
-          <span class="hljs-keyword">break</span>
+          valid_fs_type=1
+          <span class="hljs-built_in">break</span>
         <span class="hljs-keyword">fi</span>
       <span class="hljs-keyword">done</span>
       <span class="hljs-keyword">if</span> (( <span class="hljs-variable">$valid_fs_type</span> )); <span class="hljs-keyword">then</span>
-        <span class="hljs-keyword">break</span>
+        <span class="hljs-built_in">break</span>
       <span class="hljs-keyword">else</span>
         <span class="hljs-built_in">echo</span> <span class="hljs-string">"Filesystem type not supported: <span class="hljs-variable">${fs_type}</span>"</span>
         <span class="hljs-built_in">echo</span> <span class="hljs-string">""</span>
-        fs_<span class="hljs-built_in">type</span>=<span class="hljs-string">""</span>
+        fs_type=<span class="hljs-string">""</span>
       <span class="hljs-keyword">fi</span>
     <span class="hljs-keyword">else</span>
-      <span class="hljs-keyword">break</span>
+      <span class="hljs-built_in">break</span>
     <span class="hljs-keyword">fi</span>
   <span class="hljs-keyword">done</span>
 }
@@ -249,10 +248,10 @@ EOF
     [yY])
       mount <span class="hljs-string">"<span class="hljs-variable">${VDI_FILENAME}</span>"</span> <span class="hljs-string">"<span class="hljs-variable">${mountpoint}</span>"</span> -t <span class="hljs-variable">${fs_type}</span> -o \
         loop,offset=<span class="hljs-variable">${selected_partition[1]}</span>
-      <span class="hljs-keyword">break</span>
+      <span class="hljs-built_in">break</span>
       ;;
     [nN])
-      <span class="hljs-keyword">break</span>
+      <span class="hljs-built_in">break</span>
       ;;
     *)
       <span class="hljs-built_in">echo</span> <span class="hljs-string">"Invalid response: <span class="hljs-variable">${answer}</span>\n"</span>
@@ -269,7 +268,7 @@ EOF
   <span class="hljs-keyword">case</span> <span class="hljs-variable">$OPTION</span> <span class="hljs-keyword">in</span>
     h)
       usage
-      <span class="hljs-keyword">exit</span> <span class="hljs-number">1</span>
+      <span class="hljs-built_in">exit</span> 1
       ;;
     v)
       VDI_FILENAME=<span class="hljs-variable">$OPTARG</span>
@@ -278,11 +277,11 @@ EOF
       TEMP_FILENAME=<span class="hljs-variable">$OPTARG</span>
       ;;
     p)
-      DUMP_ONLY=<span class="hljs-number">1</span>
+      DUMP_ONLY=1
       ;;
     ?)
       usage
-      <span class="hljs-keyword">exit</span> <span class="hljs-number">1</span>
+      <span class="hljs-built_in">exit</span> 1
       ;;
   <span class="hljs-keyword">esac</span>
 <span class="hljs-keyword">done</span>
@@ -290,13 +289,13 @@ EOF
 <span class="hljs-comment">#</span>
 <span class="hljs-comment"># Make sure the .vdi file actually exists</span>
 <span class="hljs-comment">#</span>
-<span class="hljs-keyword">if</span> [[ -z <span class="hljs-variable">$VDI_FILENAME</span> ]]; <span class="hljs-keyword">then</span> usage; <span class="hljs-keyword">exit</span> <span class="hljs-number">1</span>; <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">if</span> [[ -z <span class="hljs-variable">$VDI_FILENAME</span> ]]; <span class="hljs-keyword">then</span> usage; <span class="hljs-built_in">exit</span> 1; <span class="hljs-keyword">fi</span>
 
 <span class="hljs-comment">#</span>
 <span class="hljs-comment"># Make sure we're dealing with a fixed size image</span>
 <span class="hljs-comment">#</span>
 fixed=`od -j76 -N4 -td4 <span class="hljs-string">"<span class="hljs-variable">${VDI_FILENAME}</span>"</span> | awk <span class="hljs-string">'NR==1{print 2;}'</span>`
-<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$fixed</span> != <span class="hljs-string">"2"</span> ]; <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">"Not a fixed disk."</span>; <span class="hljs-keyword">exit</span>; <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$fixed</span> != <span class="hljs-string">"2"</span> ]; <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">"Not a fixed disk."</span>; <span class="hljs-built_in">exit</span>; <span class="hljs-keyword">fi</span>
 
 <span class="hljs-comment">#</span>
 <span class="hljs-comment"># Find the initial offset</span>
@@ -306,16 +305,16 @@ initial_offset=`od -j344 -N4 -td4 <span class="hljs-string">"<span class="hljs-v
 <span class="hljs-comment">#</span>
 <span class="hljs-comment"># Extract the partition table</span>
 <span class="hljs-comment">#</span>
-dd <span class="hljs-keyword">if</span>=<span class="hljs-string">"<span class="hljs-variable">${VDI_FILENAME}</span>"</span> of=<span class="hljs-variable">${TEMP_FILENAME}</span> bs=<span class="hljs-number">1</span> skip=<span class="hljs-variable">${initial_offset}</span> \
-  count=<span class="hljs-number">512</span> &gt;&gt; /dev/null <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span>
-parts=`sfdisk -luS <span class="hljs-variable">${TEMP_FILENAME}</span> <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span> | grep -E <span class="hljs-string">"^ ?<span class="hljs-variable">${TEMP_FILENAME}</span>"</span> | \
+dd <span class="hljs-keyword">if</span>=<span class="hljs-string">"<span class="hljs-variable">${VDI_FILENAME}</span>"</span> of=<span class="hljs-variable">${TEMP_FILENAME}</span> bs=1 skip=<span class="hljs-variable">${initial_offset}</span> \
+  count=512 &gt;&gt; /dev/null 2&gt;&amp;1
+parts=`sfdisk -luS <span class="hljs-variable">${TEMP_FILENAME}</span> 2&gt;&amp;1 | grep -E <span class="hljs-string">"^ ?<span class="hljs-variable">${TEMP_FILENAME}</span>"</span> | \
   sed -E <span class="hljs-string">"s|<span class="hljs-variable">${TEMP_FILENAME}</span>||"</span> | sed <span class="hljs-string">'s/*//'</span> | \
   awk <span class="hljs-string">'{gsub(/ */,"",$1); print $1 ":" $2 ":" $5;}'</span>`
 
 <span class="hljs-comment">#</span>
 <span class="hljs-comment"># Cleanup the Temp file</span>
 <span class="hljs-comment">#</span>
-<span class="hljs-keyword">if</span> [ <span class="hljs-operator">-e</span> <span class="hljs-variable">${TEMP_FILENAME}</span> ]; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-_">-e</span> <span class="hljs-variable">${TEMP_FILENAME}</span> ]; <span class="hljs-keyword">then</span>
   rm <span class="hljs-variable">${TEMP_FILENAME}</span>
 <span class="hljs-keyword">fi</span>
 
@@ -341,26 +340,25 @@ valid_partitions=( )
   <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; <span class="hljs-keyword">do</span>
     selected_partition=<span class="hljs-string">""</span>
     mountpoint=<span class="hljs-string">""</span>
-    fs_<span class="hljs-built_in">type</span>=<span class="hljs-string">""</span>
+    fs_type=<span class="hljs-string">""</span>
 
     select_partition
-
+  
     <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">"<span class="hljs-variable">${selected_partition}</span>"</span> ]; <span class="hljs-keyword">then</span>
       select_mountpoint
     <span class="hljs-keyword">fi</span>
 
     <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">"<span class="hljs-variable">${mountpoint}</span>"</span> ]; <span class="hljs-keyword">then</span>
-      select_fs_<span class="hljs-built_in">type</span>
+      select_fs_type
     <span class="hljs-keyword">fi</span>
-
+  
     <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">"<span class="hljs-variable">${fs_type}</span>"</span> ]; <span class="hljs-keyword">then</span>
       handle_mount
     <span class="hljs-keyword">fi</span>
 
-    <span class="hljs-keyword">if</span> [ ! -n <span class="hljs-string">"<span class="hljs-variable">$fs_type</span>"</span> ]; <span class="hljs-keyword">then</span> <span class="hljs-keyword">break</span>; <span class="hljs-keyword">fi</span>
+    <span class="hljs-keyword">if</span> [ ! -n <span class="hljs-string">"<span class="hljs-variable">$fs_type</span>"</span> ]; <span class="hljs-keyword">then</span> <span class="hljs-built_in">break</span>; <span class="hljs-keyword">fi</span>
   <span class="hljs-keyword">done</span>
 <span class="hljs-keyword">fi</span></code></pre>
-
 <p>Is it overkill? Yes. But I did it anyway. Next time: getting Windows back into
 the mix.</p>
 

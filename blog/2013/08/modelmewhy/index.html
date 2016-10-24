@@ -30,9 +30,9 @@ communication (SOAP, REST, XML-RPC, etc).  One in particular is is a custom TCP
 server that responds to method calls (using XML as the transport mechanism).
 Replacing the service is not an option (as is usually the case with any
 <a href="http://fc05.deviantart.net/fs71/f/2012/013/0/7/pain_in_the_ass_by_sk8rnerd-d4m9ag5.jpg">PITA</a>
-legacy problem), so I have to communicate with it.
-<!--more--></p>
-<h3 id="activerecord-arel">ActiveRecord/AREL</h3>
+legacy problem), so I have to communicate with it.</p>
+<!--more-->
+<h3 id="activerecordarel">ActiveRecord/AREL <a class="header-anchor" href="#activerecordarel" aria-hidden="true">&#128279;</a></h3>
 <p>For all of its perceived shortcomings,
 <a href="https://github.com/rails/rails/tree/master/activerecord">ActiveRecord</a> is an
 excellent piece of software.  More importantly, <a href="https://github.com/rails/arel">arel</a>,
@@ -42,7 +42,7 @@ fairly effortless.</p>
 <p>While arel allows for adding custom <em>visitors</em> (which allow you to customize
 the &quot;SQL&quot; generated to perform queries/updates), both libraries are tightly
 coupled to the RDBMS data store.</p>
-<h3 id="datamapper">DataMapper</h3>
+<h3 id="datamapper">DataMapper <a class="header-anchor" href="#datamapper" aria-hidden="true">&#128279;</a></h3>
 <p>Another wonderful little gem is <a href="http://datamapper.org/">DataMapper</a>.  This
 thing solves the problems above by taking a different approach to modeling
 data.  Instead of inferring structure from the database (as ActiveRecord
@@ -51,26 +51,26 @@ delegates the job of interacting with the data store to custom &quot;adapters&qu
 which understand how to communicate with whatever <em>thingie</em> has the
 data you want.  If you have to work in a mixed environment and can get away
 with it, DataMapper is definitely the way to go.</p>
-<h3 id="stuck-">Stuck?</h3>
+<h3 id="stuck">Stuck? <a class="header-anchor" href="#stuck" aria-hidden="true">&#128279;</a></h3>
 <p>Unfortunately, I find myself stuck dealing with code that uses ActiveRecord
 to deal with the local application data, but still needs to be able to access
 data stored in the custom service described above.  I could use DataMapper for
 just those areas of the app, but this just feels...dirty.  As a developer, I
-have enough to think about.  I&#39;d rather not have to try and remember which DSL
+have enough to think about.  I'd rather not have to try and remember which DSL
 is used for which models.  One application, one syntax for dealing with data.
 And it should just work.</p>
-<h3 id="modelme">ModelMe</h3>
+<h3 id="modelme">ModelMe <a class="header-anchor" href="#modelme" aria-hidden="true">&#128279;</a></h3>
 <p>After several attempts to bridge the gap, and digging around the source of
 several projects on Github (notably <a href="https://github.com/maccman/supermodel">supermodel</a>),
 I decided to just write some fucking code.  The result is <em><a href="https://github.com/t3hpr1m3/model_me">ModelMe</a></em>.
-It&#39;s basically everything from ActiveModel I could squeeze in, with a lot of
+It's basically everything from ActiveModel I could squeeze in, with a lot of
 the relationship/query/association logic inspired by (read: stolen from)
 ActiveRecord.  It follows the same methodology as DataMapper (explicit
 attribute definition/delegation of datastore interaction) but looks, smells,
-and tastes like ActiveRecord.  It&#39;s fairly stable, and is currently being used
+and tastes like ActiveRecord.  It's fairly stable, and is currently being used
 in several mission critical applications dealing with financial data (yes, my
 sphincter puckers from time to time).</p>
-<p>Is it perfect?  Hell no.  But it&#39;s good enough to get through the day.</p>
+<p>Is it perfect?  Hell no.  But it's good enough to get through the day.</p>
 
         </section>
       </article>

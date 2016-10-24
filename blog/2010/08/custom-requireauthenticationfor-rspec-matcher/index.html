@@ -24,109 +24,105 @@
           </h2>
         </header>
         <section><p>Like everyone, I have a bunch of controller actions that need to be protected
-from unauthorized users.  I&#39;ve got RSpec tests around these methods that look
+from unauthorized users.  I've got RSpec tests around these methods that look
 like this:</p>
-<pre><code class="hljs ruby">describe <span class="hljs-constant">UsersController</span>, <span class="hljs-string">'as guest'</span> <span class="hljs-keyword">do</span>
+<pre><code class="hljs ruby">describe UsersController, <span class="hljs-string">'as guest'</span> <span class="hljs-keyword">do</span>
   before( <span class="hljs-symbol">:each</span> ) <span class="hljs-keyword">do</span>
-    controller.stubs( <span class="hljs-symbol">:current_user</span> ).returns( <span class="hljs-keyword">nil</span> )
+    controller.stubs( <span class="hljs-symbol">:current_user</span> ).returns( <span class="hljs-literal">nil</span> )
   <span class="hljs-keyword">end</span>
 
   describe <span class="hljs-string">'index'</span> <span class="hljs-keyword">do</span>
     it <span class="hljs-string">'should prevent access'</span> <span class="hljs-keyword">do</span>
       lambda { get <span class="hljs-symbol">:index</span> }.should
-        raise_error( <span class="hljs-constant">Exceptions::PermissionDenied</span> )
+        raise_error( Exceptions::PermissionDenied )
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 
   describe <span class="hljs-string">'edit'</span> <span class="hljs-keyword">do</span>
     it <span class="hljs-string">'should prevent access'</span> <span class="hljs-keyword">do</span>
       lambda { get <span class="hljs-symbol">:edit</span>, <span class="hljs-symbol">:id</span> =&gt; <span class="hljs-number">1</span> }.should
-        raise_error( <span class="hljs-constant">Exceptions::PermissionDenied</span> )
+        raise_error( Exceptions::PermissionDenied )
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 
   describe <span class="hljs-string">'create'</span> <span class="hljs-keyword">do</span>
     it <span class="hljs-string">'should prevent access'</span> <span class="hljs-keyword">do</span>
       lambda { post <span class="hljs-symbol">:create</span>, <span class="hljs-symbol">:id</span> =&gt; <span class="hljs-number">1</span> }.should
-        raise_error( <span class="hljs-constant">Exceptions::PermissionDenied</span> )
+        raise_error( Exceptions::PermissionDenied )
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span></code></pre>
-
 <!--more-->
-
 <p>Does exactly what I want it to do.  If I ever screw up and remove <code>index</code> from
-the <code>before_filter :authenticate</code>, I&#39;ll know it when I re-run the tests.  But
-I&#39;ve got lots and lots of methods like this, and wanted a more concise way to
- specify this behavior.</p>
+the <code>before_filter :authenticate</code>, I'll know it when I re-run the tests.  But
+I've got lots and lots of methods like this, and wanted a more concise way to
+specify this behavior.</p>
 <p>I did some searching and found quite a few different approaches (most notably
 <a href="http://railscasts.com/episodes/157-rspec-matchers-macros">this</a> from Ryan
 Bates, and <a href="http://github.com/nbibler/should_require_login">this</a> plugin),
-but none of them, I felt, were enough.  And so, because I&#39;m a stupid fuck who
+but none of them, I felt, were enough.  And so, because I'm a stupid fuck who
 writes too much code, I threw together this custom RSpec matcher.</p>
 <pre><code class="hljs ruby"><span class="hljs-comment"># spec/support/matchers/require_authentication_for.rb</span>
 <span class="hljs-class"><span class="hljs-keyword">module</span> <span class="hljs-title">CustomControllerMatchers</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">def</span> </span>require_authentication_for( action, *args )
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">require_authentication_for</span><span class="hljs-params">( action, *args )</span></span>
     options = args.extract_options!
-    method = args.first.is_a?( <span class="hljs-constant">Symbol</span> ) ? args.first <span class="hljs-symbol">:</span> <span class="hljs-symbol">:get</span>
-    <span class="hljs-constant">RequireAuthenticationMatcher</span>.new( method, action, options, <span class="hljs-keyword">self</span> )
+    method = args.first.is_a?( Symbol ) ? args.first : <span class="hljs-symbol">:get</span>
+    RequireAuthenticationMatcher.new( method, action, options, <span class="hljs-keyword">self</span> )
   <span class="hljs-keyword">end</span>
 
   <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RequireAuthenticationMatcher</span></span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>initialize( method, action, args, context )
-      <span class="hljs-variable">@method</span> = method
-      <span class="hljs-variable">@action</span> = action
-      <span class="hljs-variable">@args</span> = args
-      <span class="hljs-variable">@context</span> = context
-      <span class="hljs-variable">@actual_exception</span> = <span class="hljs-keyword">nil</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span><span class="hljs-params">( method, action, args, context )</span></span>
+      @method = method
+      @action = action
+      @args = args
+      @context = context
+      @actual_exception = <span class="hljs-literal">nil</span>
     <span class="hljs-keyword">end</span>
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>matches?( controller )
-      <span class="hljs-variable">@raised_permission_denied</span> = <span class="hljs-keyword">false</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">matches?</span><span class="hljs-params">( controller )</span></span>
+      @raised_permission_denied = <span class="hljs-literal">false</span>
       <span class="hljs-keyword">begin</span>
-        <span class="hljs-variable">@context</span>.send( <span class="hljs-variable">@method</span>, <span class="hljs-variable">@action</span>, <span class="hljs-variable">@args</span> )
-      <span class="hljs-keyword">rescue</span> <span class="hljs-constant">Exceptions::PermissionDenied</span> =&gt; <span class="hljs-variable">@actual_exception</span>
-        <span class="hljs-variable">@raised_permission_denied</span> = <span class="hljs-keyword">true</span>
-      <span class="hljs-keyword">rescue</span> <span class="hljs-constant">Exception</span> =&gt; <span class="hljs-variable">@actual_exception</span>
+        @context.send( @method, @action, @args )
+      <span class="hljs-keyword">rescue</span> Exceptions::PermissionDenied =&gt; @actual_exception
+        @raised_permission_denied = <span class="hljs-literal">true</span>
+      <span class="hljs-keyword">rescue</span> Exception =&gt; @actual_exception
         foo = <span class="hljs-string">'bar'</span>
       <span class="hljs-keyword">end</span>
 
-      <span class="hljs-variable">@raised_permission_denied</span> 
+      @raised_permission_denied
     <span class="hljs-keyword">end</span>
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>failure_message_for_should
-      <span class="hljs-keyword">if</span> <span class="hljs-variable">@actual_exception</span>.<span class="hljs-keyword">nil</span>?
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">failure_message_for_should</span></span>
+      <span class="hljs-keyword">if</span> @actual_exception.<span class="hljs-literal">nil</span>?
         <span class="hljs-string">"Expected PermissionDenied, but nothing was raised"</span>
       <span class="hljs-keyword">else</span>
-        <span class="hljs-string">"Expected PermissionDenied, got <span class="hljs-subst">#{<span class="hljs-variable">@actual_exception</span>.inspect}</span>"</span>
+        <span class="hljs-string">"Expected PermissionDenied, got <span class="hljs-subst">#{@actual_exception.inspect}</span>"</span>
       <span class="hljs-keyword">end</span>
     <span class="hljs-keyword">end</span>
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>failure_message_for_should_not
-      <span class="hljs-keyword">if</span> <span class="hljs-variable">@actual_exception</span>.<span class="hljs-keyword">nil</span>?
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">failure_message_for_should_not</span></span>
+      <span class="hljs-keyword">if</span> @actual_exception.<span class="hljs-literal">nil</span>?
         <span class="hljs-string">'Not sure what happened'</span>
       <span class="hljs-keyword">else</span>
-        <span class="hljs-string">"Expected the call to succeed, but <span class="hljs-subst">#{<span class="hljs-variable">@actual_exception</span>.message}</span> was raised"</span>
+        <span class="hljs-string">"Expected the call to succeed, but <span class="hljs-subst">#{@actual_exception.message}</span> was raised"</span>
       <span class="hljs-keyword">end</span>
     <span class="hljs-keyword">end</span>
 
-    <span class="hljs-function"><span class="hljs-keyword">def</span> </span>description
-      <span class="hljs-string">"require authentication for <span class="hljs-subst">#{<span class="hljs-variable">@action</span>}</span>"</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">description</span></span>
+      <span class="hljs-string">"require authentication for <span class="hljs-subst">#{@action}</span>"</span>
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span></code></pre>
-
 <p>My controller specs can now look like this:</p>
-<pre><code class="hljs ruby">describe <span class="hljs-constant">UsersController</span>, <span class="hljs-string">'as guest'</span> <span class="hljs-keyword">do</span>
+<pre><code class="hljs ruby">describe UsersController, <span class="hljs-string">'as guest'</span> <span class="hljs-keyword">do</span>
   before( <span class="hljs-symbol">:each</span> ) <span class="hljs-keyword">do</span>
-    controller.stubs( <span class="hljs-symbol">:current_user</span> ).returns( <span class="hljs-keyword">nil</span> )
+    controller.stubs( <span class="hljs-symbol">:current_user</span> ).returns( <span class="hljs-literal">nil</span> )
   <span class="hljs-keyword">end</span>
 
   it { should require_authentication_for( <span class="hljs-symbol">:index</span> ) }
   it { should require_authentication_for( <span class="hljs-symbol">:edit</span>, <span class="hljs-symbol">:id</span> =&gt; <span class="hljs-number">1</span> ) }
   it { should require_authentication_for( <span class="hljs-symbol">:update</span>, <span class="hljs-symbol">:post</span>, <span class="hljs-symbol">:id</span> =&gt; <span class="hljs-number">1</span> ) }
 <span class="hljs-keyword">end</span></code></pre>
-
 <p>It accomplishes the same thing, I know, but to me this is just more readable.</p>
 
         </section>

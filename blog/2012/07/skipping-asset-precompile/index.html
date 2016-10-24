@@ -27,18 +27,17 @@
 changed.  Thankfully,
 <a href="http://www.bencurtis.com/2011/12/skipping-asset-compilation-with-capistrano/">Ben Curtis</a>
 came up with a workable solution.  Except...</p>
-<p>Ben&#39;s method fails on the initial deployment, because <em>current_revision</em> tries to
-read <em>/path/to/app/current/REVISION</em>, which won&#39;t exist yet.  After trying several
+<p>Ben's method fails on the initial deployment, because <em>current_revision</em> tries to
+read <em>/path/to/app/current/REVISION</em>, which won't exist yet.  After trying several
 approaches, I have arrived at one which works for me.  There are probably other,
-more elegant approaches, but this one seems clear enough for my purposes. 
+more elegant approaches, but this one seems clear enough for my purposes.
 Posting it here for posterity.</p>
 <!--more-->
-
 <pre><code class="hljs ruby">namespace <span class="hljs-symbol">:deploy</span> <span class="hljs-keyword">do</span>
   namespace <span class="hljs-symbol">:assets</span> <span class="hljs-keyword">do</span>
-    task <span class="hljs-symbol">:precompile</span>, <span class="hljs-symbol">roles:</span> <span class="hljs-symbol">:web</span>, <span class="hljs-symbol">except:</span> {<span class="hljs-symbol">no_release:</span> <span class="hljs-keyword">true</span>} <span class="hljs-keyword">do</span>
-      from = source.next_revision(current_revision) <span class="hljs-keyword">if</span> capture(<span class="hljs-string">"[ -f <span class="hljs-subst">#{<span class="hljs-constant">File</span>.join(current_path, <span class="hljs-string">'REVISION'</span>)}</span> ] || echo '1'"</span>).empty?
-      <span class="hljs-keyword">if</span> from.<span class="hljs-keyword">nil</span>? || capture(<span class="hljs-string">"cd <span class="hljs-subst">#{latest_release}</span> &amp;&amp; <span class="hljs-subst">#{source.local.log(from)}</span> vendor/assets app/assets lib/assets | wc -l"</span>).to_i &gt; <span class="hljs-number">0</span>
+    task <span class="hljs-symbol">:precompile</span>, <span class="hljs-symbol">roles:</span> <span class="hljs-symbol">:web</span>, <span class="hljs-symbol">except:</span> {<span class="hljs-symbol">no_release:</span> <span class="hljs-literal">true</span>} <span class="hljs-keyword">do</span>
+      from = source.next_revision(current_revision) <span class="hljs-keyword">if</span> capture(<span class="hljs-string">"[ -f <span class="hljs-subst">#{File.join(current_path, <span class="hljs-string">'REVISION'</span>)}</span> ] || echo '1'"</span>).empty?
+      <span class="hljs-keyword">if</span> from.<span class="hljs-literal">nil</span>? <span class="hljs-params">||</span> capture(<span class="hljs-string">"cd <span class="hljs-subst">#{latest_release}</span> &amp;&amp; <span class="hljs-subst">#{source.local.log(from)}</span> vendor/assets app/assets lib/assets | wc -l"</span>).to_i &gt; <span class="hljs-number">0</span>
         run <span class="hljs-string">%Q{cd <span class="hljs-subst">#{latest_release}</span> &amp;&amp; <span class="hljs-subst">#{rake}</span> RAILS_ENV=<span class="hljs-subst">#{rails_env}</span> <span class="hljs-subst">#{asset_env}</span> assets:precompile}</span>
       <span class="hljs-keyword">else</span>
         logger.info <span class="hljs-string">"Skipping asset pre-compilation because there were no asset changes."</span>

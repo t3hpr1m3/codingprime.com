@@ -23,12 +23,12 @@
           <h2>Tmux + Vagrant = win!
           </h2>
         </header>
-        <section><p>In my quest to <a href="../02/adapting-to-mac/">become one with my Air</a>, I&#39;ve been in
+        <section><p>In my quest to <a href="/blog/2014/02/adapting-to-mac">become one with my Air</a>, I've been in
 search of the best tooling to keep my workflow smooth.  I did some playing
 around with MacVim, running rbenv in OSX, and various IRC clients.  After
-a lot of hand-wringing and head-scratching, I think I&#39;ve come up with the
+a lot of hand-wringing and head-scratching, I think I've come up with the
 best solution.</p>
-<h3 id="cheaters-always-win-">Cheaters always win!</h3>
+<h3 id="cheaters-always-win">Cheaters always win! <a class="header-anchor" href="#cheaters-always-win" aria-hidden="true">&#128279;</a></h3>
 <p>My fix is to give up and give in.  <a href="https://www.vagrantup.com/">Vagrant</a> to
 the rescue!  In all fairness, the choice to use Vagrant was sort of a team
 decision.  We have quite a few devs, and find a way for them to work
@@ -36,11 +36,10 @@ consistently seems like the perfect use case for Vagrant.  So for
 day-to-day work, I spin up the project specific VM using the Vagrantfile in
 the repo, then just pull in <a href="https://github.com/t3hpr1m3/dotfiles">my dotfiles</a>
 using <a href="https://github.com/andsens/homeshick">homeshick</a>.  This workflow
-allows me to always work in a consistent environment, no matter where I&#39;m
+allows me to always work in a consistent environment, no matter where I'm
 working from (even from a Putty session).</p>
 <!--more-->
-
-<h3 id="gui-gotta-go-">GUI Gotta Go!</h3>
+<h3 id="gui-gotta-go">GUI Gotta Go! <a class="header-anchor" href="#gui-gotta-go" aria-hidden="true">&#128279;</a></h3>
 <p>In my quest to find the ultimate dev environment, I decided that, optimally,
 I should only need 2 windows open at any given time: a terminal and a browser.
 In order to accomplish this, I had to find console based replacements for
@@ -48,9 +47,9 @@ everything I currently had gui apps for.  This list included:</p>
 <ul>
 <li>Colloquy (IRC)</li>
 <li>Mail (duh)</li>
-<li>Pandora (yeah, I&#39;m one of those people)</li>
+<li>Pandora (yeah, I'm one of those people)</li>
 </ul>
-<p><a href="http://irssi.org/">Irssi</a> filled the first need nicely, as I&#39;ve used it
+<p><a href="http://irssi.org/">Irssi</a> filled the first need nicely, as I've used it
 extensively in the past.  I should have been using it anyway.</p>
 <p><a href="http://www.mutt.org/">Mutt</a> took care of mail.  I still have Gmail running
 in a browser window for complicated attachments and alternate accounts, but
@@ -61,18 +60,18 @@ finally ready to commit to using the terminal to handle everything.  The
 problem was visibility.  Constantly switching tabs to check email or skip a
 song was becoming a huge chore.  There had to be a better way.  Then I remembered
 multiplexers.</p>
-<h3 id="tmux-is-the-new-screen">Tmux is the new screen</h3>
-<p>I&#39;ve been using <a href="http://www.gnu.org/software/screen/">screen</a> for years to
-crank up long-running processes on servers, so my terminal wasn&#39;t tied up 
+<h3 id="tmux-is-the-new-screen">Tmux is the new screen <a class="header-anchor" href="#tmux-is-the-new-screen" aria-hidden="true">&#128279;</a></h3>
+<p>I've been using <a href="http://www.gnu.org/software/screen/">screen</a> for years to
+crank up long-running processes on servers, so my terminal wasn't tied up
 waiting for some 12 hour database rebuild to finish, only for the connection
 to drop at 99.7%, forcing me to start the whole thing over again.  I had also
 used it to do some quick and dirty pair programming, but nothing fancy.</p>
 <p>I rediscovered <a href="http://tmux.sourceforge.net/">tmux</a>, pushed through the initial
 pain of learning something new, and found the awesomeness that is true
 multiplexing.</p>
-<p><a href="http://i.imgur.com/4helvtT.png"><img src="http://i.imgur.com/4helvtT.png" alt="Tmux is AWESOME!"></a></p>
+<figure><a href="http://i.imgur.com/4helvtT.png"><img src="http://i.imgur.com/4helvtT.png" alt="Tmux is AWESOME!" /></a><figcaption>Tmux is AWESOME!</figcaption></figure>
 <p>It took some getting used to, and my setup would require a post all on its own,
-but I&#39;m back to being productive again.</p>
+but I'm back to being productive again.</p>
 
         </section>
       </article>
