@@ -600,6 +600,7 @@ article.post figure img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  max-width: 100%;
 }
 
 article.post figure figcaption {
