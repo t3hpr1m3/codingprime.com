@@ -1,7 +1,7 @@
-FROM node:0.10.33-onbuild
+FROM node:6-onbuild
 
-RUN npm install -g grunt-cli
+RUN npm install -g nodemon
 
 EXPOSE 3003
 
-CMD ["grunt", "serve"]
+CMD ["npm", "start"]

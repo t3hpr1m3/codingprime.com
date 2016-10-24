@@ -2,7 +2,7 @@
 title: ModelMe...why?
 date: 2013-08-31 11:46
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 My day job consists of architecting and maintaining several Rails
 applications.  Some of these must deal with custom data sources that

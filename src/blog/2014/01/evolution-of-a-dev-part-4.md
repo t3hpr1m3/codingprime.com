@@ -2,7 +2,7 @@
 title: Evolution of a Dev (Part 4)
 date: 2014-01-19 16:23
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 My most recent career stop was also my longest.  With the collapse of my startup dreams,
 

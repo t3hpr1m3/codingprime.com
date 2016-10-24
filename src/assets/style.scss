@@ -107,9 +107,32 @@ article.post {
 			}
 		}
 	}
-	img {
-		display: block;
-		max-width: 100%;
+	h3 {
+		a {
+			float: left;
+			opacity: 0;
+			margin-left: -1.2em;
+			&:hover {
+				opacity: 100;
+			}
+		}
+		&:hover {
+			a {
+				opacity: 100;
+			}
+		}
+	}
+	figure {
+		text-align: center;
+		img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		figcaption {
+			color: $grey-color;
+			font-style: italic;
+		}
 	}
 }
 

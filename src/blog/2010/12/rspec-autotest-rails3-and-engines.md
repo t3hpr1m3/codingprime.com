@@ -2,7 +2,7 @@
 title: RSpec, Autotest, Rails3, and Engines
 date: 2010-12-06 18:19
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 I've got an app I'm building that is comprised of several engines running in
 *vendor/nsweb*.  I want each engine to have its own specs, without cluttering

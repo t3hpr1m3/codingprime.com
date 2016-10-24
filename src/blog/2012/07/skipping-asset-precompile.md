@@ -2,7 +2,7 @@
 title: Skipping asset precompile
 date: 2012-07-12 17:20
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 Waiting on asset precompilation is a PITA, especially if no assets have been
 changed.  Thankfully,

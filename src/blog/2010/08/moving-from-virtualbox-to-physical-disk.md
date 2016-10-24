@@ -2,7 +2,7 @@
 title: Moving from Virtualbox to Physical Disk
 date: 2010-08-21 15:50
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 I decided to convert one of my Gentoo VirtualBox installs to physical disk
 (ie. convert Virtual -> Physical ).  This sounded pretty straightforward,

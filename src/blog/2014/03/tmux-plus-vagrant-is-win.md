@@ -2,9 +2,9 @@
 title: Tmux + Vagrant = win!
 date: 2014-03-16 16:33
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
-In my quest to [become one with my Air](../02/adapting-to-mac/), I've been in
+In my quest to [become one with my Air](/blog/2014/02/adapting-to-mac), I've been in
 search of the best tooling to keep my workflow smooth.  I did some playing
 around with MacVim, running rbenv in OSX, and various IRC clients.  After
 a lot of hand-wringing and head-scratching, I think I've come up with the
@@ -52,7 +52,7 @@ multiplexers.
 ### Tmux is the new screen
 
 I've been using [screen](http://www.gnu.org/software/screen/) for years to
-crank up long-running processes on servers, so my terminal wasn't tied up 
+crank up long-running processes on servers, so my terminal wasn't tied up
 waiting for some 12 hour database rebuild to finish, only for the connection
 to drop at 99.7%, forcing me to start the whole thing over again.  I had also
 used it to do some quick and dirty pair programming, but nothing fancy.

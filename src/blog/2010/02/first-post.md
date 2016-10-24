@@ -2,7 +2,7 @@
 title: First Post
 date: 2010-02-18 00:45
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 Yep.  It's live.
 

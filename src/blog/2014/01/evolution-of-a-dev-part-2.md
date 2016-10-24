@@ -2,12 +2,12 @@
 title: Evolution of a Dev (Part 2)
 date: 2014-01-19 10:22
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
-When we [last left](evolution-of-a-dev-part-1/) our hero (me), he was basking
-in the wonderment that is pure software development.  "I wanna go do this fo realz!"
-So I set about finding a new job, one that would allow me to throw off the shackles
-of ops and focus solely on writing code.
+When we [last left](/blog/2014/01/evolution-of-a-dev-part-1/) our hero (me),
+he was basking in the wonderment that is pure software development.  "I wanna
+go do this fo realz!" So I set about finding a new job, one that would allow me
+to throw off the shackles of ops and focus solely on writing code.
 
 Luckily for me, I didn't have to spend very long looking.  All it took was moving
 300 miles away from everything I had ever known, with a wife and our 2 children 
@@ -56,7 +56,7 @@ was an either/or proposition.  Either I was one of them, or I was above them.  Y
 can't be both.  Anyone who has tried to make that transition knows what I mean.
 
 Then there was the administration side of things.  Interfacing with upper management
-was extremelty frustrating, because they didn't care about the code, only the bottom
+was extremely frustrating, because they didn't care about the code, only the bottom
 line.  Results, no matter how much had to be sacrificed, were all that mattered.
 I found myself agreeing to things as a manager that my developer side would have
 given the middle finger to.
@@ -64,5 +64,6 @@ given the middle finger to.
 Over time, I started to realize that it wasn't quite as bad as my naive self wanted to
 believe.  Business pays the bills.  Paying customers allow us devs to do
 the things we love, even if there are limits.  I'd say this was when I entered my
-teenage years as a budding software engineer.  Next time, [I hop on the startup train](../evolution-of-a-dev-part-3), and 
+teenage years as a budding software engineer.  Next time,
+[I hop on the startup train](/blog/2014/01/evolution-of-a-dev-part-3/), and
 experience development in its purest form.

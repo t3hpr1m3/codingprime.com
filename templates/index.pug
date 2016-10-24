@@ -16,10 +16,10 @@ block content
             i.fa.fa-arrow-right
   nav.pagination
     if pagination.next
-      a.btn.pull-right(href='/' + pagination.next.path.replace(/index.html$/, ''))
+      a.btn.pull-right(href='/' + pagination.next.path)
         | Older
         i.fa.fa-chevron-circle-right
     if pagination.previous
-      a.btn.pull-left(href='/' + pagination.previous.path.replace(/index.html$/, ''))
+      a.btn.pull-left(href='/' + pagination.previous.path)
         i.fa.fa-chevron-circle-left
         | Newer

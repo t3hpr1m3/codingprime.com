@@ -4,3 +4,5 @@ app:
     - .:/usr/src/app
   ports:
     - '3003:3003'
+  environment:
+    DEBUG: '*'

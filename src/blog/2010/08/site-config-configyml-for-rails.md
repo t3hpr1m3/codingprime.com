@@ -2,7 +2,7 @@
 title: Site Config (config.yml) for Rails
 date: 2010-08-21 23:20
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 Over at [Railscasts](http://railscasts.com/), The Honourable Ryan Bates,
 Esquire<sup>1</sup> has been churning out quality screencasts FOREVER.  And

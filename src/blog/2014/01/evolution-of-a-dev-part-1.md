@@ -2,7 +2,7 @@
 title: Evolution of a Dev (Part 1)
 date: 2014-01-19 08:25
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 I am a career developer.  That makes me extremely lucky, since I get to earn
 a living doing the kind of things I'd be doing anyway.   Basically, I have
@@ -25,7 +25,7 @@ easy to tell where they are in their evolution.
 <!--more-->
 
 ### Prologue
-My own journey really began back in the 80's, hacking away on the family's 
+My own journey really began back in the 80's, hacking away on the family's
 [Commodore VIC-20](http://en.wikipedia.org/wiki/Commodore_VIC-20).  I had almost
 no idea what I was doing, but something about making a machine interact with
 you, even though it was entirely scripted, blew my mind.
@@ -56,7 +56,7 @@ I took care of a number of fairly mundane non-programming tasks.
 * troubleshooting issues on the few actual PC's that existed
 * babysitting the Netware server (seriously, it was shit)
 
-By night (and during dead times during the day), I taught myself as much 
+By night (and during dead times during the day), I taught myself as much
 [OCL](http://en.wikipedia.org/wiki/Operational_Control_Language),
 [CL](http://en.wikipedia.org/wiki/IBM_i_Control_Language),
 [RPGII](http://en.wikipedia.org/wiki/IBM_RPG_II),
@@ -88,7 +88,7 @@ I just never fully understood why he was there.  It wasn't his passion, obviousl
 
 One day, however, he revealed to me that he had been trying out this new thing called
 Java.  With it, he had created a calculator or something equally boring.  He
-tried to explain how it worked, but 
+tried to explain how it worked, but
 1. He was about as captivating as an oak sapling, and
 2. I don't think he really understood wtf he was doing.
 
@@ -122,7 +122,7 @@ were malleable.  This was also my first experience with both Bash and C, both
 of which felt amazing.  But I was still only able to monkey around with things
 as long as I was in the office.
 
-Then, one day, David walked up wo me with a CD he had obviously burned.  Written
+Then, one day, David walked up to me with a CD he had obviously burned.  Written
 in Sharpie across the front was the label "RedHat 5.1".
 
         Me: "What is it?"
@@ -150,7 +150,7 @@ problem, no matter how much reading, searching (Google still hadn't supplanted
 DogPile as my SE of choice), and trial and error it took.  That would be important,
 since the next phase would not be quite so happy-go-lucky.
 
-Next up, [the real world comes knocking](../evolution-of-a-dev-part-2/).
-The second magical moment came when a co-worker handed me a homemade CD. 
+Next up, [the real world comes knocking](/blog/2014/01/evolution-of-a-dev-part-2/).
+The second magical moment came when a co-worker handed me a homemade CD...
 
 

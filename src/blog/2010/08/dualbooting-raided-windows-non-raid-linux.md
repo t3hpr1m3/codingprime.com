@@ -2,10 +2,10 @@
 title: Dual-booting Raided Windows/Non-Raid Linux
 date: 2010-08-21 18:12
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 If you're following along at home, I got my Gentoo install
-[extracted](../moving-from-virtualbox-to-physical-disk) and running on physical
+[extracted](/blog/2010/08/moving-from-virtualbox-to-physical-disk) and running on physical
 disk.  Now I have a problem to solve: Dual booting with Windows.  This is
 only a problem because my Windows install is on a RAID0 array using an Intel
 fakeraid controller.  I found all kinds of info on dual-booting Windows/Linux

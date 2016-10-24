@@ -2,7 +2,7 @@
 title: 'Custom RSpec matcher:  require_authentication_for'
 date: 2010-08-22 19:00
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 Like everyone, I have a bunch of controller actions that need to be protected
 from unauthorized users.  I've got RSpec tests around these methods that look
@@ -42,7 +42,7 @@ end
 Does exactly what I want it to do.  If I ever screw up and remove `index` from
 the `before_filter :authenticate`, I'll know it when I re-run the tests.  But
 I've got lots and lots of methods like this, and wanted a more concise way to
- specify this behavior.
+specify this behavior.
 
 I did some searching and found quite a few different approaches (most notably
 [this](http://railscasts.com/episodes/157-rspec-matchers-macros) from Ryan
@@ -78,7 +78,7 @@ module CustomControllerMatchers
         foo = 'bar'
       end
 
-      @raised_permission_denied 
+      @raised_permission_denied
     end
 
     def failure_message_for_should

@@ -2,7 +2,7 @@
 title: Adapting to Mac
 date: 2014-02-23 15:25
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 I am a Linux guy.  Ever since my first install of RedHat 5.1, I've been hooked.
 My home router/firewall is a [Gentoo box](http://www.gentoo.org), ffs.  For

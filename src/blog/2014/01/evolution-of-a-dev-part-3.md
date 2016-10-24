@@ -2,14 +2,14 @@
 title: Evolution of a Dev (Part 3)
 date: 2014-01-19 14:41
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
-Recapping the [last chapter](../evolution-of-a-dev-part-2), I'm managing a dev team,
-doing a fair bit of C and Java development mixed with some TCL and the occasional
-RPG IV.  I've gained a bit of arrogance, but also quite a bit of real-world
-development experience.  Technically, I'm doing fairly well.  I've also been able
-to develop some fairly decent team management skills.  Unfortunately, I still 
-have a problem with authority.
+Recapping the [last chapter](/blog/2014/01/evolution-of-a-dev-part-2/),
+I'm managing a dev team, doing a fair bit of C and Java development mixed with
+some TCL and the occasional RPG IV.  I've gained a bit of arrogance, but also
+quite a bit of real-world development experience.  Technically, I'm doing fairly
+well.  I've also been able to develop some fairly decent team management
+skills.  Unfortunately, I still have a problem with authority.
 
 During a management meeting, I had a difference of opinion (fairly loudly and colorfully)
 with the president of the company, and it was decided (surprise!) that my services were no
@@ -56,7 +56,9 @@ table with [Yahoo!](http://www.yahoo.com) to discuss acquisition.  For a few bri
 I was worth a little over $2 million.  In one of the few regrettable decisions of my life,
 I agreed with the rest of the team that we should hold out.  [Flickr](http://flickr.com) was
 about to be acquired by Google (or so we thought), so Yahoo! would be forced to return and
-accept our slightly higher asking price.  [Oops](http://www.quickmeme.com/img/73/73ef5f06a4b19f7f5ff738661ecfe587a694068b3573a07e83eb71b0a79ac7f5.jpg).
+accept our slightly higher asking price.
+
+![Yeah....our bad](http://www.quickmeme.com/img/73/73ef5f06a4b19f7f5ff738661ecfe587a694068b3573a07e83eb71b0a79ac7f5.jpg)
 
 Needless to say, there weren't any other opportunities that even came close, and a year or so
 later we decided to shutter the virtual doors (half the team was remote) and ride off

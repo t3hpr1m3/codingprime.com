@@ -2,7 +2,7 @@
 title: Findable plugin
 date: 2010-08-13 23:08
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 Probably the strangest first blog post ever, but here goes.  I'm migrating a
 product from Classic ASP to Rails.  The bulk of its data is accessed via a

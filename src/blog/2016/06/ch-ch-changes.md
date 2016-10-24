@@ -2,7 +2,7 @@
 title: Ch-ch-changes
 date: 2016-06-13 10:59
 author: Josh Williams
-template: post.jade
+layout: post.pug
 ---
 Man, its been too long.  I found about 10 posts I've started over the last 2
 years that had reached various levels of completion, but realized that
