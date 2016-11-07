@@ -19,7 +19,7 @@
     <main class="container">
       <article class="post">
         <header>
-          <time datetime="2010-08-21T00:00:00.000Z">August 21, 2010</time>
+          <time datetime="2010-08-21T15:50:00.000Z">August 21, 2010</time>
           <h2>Moving from Virtualbox to Physical Disk
           </h2>
         </header>
@@ -67,7 +67,7 @@ explanatory.  Based on the wiki article above, I wrote a little shell script to
 make mounting the .vdi partitions easier.  I'll include the script at the
 end of the post.  For instance, to get the /boot partition mounted from the
 .vdi image and copied to the new Linux drive:</p>
-<pre><code class="hljs bash">saturn-gentoo ~ <span class="hljs-comment"># ./vdi.sh -v /mnt/cdrom/Virtual\ Disks/Gentoo.vdi </span>
+<pre><code class="hljs bash">saturn-gentoo ~ <span class="hljs-comment"># ./vdi.sh -v /mnt/cdrom/Virtual\ Disks/Gentoo.vdi</span>
 PART          OFFSET ID
 1              65536 83
 2           34095616 82
@@ -134,7 +134,7 @@ USAGE: <span class="hljs-variable">$0</span> options FILENAME
 OPTIONS:
     -h           Show this message
     -p           Print the VDI partition table and exit.
-    -t filename  Override the temporary file (default 
+    -t filename  Override the temporary file (default
                  is ./vdimage)
     -v filename  Path to the .vdi file
 EOF
@@ -165,7 +165,7 @@ EOF
           num=`<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">${part}</span>"</span> | awk -F: <span class="hljs-string">'{print $1;}'</span>`
           offset=`<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">${part}</span>"</span> | awk -F: <span class="hljs-string">'{print $2;}'</span>`
           typ_id=`<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">${part}</span>"</span> | awk -F: <span class="hljs-string">'{print $3;}'</span>`
-      
+
           selected_partition=( <span class="hljs-variable">$num</span> <span class="hljs-variable">$offset</span> <span class="hljs-variable">$typ_id</span> )
           <span class="hljs-built_in">break</span>
         <span class="hljs-keyword">fi</span>
@@ -344,7 +344,7 @@ valid_partitions=( )
     fs_type=<span class="hljs-string">""</span>
 
     select_partition
-  
+
     <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">"<span class="hljs-variable">${selected_partition}</span>"</span> ]; <span class="hljs-keyword">then</span>
       select_mountpoint
     <span class="hljs-keyword">fi</span>
@@ -352,7 +352,7 @@ valid_partitions=( )
     <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">"<span class="hljs-variable">${mountpoint}</span>"</span> ]; <span class="hljs-keyword">then</span>
       select_fs_type
     <span class="hljs-keyword">fi</span>
-  
+
     <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">"<span class="hljs-variable">${fs_type}</span>"</span> ]; <span class="hljs-keyword">then</span>
       handle_mount
     <span class="hljs-keyword">fi</span>
