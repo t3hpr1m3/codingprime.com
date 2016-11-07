@@ -1,6 +1,6 @@
 ---
 title: First Post
-date: 2010-02-18 00:45
+date: 2010-02-18
 author: Josh Williams
 layout: post.pug
 ---

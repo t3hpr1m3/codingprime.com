@@ -1,6 +1,6 @@
 ---
 title: Adapting to Mac
-date: 2014-02-23 15:25
+date: 2014-02-23
 author: Josh Williams
 layout: post.pug
 ---

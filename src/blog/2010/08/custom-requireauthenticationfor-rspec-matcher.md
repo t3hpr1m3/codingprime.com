@@ -1,6 +1,6 @@
 ---
 title: 'Custom RSpec matcher:  require_authentication_for'
-date: 2010-08-22 19:00
+date: 2010-08-22
 author: Josh Williams
 layout: post.pug
 ---

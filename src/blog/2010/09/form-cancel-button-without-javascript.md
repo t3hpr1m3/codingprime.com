@@ -1,6 +1,6 @@
 ---
 title: Form cancel button (without Javascript)
-date: 2010-09-02 08:38
+date: 2010-09-02
 author: Josh Williams
 layout: post.pug
 ---

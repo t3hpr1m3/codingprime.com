@@ -2,7 +2,6 @@ app:
   build: .
   volumes:
     - .:/usr/src/app
+    - /usr/src/app/node_modules
   ports:
-    - '3003:3003'
-  environment:
-    DEBUG: '*'
+    - 3003:3003

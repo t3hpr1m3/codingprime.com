@@ -1,6 +1,6 @@
 ---
 title: Moving from Virtualbox to Physical Disk
-date: 2010-08-21 15:50
+date: 2010-08-21
 author: Josh Williams
 layout: post.pug
 ---

@@ -1,12 +1,13 @@
 var metalsmith = require('metalsmith'),
     anchor = require('markdown-it-anchor'),
     collections = require('metalsmith-collections'),
+    drafts = require('metalsmith-drafts'),
+    hljs = require('highlight.js'),
     ignore = require('metalsmith-ignore'),
     implicitFigures = require('markdown-it-implicit-figures'),
     inplace = require('metalsmith-in-place'),
     layouts = require('metalsmith-layouts'),
     markdown = require('metalsmith-markdownit'),
-    metallic = require('metalsmith-metallic'),
     more = require('metalsmith-more'),
     pagination = require('metalsmith-pagination'),
     permalinks = require('metalsmith-permalinks'),
@@ -23,11 +24,11 @@ metalsmith(__dirname)
   })
   .source('src')
   .destination('build')
-  .clean(false)
   .use(sass({
     outputDir: 'assets/css/',
     outputStyle: 'expanded'
   }))
+  .use(drafts())
   .use(collections({
     articles: {
       pattern: 'blog/**/*.md',
@@ -37,13 +38,35 @@ metalsmith(__dirname)
   }))
   .use(inplace({
     engine: 'pug',
-    partials: 'templates',
+    partials: 'layouts',
     pattern: '**/*.html'
   }))
-  .use(metallic())
   .use(markdown("commonmark", {
       html: true,
-      typographer: true
+      typographer: true,
+      highlight: function(str, lang) {
+        if (lang) {
+          var realLang, fileName;
+          if (lang.indexOf('|') == -1) {
+            realLang = lang;
+          } else {
+            realLang = lang.split('|')[0];
+            fileName = lang.split('|')[1];
+          }
+          var res = '<pre>';
+          if (fileName) res += '<span>' + fileName + '</span>';
+          res += '<code class="hljs ' + realLang + '">';
+          try {
+            if (realLang === 'no-highlight') {
+              res += str;
+            } else {
+              res += hljs.highlight(realLang, str).value;
+            }
+          } catch (__) { res += str }
+          res += '</code></pre>';
+          return res;
+        }
+      }
     })
     .use(implicitFigures, { figcaption: true })
     .use(anchor, {
@@ -61,6 +84,11 @@ metalsmith(__dirname)
     }
   }))
   .use(permalinks({
+    date: 'YYYY/MM',
+    linksets: [{
+      match: { collection: 'articles' },
+      pattern: 'blog/:date/:title'
+    }],
     relative: false
   }))
   .use(ignore([
@@ -69,8 +97,7 @@ metalsmith(__dirname)
   ]))
   .use(layouts({
     engine: 'pug',
-    directory: 'templates',
-    partials: 'templates',
+    directory: 'layouts',
     pretty: true
   }))
   .build(function(err, files) {

@@ -1,14 +1,23 @@
 ---
-title: Ch-ch-changes
-date: 2016-06-13
+title: Musings on Gentoo
+date: 2016-10-22
 author: Josh Williams
 layout: post.pug
+draft: true
 ---
-Man, its been too long.  I found about 10 posts I've started over the last 2
-years that had reached various levels of completion, but realized that
-completing any of them would require me to recommend things that I now know to
-be wrong.  So instead, I thought I'd relay some of the things I've experienced
-and what I've learned from them.
+Hi.  My name is Josh, and I love [Gentoo](https://gentoo.org).
+I love Gentoo.
+As a software guy, I'm always thinking about new things to build, 
+I'm constantly on the hunt for new 
+A little over a year ago, I bought one of these little gems on sale for $99, and
+immediately tried throwing Gentoo on it.  I failed miserably.  Kernel support
+wasn't quite up to par, so there were a lot of bits that either didn't work
+(like bluetooth and sound), or were really buggy (hibernation didn't really
+work, the machine locked up constantly), so I reluctantly put it on the shelf.
+Lately, I've been doing all of my development remotely, on a dev machine running
+on my local [OpenStack](https://www.openstack.org/) cluster.  This means that
+the local hardware I'm using is less and less important (all I really need is
+terminal, browser, and slack)
 
 <!--more-->
 

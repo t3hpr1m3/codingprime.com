@@ -1,6 +1,6 @@
 ---
 title: RSpec, Autotest, Rails3, and Engines
-date: 2010-12-06 18:19
+date: 2010-12-06
 author: Josh Williams
 layout: post.pug
 ---

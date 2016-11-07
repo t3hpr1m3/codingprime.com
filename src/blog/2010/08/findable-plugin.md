@@ -1,6 +1,6 @@
 ---
 title: Findable plugin
-date: 2010-08-13 23:08
+date: 2010-08-13
 author: Josh Williams
 layout: post.pug
 ---

@@ -13,7 +13,7 @@ html(lang='en')
       link(rel='stylesheet', href='/assets/css/highlight.js.solarized.css')
   body
     header
-      section.container
+      div.container
         h1
           a(href='/')= site.title
         span &lt;strong&gt;kung fu&lt;/strong&gt;
@@ -22,7 +22,7 @@ html(lang='en')
     main.container
       block content
     footer.site-footer
-      section.container.clearfix
+      div.container.clearfix
         p.text
           span &copy;#{moment().format('YYYY')} Josh Williams
           a(href=`https://github.com/${site.githubUsername}`)

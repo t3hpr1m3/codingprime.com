@@ -1,6 +1,6 @@
 ---
 title: Skipping asset precompile
-date: 2012-07-12 17:20
+date: 2012-07-12
 author: Josh Williams
 layout: post.pug
 ---

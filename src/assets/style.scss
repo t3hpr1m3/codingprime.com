@@ -36,7 +36,7 @@ body > header {
 	background-color: #226666;
 	color: $grey-color;
 	border-bottom: 2px inset $grey-color-dark;
-	section.container {
+	div.container {
 		padding-top: .5em;
 		padding-bottom: .5em;
 	}
@@ -61,6 +61,9 @@ pre {
 	overflow: auto;
 	word-wrap: normal;
 	white-space: pre;
+	& > span {
+		font-weight: bold;
+	}
 }
 
 code {
@@ -107,7 +110,7 @@ article.post {
 			}
 		}
 	}
-	h3 {
+	h3, h4 {
 		a {
 			float: left;
 			opacity: 0;
@@ -122,8 +125,15 @@ article.post {
 			}
 		}
 	}
+	h4 {
+		margin-bottom: 0;
+		padding-left: 3em;
+		background-color: #f5f5f5;
+	}
+	h4 + pre {
+		margin-top: 0;
+	}
 	figure {
-		text-align: center;
 		img {
 			display: block;
 			margin-left: auto;
@@ -131,8 +141,10 @@ article.post {
 			max-width: 100%;
 		}
 		figcaption {
+			text-align: center;
 			color: $grey-color;
 			font-style: italic;
+			font-size: small;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ---
 title: Tmux + Vagrant = win!
-date: 2014-03-16 16:33
+date: 2014-03-16
 author: Josh Williams
 layout: post.pug
 ---

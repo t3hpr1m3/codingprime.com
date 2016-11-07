@@ -1,6 +1,6 @@
 ---
 title: Evolution of a Dev (Part 2)
-date: 2014-01-19 10:22
+date: 2014-01-19
 author: Josh Williams
 layout: post.pug
 ---
