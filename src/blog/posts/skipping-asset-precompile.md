@@ -1,6 +1,6 @@
 ---
 title: Skipping asset precompile
-date: 2012-07-12
+date: 2012-07-12 17:20:00
 author: Josh Williams
 layout: post.pug
 ---
@@ -12,7 +12,7 @@ came up with a workable solution.  Except...
 Ben's method fails on the initial deployment, because *current_revision* tries to
 read */path/to/app/current/REVISION*, which won't exist yet.  After trying several
 approaches, I have arrived at one which works for me.  There are probably other,
-more elegant approaches, but this one seems clear enough for my purposes. 
+more elegant approaches, but this one seems clear enough for my purposes.
 Posting it here for posterity.
 
 <!--more-->

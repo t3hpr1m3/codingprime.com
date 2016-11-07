@@ -1,6 +1,6 @@
 ---
 title: Windows Updates Failing
-date: 2010-08-18
+date: 2010-08-18 09:36:00
 author: Josh Williams
 layout: post.pug
 ---

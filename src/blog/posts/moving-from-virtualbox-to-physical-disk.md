@@ -1,6 +1,6 @@
 ---
 title: Moving from Virtualbox to Physical Disk
-date: 2010-08-21
+date: 2010-08-21 15:50:00
 author: Josh Williams
 layout: post.pug
 ---
@@ -60,7 +60,7 @@ end of the post.  For instance, to get the /boot partition mounted from the
 .vdi image and copied to the new Linux drive:
 
 ```bash
-saturn-gentoo ~ # ./vdi.sh -v /mnt/cdrom/Virtual\ Disks/Gentoo.vdi 
+saturn-gentoo ~ # ./vdi.sh -v /mnt/cdrom/Virtual\ Disks/Gentoo.vdi
 PART          OFFSET ID
 1              65536 83
 2           34095616 82
@@ -135,7 +135,7 @@ USAGE: $0 options FILENAME
 OPTIONS:
     -h           Show this message
     -p           Print the VDI partition table and exit.
-    -t filename  Override the temporary file (default 
+    -t filename  Override the temporary file (default
                  is ./vdimage)
     -v filename  Path to the .vdi file
 EOF
@@ -166,7 +166,7 @@ function select_partition() {
           num=`echo "${part}" | awk -F: '{print $1;}'`
           offset=`echo "${part}" | awk -F: '{print $2;}'`
           typ_id=`echo "${part}" | awk -F: '{print $3;}'`
-      
+
           selected_partition=( $num $offset $typ_id )
           break
         fi
@@ -345,7 +345,7 @@ else
     fs_type=""
 
     select_partition
-  
+
     if [ -n "${selected_partition}" ]; then
       select_mountpoint
     fi
@@ -353,7 +353,7 @@ else
     if [ -n "${mountpoint}" ]; then
       select_fs_type
     fi
-  
+
     if [ -n "${fs_type}" ]; then
       handle_mount
     fi

@@ -31,7 +31,7 @@ metalsmith(__dirname)
   .use(drafts())
   .use(collections({
     articles: {
-      pattern: 'blog/**/*.md',
+      pattern: 'blog/posts/**/*.md',
       sortBy: 'date',
       reverse: true
     }

@@ -1,6 +1,6 @@
 ---
 title: Ch-ch-changes
-date: 2016-06-13
+date: 2016-06-13 10:59:00
 author: Josh Williams
 layout: post.pug
 ---

@@ -1,6 +1,6 @@
 ---
 title: Adapting to Mac
-date: 2014-02-23
+date: 2014-02-23 15:25:00
 author: Josh Williams
 layout: post.pug
 ---
@@ -13,7 +13,7 @@ house that doesn't at least dual-boot Linux.  In fact, I inherited a Mac Mini
 when one of the startups I joined closed its doors, and even it runs Linux.
 
 For the last few years, my primary dev box has been my [ASUS behemoth](http://www.asus.com/ROG_ROG/G74SX/).
-It's nowhere near an ultrabook, but it was mine.  Mine in the sense that it 
+It's nowhere near an ultrabook, but it was mine.  Mine in the sense that it
 has become an extension of my hands.  It's heavy, it's massive, and I love it.
 
 <!--more-->

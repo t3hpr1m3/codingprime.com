@@ -1,6 +1,6 @@
 ---
 title: Dual-booting Raided Windows/Non-Raid Linux
-date: 2010-08-21
+date: 2010-08-21 18:12:00
 author: Josh Williams
 layout: post.pug
 ---

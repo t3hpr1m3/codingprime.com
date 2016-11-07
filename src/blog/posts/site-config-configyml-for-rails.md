@@ -1,6 +1,6 @@
 ---
 title: Site Config (config.yml) for Rails
-date: 2010-08-21
+date: 2010-08-21 23:20:00
 author: Josh Williams
 layout: post.pug
 ---

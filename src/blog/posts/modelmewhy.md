@@ -1,6 +1,6 @@
 ---
 title: ModelMe...why?
-date: 2013-08-31
+date: 2013-08-31 11:46:00
 author: Josh Williams
 layout: post.pug
 ---
