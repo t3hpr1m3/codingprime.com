@@ -12,14 +12,14 @@
   </head>
   <body>
     <header>
-      <section class="container">
+      <div class="container">
         <h1><a href="/">CodingPrime</a></h1><span>&lt;strong&gt;kung fu&lt;/strong&gt;</span><a href="https://github.com/t3hpr1m3/codingprime.com"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
-      </section>
+      </div>
     </header>
     <main class="container">
       <article class="post">
         <header>
-          <time datetime="2010-08-21 23:20">August 21, 2010</time>
+          <time datetime="2010-08-21T00:00:00.000Z">August 21, 2010</time>
           <h2>Site Config (config.yml) for Rails
           </h2>
         </header>
@@ -82,7 +82,8 @@ and automatically selects the right environment (test, production, etc).</p>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 
-<span class="hljs-symbol">:</span><span class="hljs-symbol">:AppConfig</span> = ApplicationConfiguration.new</code></pre>
+<span class="hljs-symbol">:</span><span class="hljs-symbol">:AppConfig</span> = ApplicationConfiguration.new
+</code></pre>
 <p>I put this in <code>config/initializers/_init_app_config.rb</code>, so that it gets loaded
 before everything else, and I'm done.  Now I'm free to add whatever I want to
 <code>config.yml</code> and reference it from anywhere in my app.</p>
@@ -92,11 +93,13 @@ before everything else, and I'm done.  Now I'm free to add whatever I want to
     <span class="hljs-symbol">theme:</span> <span class="hljs-string">'twilight'</span>
 <span class="hljs-symbol">production:</span>
   <span class="hljs-symbol">harsh:</span>
-    <span class="hljs-symbol">theme:</span> <span class="hljs-string">'spacecadet'</span></code></pre>
+    <span class="hljs-symbol">theme:</span> <span class="hljs-string">'spacecadet'</span>
+</code></pre>
 <pre><code class="hljs ruby"><span class="hljs-comment"># app/views/layouts/_stylesheets.html.erb</span>
 <span class="hljs-comment"># ...</span>
 &lt;%= stylesheet_link_tag <span class="hljs-string">'harsh/<span class="hljs-subst">#{<span class="hljs-symbol">:</span><span class="hljs-symbol">:AppConfig</span>.harsh.theme}</span>'</span> %&gt;
-<span class="hljs-comment"># ...</span></code></pre>
+<span class="hljs-comment"># ...</span>
+</code></pre>
 <p><sup>1</sup>All titles bestowed only by me.  Keep your attorneys to yourself.</p>
 <p><sup>2</sup>I know I saw someone doing something similar to this, but for the
 life of me I can't find it.  If it was you, I apologize for not giving credit.</p>
@@ -119,9 +122,9 @@ life of me I can't find it.  If it was you, I apologize for not giving credit.</
       </div>
     </main>
     <footer class="site-footer">
-      <section class="container clearfix">
+      <div class="container clearfix">
         <p class="text"><span>&copy;2016 Josh Williams</span><a href="https://github.com/t3hpr1m3"><i class="fa fa-github fa-3x"></i></a><a href="https://twitter.com/t3hpr1m3"><i class="fa fa-twitter fa-3x"></i></a></p>
-      </section>
+      </div>
     </footer>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -12,14 +12,14 @@
   </head>
   <body>
     <header>
-      <section class="container">
+      <div class="container">
         <h1><a href="/">CodingPrime</a></h1><span>&lt;strong&gt;kung fu&lt;/strong&gt;</span><a href="https://github.com/t3hpr1m3/codingprime.com"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
-      </section>
+      </div>
     </header>
     <main class="container">
       <article class="post">
         <header>
-          <time datetime="2010-08-21 18:12">August 21, 2010</time>
+          <time datetime="2010-08-21T00:00:00.000Z">August 21, 2010</time>
           <h2>Dual-booting Raided Windows/Non-Raid Linux
           </h2>
         </header>
@@ -54,13 +54,15 @@ goes.</p>
 <h4 id="install-dmraid-and-generate-your-device-mappings">Install dmraid and generate your device mappings <a class="header-anchor" href="#install-dmraid-and-generate-your-device-mappings" aria-hidden="true">&#128279;</a></h4>
 <p>You're going to need <code>dmraid</code> to allow Linux to see your RAID0
 drives/partitions for what they are.  On Gentoo:</p>
-<pre><code class="hljs bash">$ sudo emerge dmraid</code></pre>
+<pre><code class="hljs bash">$ sudo emerge dmraid
+</code></pre>
 <p>A full explanation of dmraid is outside the scope of this post, and an exercise
 I leave to the reader.  In a nutshell, it creates device nodes in <code>/dev/mapper</code>
 that reverence your RAID drives/partitions.  On my system:</p>
 <pre><code class="hljs bash">$ sudo dmraid -ay
 $ ls /dev/mapper
-control  isw_bbgfjaijea_Volume0  isw_bbgfjaijea_Volume01  isw_bbgfjaijea_Volume02</code></pre>
+control  isw_bbgfjaijea_Volume0  isw_bbgfjaijea_Volume01  isw_bbgfjaijea_Volume02
+</code></pre>
 <p><code>isw_bbgfjaijea_Volume0</code> is the entire RAID array and
 <code>isw_bbgfjaijea_Volume01/isw_bbgfjaijea_Volume02</code> are my Windows partitions.</p>
 <h4 id="copy-grubs-mbr-to-windows-mbr-dominate">Copy GRUB's MBR to Windows MBR + DOMINATE! <a class="header-anchor" href="#copy-grubs-mbr-to-windows-mbr-dominate" aria-hidden="true">&#128279;</a></h4>
@@ -75,7 +77,8 @@ grub&gt; quit
 $ sudo dd <span class="hljs-keyword">if</span>=/dev/sdc1 of=/dev/mapper/isw_bbgfjaijea_Volume0 bs=512 count=1
 1+0 records <span class="hljs-keyword">in</span>
 1+0 records out
-512 bytes (512 B) copied, 3.8321e-05 s, 13.4 MB/s</code></pre>
+512 bytes (512 B) copied, 3.8321e-05 s, 13.4 MB/s
+</code></pre>
 <p>At this point I shut down the machine, switched the BIOS to boot from the RAID
 array as the primary boot device, and crossed my fingers.</p>
 <p>Of course it didn't work!  I forgot to adjust the <code>grub.conf</code> to account for
@@ -106,9 +109,9 @@ so I'm finished.</p>
       </div>
     </main>
     <footer class="site-footer">
-      <section class="container clearfix">
+      <div class="container clearfix">
         <p class="text"><span>&copy;2016 Josh Williams</span><a href="https://github.com/t3hpr1m3"><i class="fa fa-github fa-3x"></i></a><a href="https://twitter.com/t3hpr1m3"><i class="fa fa-twitter fa-3x"></i></a></p>
-      </section>
+      </div>
     </footer>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -501,7 +501,7 @@ body > header {
   border-bottom: 2px inset #424242;
 }
 
-body > header section.container {
+body > header div.container {
   padding-top: .5em;
   padding-bottom: .5em;
 }
@@ -528,6 +528,10 @@ pre {
   overflow: auto;
   word-wrap: normal;
   white-space: pre;
+}
+
+pre > span {
+  font-weight: bold;
 }
 
 code {
@@ -578,22 +582,28 @@ article.post nav .btn i {
   margin-left: 5px;
 }
 
-article.post h3 a {
+article.post h3 a, article.post h4 a {
   float: left;
   opacity: 0;
   margin-left: -1.2em;
 }
 
-article.post h3 a:hover {
+article.post h3 a:hover, article.post h4 a:hover {
   opacity: 100;
 }
 
-article.post h3:hover a {
+article.post h3:hover a, article.post h4:hover a {
   opacity: 100;
 }
 
-article.post figure {
-  text-align: center;
+article.post h4 {
+  margin-bottom: 0;
+  padding-left: 3em;
+  background-color: #f5f5f5;
+}
+
+article.post h4 + pre {
+  margin-top: 0;
 }
 
 article.post figure img {
@@ -604,8 +614,10 @@ article.post figure img {
 }
 
 article.post figure figcaption {
+  text-align: center;
   color: #828282;
   font-style: italic;
+  font-size: small;
 }
 
 footer.site-footer {

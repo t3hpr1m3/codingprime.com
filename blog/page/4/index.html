@@ -12,14 +12,39 @@
   </head>
   <body>
     <header>
-      <section class="container">
+      <div class="container">
         <h1><a href="/">CodingPrime</a></h1><span>&lt;strong&gt;kung fu&lt;/strong&gt;</span><a href="https://github.com/t3hpr1m3/codingprime.com"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
-      </section>
+      </div>
     </header>
     <main class="container">
       <article class="post">
         <header>
-          <time datetime="2010-08-18 09:36">August 18, 2010</time>
+          <time datetime="2010-08-21T00:00:00.000Z">August 21, 2010</time>
+          <h2><a href="/blog/2010/08/dual-booting-raided-windows-non-raid-linux">Dual-booting Raided Windows/Non-Raid Linux</a></h2>
+        </header>
+        <section>
+          <p><p>If you're following along at home, I got my Gentoo install
+<a href="/blog/2010/08/moving-from-virtualbox-to-physical-disk">extracted</a> and running on physical
+disk.  Now I have a problem to solve: Dual booting with Windows.  This is
+only a problem because my Windows install is on a RAID0 array using an Intel
+fakeraid controller.  I found all kinds of info on dual-booting Windows/Linux
+while both are installed in the raid array, but nothing to help with my
+situation.  So here we go.</p>
+<h3 id="attempt-1-grub-on-the-linux-drive">Attempt #1 :: GRUB on the Linux drive <a class="header-anchor" href="#attempt-1-grub-on-the-linux-drive" aria-hidden="true">&#128279;</a></h3>
+<p>My first attempt was to setup GRUB on the Linux drive, and tell the BIOS to
+boot off that.  I knew I should add an entry to <code>grub.conf</code> to reference the
+Windows drive and call <code>chainloader+</code>, but as I was typing it out I realized
+that I didn't have a way to reference it.  My Spidey Sense� was telling
+me I'd need an initrd with all the raid info in it, so GRUB would know how to
+talk to the entire RAID drive.  That sounds like work.  Moving on.</p></p>
+        </section>
+        <footer>
+          <nav><a class="btn" href="/blog/2010/08/dual-booting-raided-windows-non-raid-linux">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
+          <time datetime="2010-08-18T00:00:00.000Z">August 18, 2010</time>
           <h2><a href="/blog/2010/08/windows-updates-failing">Windows Updates Failing</a></h2>
         </header>
         <section>
@@ -35,7 +60,7 @@ article seemed to help either.</p></p>
       </article>
       <article class="post">
         <header>
-          <time datetime="2010-08-13 23:08">August 13, 2010</time>
+          <time datetime="2010-08-13T00:00:00.000Z">August 13, 2010</time>
           <h2><a href="/blog/2010/08/findable-plugin">Findable plugin</a></h2>
         </header>
         <section>
@@ -58,13 +83,15 @@ all the other ActiveRecord goodness in the app.  Enter:
       </article>
       <article class="post">
         <header>
-          <time datetime="2010-02-18 00:45">February 18, 2010</time>
+          <time datetime="2010-02-18T00:00:00.000Z">February 18, 2010</time>
           <h2><a href="/blog/2010/02/first-post">First Post</a></h2>
         </header>
         <section>
           <p><p>Yep.  It's live.</p>
-<pre><code><span class="hljs-selector-tag">josh</span>@<span class="hljs-selector-tag">komos</span>: <span class="hljs-selector-tag">pts</span>/<span class="hljs-selector-tag">0</span> <span class="hljs-selector-tag">-</span>&gt; <span class="hljs-selector-tag">uptime</span>
- <span class="hljs-selector-tag">00</span><span class="hljs-selector-pseudo">:44</span><span class="hljs-selector-pseudo">:31</span> <span class="hljs-selector-tag">up</span> <span class="hljs-selector-tag">20</span> <span class="hljs-selector-tag">days</span>,  <span class="hljs-selector-tag">7</span><span class="hljs-selector-pseudo">:44</span>,  <span class="hljs-selector-tag">2</span> <span class="hljs-selector-tag">users</span>,  <span class="hljs-selector-tag">load</span> <span class="hljs-selector-tag">average</span>: <span class="hljs-selector-tag">0</span><span class="hljs-selector-class">.20</span>, <span class="hljs-selector-tag">0</span><span class="hljs-selector-class">.06</span>, <span class="hljs-selector-tag">0</span><span class="hljs-selector-class">.02</span></code></pre></p>
+<pre><code class="hljs shell">josh@komos: pts/0 -> uptime
+ 00:44:31 up 20 days,  7:44,  2 users,  load average: 0.20, 0.06, 0.02
+</code></pre>
+</p>
         </section>
         <footer>
           <nav><a class="btn" href="/blog/2010/02/first-post">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
@@ -74,9 +101,9 @@ all the other ActiveRecord goodness in the app.  Enter:
       </nav>
     </main>
     <footer class="site-footer">
-      <section class="container clearfix">
+      <div class="container clearfix">
         <p class="text"><span>&copy;2016 Josh Williams</span><a href="https://github.com/t3hpr1m3"><i class="fa fa-github fa-3x"></i></a><a href="https://twitter.com/t3hpr1m3"><i class="fa fa-twitter fa-3x"></i></a></p>
-      </section>
+      </div>
     </footer>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

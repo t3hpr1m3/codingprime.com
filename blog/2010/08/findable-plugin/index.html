@@ -12,14 +12,14 @@
   </head>
   <body>
     <header>
-      <section class="container">
+      <div class="container">
         <h1><a href="/">CodingPrime</a></h1><span>&lt;strong&gt;kung fu&lt;/strong&gt;</span><a href="https://github.com/t3hpr1m3/codingprime.com"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
-      </section>
+      </div>
     </header>
     <main class="container">
       <article class="post">
         <header>
-          <time datetime="2010-08-13 23:08">August 13, 2010</time>
+          <time datetime="2010-08-13T00:00:00.000Z">August 13, 2010</time>
           <h2>Findable plugin
           </h2>
         </header>
@@ -94,10 +94,12 @@ all the other ActiveRecord goodness in the app.  Enter:
       <span class="hljs-keyword">end</span>
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span></code></pre>
+<span class="hljs-keyword">end</span>
+</code></pre>
 <p>I've stripped this down to bare bones for clarity, leaving out all the sanity
 checking.  You can probably guess what a call to <code>find</code> looks like:</p>
-<pre><code class="hljs ruby">@account = Account.find( { <span class="hljs-symbol">:account_id</span> =&gt; <span class="hljs-number">34529</span> } )</code></pre>
+<pre><code class="hljs ruby">@account = Account.find( { <span class="hljs-symbol">:account_id</span> =&gt; <span class="hljs-number">34529</span> } )
+</code></pre>
 <p>This works just fine, but it obviously needs some work.  First of all, there's
 no way for me to request just 1 account.  <code>@account</code> here would always be an
 array, and I'd always be referencing <code>@account[0]</code>.  I've also got several
@@ -133,12 +135,14 @@ Implementing Finder is pretty easy:</p>
   <span class="hljs-keyword">self</span>.accounts
     <span class="hljs-comment"># ...</span>
   <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span></code></pre>
+<span class="hljs-keyword">end</span>
+</code></pre>
 <p>The find method disappears entirely, replaced by brand new magic finders:</p>
 <pre><code class="hljs ruby">Account.find(<span class="hljs-symbol">:first</span>, <span class="hljs-symbol">:account_type</span> =&gt; <span class="hljs-string">'checking'</span>)
 Account.find_by_account_type(<span class="hljs-string">'checking'</span>)
 Account.find(<span class="hljs-symbol">:last</span>)
-Account.all</code></pre>
+Account.all
+</code></pre>
 <p>And so on.  If you have an attribute that you'd like to use as a resource ID
 for a restful route, just pass <code>true</code> as the second argument to
 <code>findable_attribute</code>:</p>
@@ -146,9 +150,11 @@ for a restful route, just pass <code>true</code> as the second argument to
   <span class="hljs-comment"># ...</span>
   findable_attribute <span class="hljs-symbol">:account_id</span>, <span class="hljs-literal">true</span>
   <span class="hljs-comment"># ...</span>
-<span class="hljs-keyword">end</span></code></pre>
+<span class="hljs-keyword">end</span>
+</code></pre>
 <p>and now in your controller:</p>
-<pre><code class="hljs ruby">@account = Account.find(params[<span class="hljs-symbol">:id</span>])</code></pre>
+<pre><code class="hljs ruby">@account = Account.find(params[<span class="hljs-symbol">:id</span>])
+</code></pre>
 <p>works!  If your <code>findable_method</code> would somehow benefit from having the
 <code>options</code> hash passed in (possibly using it to filter the results before
 they're actually received), just pass <code>true</code> in your call to <code>findable_method</code>.</p>
@@ -174,7 +180,8 @@ they're actually received), just pass <code>true</code> in your call to <code>fi
       from_xml(account)
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span></code></pre>
+<span class="hljs-keyword">end</span>
+</code></pre>
 <p>This is my first plugin, and it's probably redundant, but if anyone finds it
 useful, or wants to point me in the direction of the pre-existing solution to
 the problem, let me know.</p>
@@ -197,9 +204,9 @@ the problem, let me know.</p>
       </div>
     </main>
     <footer class="site-footer">
-      <section class="container clearfix">
+      <div class="container clearfix">
         <p class="text"><span>&copy;2016 Josh Williams</span><a href="https://github.com/t3hpr1m3"><i class="fa fa-github fa-3x"></i></a><a href="https://twitter.com/t3hpr1m3"><i class="fa fa-twitter fa-3x"></i></a></p>
-      </section>
+      </div>
     </footer>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

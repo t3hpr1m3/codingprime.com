@@ -12,14 +12,43 @@
   </head>
   <body>
     <header>
-      <section class="container">
+      <div class="container">
         <h1><a href="/">CodingPrime</a></h1><span>&lt;strong&gt;kung fu&lt;/strong&gt;</span><a href="https://github.com/t3hpr1m3/codingprime.com"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
-      </section>
+      </div>
     </header>
     <main class="container">
       <article class="post">
         <header>
-          <time datetime="2010-09-02 08:38">September 2, 2010</time>
+          <time datetime="2010-12-06T00:00:00.000Z">December 6, 2010</time>
+          <h2><a href="/blog/2010/12/rspec-autotest-rails3-and-engines">RSpec, Autotest, Rails3, and Engines</a></h2>
+        </header>
+        <section>
+          <p><p>I've got an app I'm building that is comprised of several engines running in
+<em>vendor/nsweb</em>.  I want each engine to have its own specs, without cluttering
+up the main app's <em>spec</em> folder.  I also want to be able to run tests for ALL
+engines at once, both using rake and through autotest.  To accomplish the first
+task, I added the following:</p>
+<pre><code class="hljs ruby"><span class="hljs-comment"># lib/tasks/rspec.rake</span>
+RSpec::Core::RakeTask.module_eval <span class="hljs-keyword">do</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pattern</span></span>
+    extras = []
+    Dir[File.join( File.expand_path( <span class="hljs-string">'vendor'</span> ), <span class="hljs-string">'nsweb'</span>, <span class="hljs-string">'*'</span> )].flatten.each <span class="hljs-keyword">do</span> <span class="hljs-params">|dir|</span>
+      <span class="hljs-keyword">if</span> File.directory?( dir )
+        extras += File.join( dir, <span class="hljs-string">'spec'</span>, <span class="hljs-string">'**'</span>, <span class="hljs-string">'*_spec.rb'</span> ).to_s
+      <span class="hljs-keyword">end</span>
+    <span class="hljs-keyword">end</span>
+    [@pattern] <span class="hljs-params">| extras
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</span></code></pre></p>
+        </section>
+        <footer>
+          <nav><a class="btn" href="/blog/2010/12/rspec-autotest-rails3-and-engines">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
+          <time datetime="2010-09-02T00:00:00.000Z">September 2, 2010</time>
           <h2><a href="/blog/2010/09/form-cancel-button-without-javascript">Form cancel button (without Javascript)</a></h2>
         </header>
         <section>
@@ -34,8 +63,8 @@ cancel button to a form, regardless of the language.</p>
       </article>
       <article class="post">
         <header>
-          <time datetime="2010-08-22 19:00">August 22, 2010</time>
-          <h2><a href="/blog/2010/08/custom-requireauthenticationfor-rspec-matcher">Custom RSpec matcher:  require_authentication_for</a></h2>
+          <time datetime="2010-08-22T00:00:00.000Z">August 22, 2010</time>
+          <h2><a href="/blog/2010/08/custom-rspec-matcher-require-authentication-for">Custom RSpec matcher:  require_authentication_for</a></h2>
         </header>
         <section>
           <p><p>Like everyone, I have a bunch of controller actions that need to be protected
@@ -66,16 +95,17 @@ like this:</p>
         raise_error( Exceptions::PermissionDenied )
     <span class="hljs-keyword">end</span>
   <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span></code></pre></p>
+<span class="hljs-keyword">end</span>
+</code></pre></p>
         </section>
         <footer>
-          <nav><a class="btn" href="/blog/2010/08/custom-requireauthenticationfor-rspec-matcher">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+          <nav><a class="btn" href="/blog/2010/08/custom-rspec-matcher-require-authentication-for">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
         </footer>
       </article>
       <article class="post">
         <header>
-          <time datetime="2010-08-21 23:20">August 21, 2010</time>
-          <h2><a href="/blog/2010/08/site-config-configyml-for-rails">Site Config (config.yml) for Rails</a></h2>
+          <time datetime="2010-08-21T00:00:00.000Z">August 21, 2010</time>
+          <h2><a href="/blog/2010/08/site-config-config-yml-for-rails">Site Config (config.yml) for Rails</a></h2>
         </header>
         <section>
           <p><p>Over at <a href="http://railscasts.com/">Railscasts</a>, The Honourable Ryan Bates,
@@ -93,37 +123,12 @@ settings from a single place.  It supports nested configuration,
 and automatically selects the right environment (test, production, etc).</p></p>
         </section>
         <footer>
-          <nav><a class="btn" href="/blog/2010/08/site-config-configyml-for-rails">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+          <nav><a class="btn" href="/blog/2010/08/site-config-config-yml-for-rails">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
         </footer>
       </article>
       <article class="post">
         <header>
-          <time datetime="2010-08-21 18:12">August 21, 2010</time>
-          <h2><a href="/blog/2010/08/dualbooting-raided-windows-non-raid-linux">Dual-booting Raided Windows/Non-Raid Linux</a></h2>
-        </header>
-        <section>
-          <p><p>If you're following along at home, I got my Gentoo install
-<a href="/blog/2010/08/moving-from-virtualbox-to-physical-disk">extracted</a> and running on physical
-disk.  Now I have a problem to solve: Dual booting with Windows.  This is
-only a problem because my Windows install is on a RAID0 array using an Intel
-fakeraid controller.  I found all kinds of info on dual-booting Windows/Linux
-while both are installed in the raid array, but nothing to help with my
-situation.  So here we go.</p>
-<h3 id="attempt-1-grub-on-the-linux-drive">Attempt #1 :: GRUB on the Linux drive <a class="header-anchor" href="#attempt-1-grub-on-the-linux-drive" aria-hidden="true">&#128279;</a></h3>
-<p>My first attempt was to setup GRUB on the Linux drive, and tell the BIOS to
-boot off that.  I knew I should add an entry to <code>grub.conf</code> to reference the
-Windows drive and call <code>chainloader+</code>, but as I was typing it out I realized
-that I didn't have a way to reference it.  My Spidey Sense� was telling
-me I'd need an initrd with all the raid info in it, so GRUB would know how to
-talk to the entire RAID drive.  That sounds like work.  Moving on.</p></p>
-        </section>
-        <footer>
-          <nav><a class="btn" href="/blog/2010/08/dualbooting-raided-windows-non-raid-linux">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
-        </footer>
-      </article>
-      <article class="post">
-        <header>
-          <time datetime="2010-08-21 15:50">August 21, 2010</time>
+          <time datetime="2010-08-21T00:00:00.000Z">August 21, 2010</time>
           <h2><a href="/blog/2010/08/moving-from-virtualbox-to-physical-disk">Moving from Virtualbox to Physical Disk</a></h2>
         </header>
         <section>
@@ -147,9 +152,9 @@ Virtualbox install had a disk layout like this:</p></p>
       </nav>
     </main>
     <footer class="site-footer">
-      <section class="container clearfix">
+      <div class="container clearfix">
         <p class="text"><span>&copy;2016 Josh Williams</span><a href="https://github.com/t3hpr1m3"><i class="fa fa-github fa-3x"></i></a><a href="https://twitter.com/t3hpr1m3"><i class="fa fa-twitter fa-3x"></i></a></p>
-      </section>
+      </div>
     </footer>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

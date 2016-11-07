@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CodingPrime</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata%7COswald%7COxygen%7CSource+Code+Pro">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/highlight.js.solarized.css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1><a href="/">CodingPrime</a></h1><span>&lt;strong&gt;kung fu&lt;/strong&gt;</span><a href="https://github.com/t3hpr1m3/codingprime.com"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+      </div>
+    </header>
+    <main class="container">
+      <article class="post">
+        <header>
+          <time datetime="2016-10-24T00:00:00.000Z">October 24, 2016</time>
+          <h2>Metalsmith is Awesome
+          </h2>
+        </header>
+        <section><p>I've decided to get serious about blogging (and participating on the web in
+general), and as such, I need this site to be ready.  I started reviewing the
+bits involved here, and realized that much of what I'm using is woefully out of
+date.  So it's time to get busy.</p>
+<!--more-->
+<p>I started this post as a recap of the steps I followed to get the site up to
+date.  When I was finished, I realized it was 98% of the way to being a &quot;How to
+build a site with Metalsmith&quot; post, only shitty.  So I've revised it to be a
+&quot;How to build a site with Metalsmith&quot; post, slightly less shitty.  There are
+<a href="https://segment.com/blog/building-technical-documentation-with-metalsmith/">many</a>
+<a href="http://www.okaythree.com/2015/03/building-a-blog-with-metalsmith/">examples</a>
+<a href="https://www.sitepoint.com/create-static-site-metalsmith/">already</a>
+<a href="http://www.petermorlion.com/creating-static-sites-with-metalsmith/">available</a>,
+but I'm me.  Plus, there were some interesting gotchyas I ran into along the
+way, and I want to document those somewhere for my own sanity.  Now, on with the
+show.</p>
+<h3 id="metalsmith">Metalsmith <a class="header-anchor" href="#metalsmith" aria-hidden="true">&#128279;</a></h3>
+<p>This site is built with <a href="http://metalsmith.io">Metalsmith</a>.  It's simple, but
+extremely flexible and extensible.  It definitely isn't perfect, but it checks
+several of my boxes:</p>
+<ul>
+<li>[x] it's clean</li>
+<li>[x] it's malleable</li>
+<li>[x] it isn't Ruby</li>
+</ul>
+<p>Metalsmith is really at its core a build pipeline.  It works similarly to
+<a href="http://gulpjs.com">Gulp</a>, in that source files flow through the pipeline,
+getting poked and prodded along the way, until they come out the other side ready
+to be deployed.  The end result of the Metalsmith pipeline is a collection of
+static files that could be FTP'd to a webserver somewhere and run old-school.
+No fancy server-side rendering, no platform requirements.  Just static files,
+the way <a href="https://en.wikipedia.org/wiki/Tim_Berners-Lee">Sir Timothy</a> intended.</p>
+<figure><img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/1924_Old_Forge_High_School_Basketball_-_Surburban_League_Champions.jpg" alt="These guys didn't need dynamic languages." /><figcaption>These guys didn't need dynamic languages.</figcaption></figure>
+<p>For something like a personal website/blog, this is really what you want.  It's
+also great for technical documentation, since you only need to speak markdown to
+be able to author content.  And combined with <a href="https://pages.github.com">GitHub
+Pages</a> (which we will be doing here), you get free
+hosting as well.  Free is good.  So let's get started.</p>
+<h3 id="starting-from-scratch">Starting from scratch <a class="header-anchor" href="#starting-from-scratch" aria-hidden="true">&#128279;</a></h3>
+<p>Well, not quite from scratch.  I'll be assuming you have
+<a href="https://nodejs.org/en/">Node.js</a> installed.  I do all of my development in
+containers now, so my process is different.  In any event, you need at the very
+least Node.  Go get it.  I'll wait.</p>
+<p>We're going to start with a fresh directory here:</p>
+<pre><code class="hljs no-highlight">$ mkdir mysite
+$ cd mysite
+</code></pre>
+<p>and build it out to have the following structure:</p>
+<pre><code class="hljs no-highlight">|-- build/
+|-- layouts/
+|-- src/
+    |-- assets/
+    `-- blog/
+</code></pre>
+<p>Now, we need a <code>package.json</code> to include all of our dependencies.  We could use
+<code>npm init</code> here, but I've found it's easier to just copy/paste some boilerplate
+and go from there:</p>
+<pre><span>package.json</span><code class="hljs json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"mysite"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"0.0.1"</span>,
+  <span class="hljs-attr">"private"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"My awesome Metalsmith site!"</span>,
+  <span class="hljs-attr">"author"</span>: <span class="hljs-string">"Average Joe"</span>,
+  <span class="hljs-attr">"license"</span>: <span class="hljs-string">"MIT"</span>,
+}
+</code></pre>
+<p>With a <code>package.json</code> in place, we can get Metalsmith installed.</p>
+<pre><code class="hljs no-highlight">npm install metalsmith --save-dev
+</code></pre>
+<p>Now that Metalsmith is installed, let's create our initial build script.  This
+will be run every time we make changes to the site contents.</p>
+<pre><span>build.js</span><code class="hljs javascript"><span class="hljs-comment">/*
+ * Pull in Metalsmith
+ */</span>
+<span class="hljs-keyword">var</span> metalsmith = <span class="hljs-built_in">require</span>(<span class="hljs-string">'metalsmith'</span>);
+
+<span class="hljs-comment">/*
+ * Start the metalsmith build pipeline.  Give it the current directory to work with.
+ */</span>
+metalsmith(__dirname)
+  <span class="hljs-comment">/*
+   * Setup the site metadata.  More on this later.
+   */</span>
+  .metadata({
+    <span class="hljs-attr">site</span>: {
+      <span class="hljs-attr">title</span>: <span class="hljs-string">'Metalsmith Awesomeness'</span>
+    }
+  })
+  <span class="hljs-comment">/*
+   * Tell Metalsmith where our site's code lives
+   */</span>
+  .source(<span class="hljs-string">'src'</span>)
+  <span class="hljs-comment">/*
+   * And where to place the build artifacts
+   */</span>
+  .destination(<span class="hljs-string">'build'</span>)
+  <span class="hljs-comment">/*
+   * Finally, magic time.  Build us some internets.
+   */</span>
+  .build(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, files</span>) </span>{
+    <span class="hljs-keyword">if</span> (err) { <span class="hljs-keyword">throw</span> err; }
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Build complete.'</span>);
+  });
+</code></pre>
+<p>This won't give us anything usable, but is enough to actually get Metalsmith to
+start working.  Let's add a source file to feed to Metalsmith:</p>
+<pre><span>src/about.md</span><code class="hljs markdown">---
+title: About Me
+date: 2016-10-24
+<span class="hljs-section">author: Average Joe
+---</span>
+<span class="hljs-section">## About Me</span>
+
+I build sites with Metalsmith.
+</code></pre>
+<p>Not really much of an about page, but you get the idea.  We can run our build
+script to generate the build:</p>
+<pre><code class="hljs no-highlight">$ node build.js
+Build complete.
+</code></pre>
+<p>If you look at the build directory, you'll see there is a single file there
+(<code>about.md</code>), with the contents of the above markdown file (minus the
+front-matter).  Metalsmith has built your site for you.</p>
+<figure><img src="http://orig07.deviantart.net/d1d5/f/2012/111/1/6/avillum__blacksmith_tools_by_juanico_el_muertes-d4x1s3m.jpg" alt="Your website is ready my liege." /><figcaption>Your website is ready my liege.</figcaption></figure>
+<h3 id="processing-markdown">Processing markdown <a class="header-anchor" href="#processing-markdown" aria-hidden="true">&#128279;</a></h3>
+<p>So far, we don't really have anything useful.  A single file with some
+unformatted markdown isn't going to get us to the top of
+<a href="https://news.ycombinator.com/">HackerNews</a>.  We need some
+<a href="http://www.eatough.net/images/2014/2014-05-03.jpg">flair</a>.</p>
+<p>The first thing we need to do is teach Metalsmith to transform markdown into
+HTML.  There are several packages available to help with this, notably:</p>
+<ul>
+<li><a href="https://github.com/segmentio/metalsmith-markdown">metalsmith-markdown</a></li>
+<li><a href="https://github.com/mayo/metalsmith-markdownit">metalsmith-markdownit</a></li>
+<li><a href="https://github.com/attentif/metalsmith-markdown-remarkable">metalsmith-markdown-remarkable</a></li>
+</ul>
+<p>They each have their own pros and cons.  I've decided to go with
+<em>metalsmith-markdownit</em>.  It wraps
+<a href="https://github.com/markdown-it/markdown-it">markdown-it</a>, which has a ton of
+<a href="https://www.npmjs.com/browse/keyword/markdown-it-plugin">extensions</a> available
+to handle a number of tasks.  With this decision out of the way, let's get it
+installed and into the build pipeline.</p>
+<pre><code class="hljs no-highlight">npm install metalsmith-markdownit --save-dev
+</code></pre>
+<pre><span>build.js</span><code class="hljs javascript"><span class="hljs-keyword">var</span> metalsmith = <span class="hljs-built_in">require</span>(<span class="hljs-string">'metalsmith'</span>),
+    markdown = <span class="hljs-built_in">require</span>(<span class="hljs-string">'metalsmith-markdownit'</span>);
+
+metalsmith(__dirname)
+  <span class="hljs-comment">// ...</span>
+  .destination(<span class="hljs-string">'build'</span>)
+  .use(markdown(<span class="hljs-string">"commonmark"</span>, { <span class="hljs-attr">html</span>: <span class="hljs-literal">true</span> }))
+  .build(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, files</span>) </span>{
+    <span class="hljs-comment">// ...</span>
+  });
+</code></pre>
+<p>You can check the
+<a href="https://markdown-it.github.io/markdown-it/#MarkdownIt.new">docs</a> for
+markdown-it, but what we're doing here is telling it to use its &quot;commonmark&quot;
+preset, and allow HTML in our markdown.  This will be a requirement later on,
+when we add in syntax highlighting and excerpts.</p>
+<p>Let's run our build script.</p>
+<pre><code class="hljs no-highlight">node build.js
+</code></pre>
+<p>Again, there should be a single file in the build directory, but now it should
+have an <code>.html</code> extension, and should look more like a web page:</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>About Me<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>I build sites with Metalsmith.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<p>This is better.  Metalsmith has understood our markdown, and generated the appropriate
+HTML.  Our next step is to add the containing HTML to turn this into a full-fledged web page.</p>
+<h3 id="templating">Templating <a class="header-anchor" href="#templating" aria-hidden="true">&#128279;</a></h3>
+<p>Templating in Metalsmith is handled by <code>metalsmith-layouts</code>.
+<em>(NOTE: This used to be done using <code>metalsmith-templates</code>, but that package was
+split in two.  The other became <code>metalsmith-in-place</code>, which we won't be using
+here.)</em></p>
+<p>I will be using <a href="https://pugjs.org"><em>pug</em></a> (formerly <code>jade</code>) as the templating
+engine of choice.</p>
+<pre><code class="hljs no-highlight">npm install metalsmith-layouts pug --save-dev
+</code></pre>
+<p>We want the layout to be applied <strong>after</strong> the markdown conversion, so we add it
+to the appropriate place in the build pipeline.</p>
+<pre><span>build.js</span><code class="hljs javascript"><span class="hljs-keyword">var</span> metalsmith = <span class="hljs-built_in">require</span>(<span class="hljs-string">'metalsmith'</span>),
+    layouts = <span class="hljs-built_in">require</span>(<span class="hljs-string">'metalsmith-layouts'</span>),
+    markdown = <span class="hljs-built_in">require</span>(<span class="hljs-string">'metalsmith-markdownit'</span>);
+
+metalsmith(__dirname)
+  <span class="hljs-comment">// ...</span>
+  .use(markdown(<span class="hljs-string">'commonmark'</span>, { <span class="hljs-attr">html</span>: <span class="hljs-literal">true</span> }))
+  .use(layouts({
+    <span class="hljs-attr">engine</span>: <span class="hljs-string">'pug'</span>,
+    <span class="hljs-attr">directory</span>: <span class="hljs-string">'layouts'</span>,
+    <span class="hljs-attr">pretty</span>: <span class="hljs-literal">true</span>
+  }))
+  .build(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, files</span>) </span>{
+    <span class="hljs-comment">// ...</span>
+  });
+</code></pre>
+<p>And now, we need to add a layout.  If this were a real site, we would be adding
+lots of styling and flashy graphics.  For this example, we're going to keep it
+simple.</p>
+<pre><span>layouts/main.pug</span><code class="hljs no-highlight">doctype html
+html(lang='en')
+  head
+    block head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width,initial-scale=1')
+      block title
+        title= site.title
+  body
+    header
+      section.container
+        h1
+          a(href='/')= site.title
+    main.container
+      block content
+        != contents
+    footer.site-footer
+      p.text
+        span &copy;2016 Joe Awesomesauce
+</code></pre>
+<p>Just some simple wrapper HTML to contain our awesome About page.  The only thing
+of note here is the use of <code>site.title</code>.  If you remember, when we put together
+the <code>build.js</code>, we included site metatadata.  That metadata is available in any
+templates.</p>
+<p>Finally, we need to tell Metalsmith that we want to use this layout.</p>
+<pre><span>src/about.md</span><code class="hljs markdown">---
+<span class="hljs-section"># ...</span>
+author: Average Joe
+<span class="hljs-section">layout: main.pug
+---</span>
+...
+</code></pre>
+<p>If we re-run the build script:</p>
+<pre><code class="hljs no-highlibht">node build.js
+</code></pre>
+<p>and check the <code>build</code> directory, we should now have a complete <code>.html</code> page that
+could be served and viewed properly.</p>
+<pre><span>build/about.html</span><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width,initial-scale=1"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Metalsmith Awesomeness<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/"</span>&gt;</span>Metalsmith Awesomeness<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">main</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>About Me<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>I build sites with Metalsmith.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"site-footer"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>&amp;copy;2016 Average Joe<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>Cool.  Metalsmith is now fully capable of creating real, publishable web pages.
+This is the awesomeness of Metalsmith.  It's just a pipeline for building up
+functionality using plugins, with each one adding its own secret sauce.</p>
+<p>Next time, we'll add some stylesheets and syntax highlighting.</p>
+
+        </section>
+      </article>
+      <div id="disqus_thread">
+        <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = 'codingprime'; // required: replace example with your forum shortname
+          
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the<a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="container clearfix">
+        <p class="text"><span>&copy;2016 Josh Williams</span><a href="https://github.com/t3hpr1m3"><i class="fa fa-github fa-3x"></i></a><a href="https://twitter.com/t3hpr1m3"><i class="fa fa-twitter fa-3x"></i></a></p>
+      </div>
+    </footer>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-18124207-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>
