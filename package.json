@@ -26,8 +26,10 @@
     "serve-static": "^1.11.1"
   },
   "scripts": {
-    "start": "node index.js",
+    "server": "node index.js",
     "build": "node build",
+    "start": "npm run build && npm run server",
+    "nodemon": "nodemon -e js,md,pug,scss --ignore build/ --exec npm start",
     "build-watch": "nodemon -e js,md,pug,scss --ignore build/ build"
   }
 }

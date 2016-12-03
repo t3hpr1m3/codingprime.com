@@ -1,5 +1,6 @@
 app: 
   build: .
+  command: npm run nodemon
   volumes:
     - .:/usr/src/app
     - /usr/src/app/node_modules

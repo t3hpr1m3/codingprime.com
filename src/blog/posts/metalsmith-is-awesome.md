@@ -333,4 +333,8 @@ Cool.  Metalsmith is now fully capable of creating real, publishable web pages.
 This is the awesomeness of Metalsmith.  It's just a pipeline for building up
 functionality using plugins, with each one adding its own secret sauce.
 
-Next time, we'll add some stylesheets and syntax highlighting.
+I've uploaded the code from this post to
+[Github](https://github.com/t3hpr1m3/metalsmith-example/tree/part1).  Feel free
+to give it a whirl.
+
+[Next time](/blog/2016/10/metalsmith-is-awesome-part-2), we'll add some stylesheets and syntax highlighting.
