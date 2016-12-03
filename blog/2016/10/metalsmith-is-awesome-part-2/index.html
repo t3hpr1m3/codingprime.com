@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>CodingPrime</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Inconsolata%7COswald%7COxygen%7CSource+Code+Pro">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/highlight.js.solarized.css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1><a href="/">CodingPrime</a></h1><span>&lt;strong&gt;kung fu&lt;/strong&gt;</span><a href="https://github.com/t3hpr1m3/codingprime.com"><img style="position: absolute; top: 0; right: 0; border: 0" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+      </div>
+    </header>
+    <main class="container">
+      <article class="post">
+        <header>
+          <time datetime="2016-10-28T00:00:00.000Z">October 28, 2016</time>
+          <h2>Metalsmith is Awesome (Part 2)
+          </h2>
+        </header>
+        <section><p><a href="blog/2010/10/metalsmith-is-awesome">Last time</a>, we got
+<a href="http://metalsmith.io">Metalsmith</a> up and running, generating a single static
+page.  This was a good first step, but we need more.  If we intend to build a
+fully functional blog or documentation site, we need things like style and
+syntax highlighting.  We'll also need to add some structure to the site, as well
+as the ability to generate sane permalinks.</p>
+<!--more-->
+<h3 id="faster-development">Faster development <a class="header-anchor" href="#faster-development" aria-hidden="true">&#128279;</a></h3>
+<p>Before we get started with any of that, though, we need to tighten our feedback
+loop.  We're going to be making lots of changes to the site quickly, and we need
+a way to see our results.  Dropping out to a shell to run <code>node build</code> after
+each change, then opening the resulting file is just too slow.  So we're going
+to set up a watcher for our files, and run a simple static <code>Node.js</code> server to
+handle serving our content.</p>
+<figure><img src="https://c1.staticflickr.com/9/8494/8432392004_39d1505f6c_b.jpg" alt="wait time: 0" /><figcaption>wait time: 0</figcaption></figure>
+<p>We're going to be using <a href="http://expressjs.com/">Express</a> to serve our site
+locally, so we'll start by installing it and the <code>serve-static</code> plugin.</p>
+<pre><code class="hljs no-highlight">npm install express serve-static --save-dev
+</code></pre>
+<p>We need to create a script to hand over control to Express:</p>
+<pre><span>index.js</span><code class="hljs javascript"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>),
+    serveStatic = <span class="hljs-built_in">require</span>(<span class="hljs-string">'serve-static'</span>);
+
+<span class="hljs-keyword">var</span> app = express();
+
+<span class="hljs-comment">// Port can be overrideen with an environment variable.</span>
+<span class="hljs-keyword">var</span> port = process.env.PORT || <span class="hljs-number">3003</span>;
+
+app.use(serveStatic(<span class="hljs-string">'build'</span>));
+app.listen(port);
+</code></pre>
+<p>Very simple.  Just point <code>serve-static</code> at our build directory, and default to
+listening on port <em>3003</em>.  We can crank up the server directly with <code>node index.js</code>, but let's do this the <code>npm way</code>:</p>
+<pre><span>package.json</span><code class="hljs json">{
+	/* ... */
+
+	"scripts": {
+		"server": "node index.js"
+	}
+	/* ... */
+}
+</code></pre>
+<p>With this in place, we should be able to simply:</p>
+<pre><code class="hljs no-highlight">npm run server
+</code></pre>
+<p>Our &quot;site&quot; should now be served on port 3003.  We can confirm this by pointing a
+browser at <code>http://localhost:3003/about.html</code>.  We should see our super mega
+awesome about page in all its glory.  Now we need our site to be automatically
+rebuilt every time we change a file.  For starters, let's add an npm task to
+handle the building.</p>
+<pre><span>package.json</span><code class="hljs json">{
+  /* ... */
+  "scripts": {
+    "server": "node index.js",
+    "build": "node build.js"
+  }
+}
+</code></pre>
+<p>We can now use</p>
+<pre><code class="hljs no-highlight">npm run build
+</code></pre>
+<p>to rebuild the site.  The trick is tying these 2 together, so they both run back
+to back when we make changes.  For this, we're going to use a utility called
+<a href="http://nodemon.io/">nodemon</a>.  Let's get it installed.</p>
+<pre><code class="hljs no-highlight">npm install -g nodemon
+</code></pre>
+<p>We install it globally so we can execute it directly from the CLI.  Now we need
+to tweak the scripts in our <code>package.json</code>:</p>
+<pre><span>package.json</span><code class="hljs json">{
+  /* ... */
+  "scripts": {
+    "server": "node index.js",
+    "build": "node build.js",
+    "start": "npm run build &amp;&amp; npm run server",
+    "run-watch": "nodemon -e js,md,pug,scss --ignore build/ --exec npm start"
+  }
+}
+</code></pre>
+<p>What this does is allow us some flexibility.  <code>npm run server</code> will just start
+the express server, <code>npm run build</code> will invoke the Metalsmith pipeline to
+generate the site, <code>npm run start</code> will build the site, and immediately start
+the express server, and <code>npm run run-watch</code> will build the site, run the server,
+and repeat both steps when any changes are made.  There are many more
+elegant ways to accomplish this, but this one will work for our purposes.
+For now, just crank the environment up with</p>
+<pre><code class="hljs no-highlight">npm run run-watch
+</code></pre>
+<p>You should be able to visit <code>http://localhost:3003/about.html</code>, and our about
+page should be accessible.  From here on out, we should not need to restart the
+server to see our changes take effect.</p>
+<h3 id="giving-it-some-flair">Giving it some flair <a class="header-anchor" href="#giving-it-some-flair" aria-hidden="true">&#128279;</a></h3>
+<p>Now that we can quickly see our changes, it's time to add some styling to
+our little site.  I prefer <a href="http://sass-lang.com">Sass</a>, so that's what we will
+be using here.  If you prefer <a href="http://lesscss.org">Less</a> or
+<a href="http://stylus-lang.com">Stylus</a>, there are Metalsmith
+<a href="https://www.npmjs.com/package/metalsmith-less">packages</a>
+<a href="https://www.npmjs.com/package/metalsmith-stylus">available</a> as well.</p>
+<p>To get started, we need to add
+<a href="https://www.npmjs.com/package/metalsmith-sass">metalsmith-sass</a> to our project.</p>
+<pre><code class="hljs no-highlight">npm install metalsmith-sass --save-dev
+</code></pre>
+<p>Next, we need to add a basic stylesheet.</p>
+<pre><span>src/assets/style.scss</span><code class="hljs scss"><span class="hljs-selector-tag">html</span> {
+	<span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.6em</span>;
+	<span class="hljs-attribute">font-family</span>: <span class="hljs-string">'Helvetica Neue'</span>, Helvetica, Arial, sans-serif;
+	<span class="hljs-attribute">font-size</span>: <span class="hljs-number">100%</span>;
+	<span class="hljs-attribute">color</span>: <span class="hljs-number">#333333</span>;
+	
+	<span class="hljs-selector-tag">a</span> {
+		<span class="hljs-attribute">color</span>: <span class="hljs-number">#123eab</span>;
+	}
+}
+</code></pre>
+<p>That's about as basic as it gets, and bare includes any Sass, but will
+do for our purposes.  Full styling is really out of scope for this discussion.</p>
+<p>We need to now get Metalsmith to preprocess this file and dump the result in our
+build directory.</p>
+<pre><span>build.js</span><code class="hljs javascript"><span class="hljs-keyword">var</span> metalsmith = <span class="hljs-built_in">require</span>(<span class="hljs-string">'metalsmith'</span>),
+    layouts = <span class="hljs-built_in">require</span>(<span class="hljs-string">'metalsmith-layouts'</span>),
+    markdown = <span class="hljs-built_in">require</span>(<span class="hljs-string">'metalsmith-markdownit'</span>),
+    sass = <span class="hljs-built_in">require</span>(<span class="hljs-string">'metalsmith-sass'</span>);
+
+metalsmith(__dirname)
+  <span class="hljs-comment">// ...</span>
+  .use(sass({
+    <span class="hljs-attr">outputDir</span>: <span class="hljs-string">'assets/css/'</span>,
+    <span class="hljs-attr">outputStyle</span>: <span class="hljs-string">'expanded'</span>
+  }))
+  .use(markdown(<span class="hljs-string">'commonmark'</span>, { <span class="hljs-attr">html</span>: <span class="hljs-literal">true</span> }))
+  <span class="hljs-comment">// ...</span>
+</code></pre>
+<p>All that's left is to get our stylesheet actually included in our pages.  We do
+this by adding it to our site's template.</p>
+<pre><span>layouts/main.pug</span><code class="hljs no-highlight">doctype html
+// ...
+      meta(name='viewport', content='width=device-width,initial-scale=1')
+      link(rel='stylesheet', href='assets/style.css')
+// ...
+</code></pre>
+<p>If everything is wired up properly, the app should kick off a new build, and
+restart the server.  Refreshing our page should show you a newer, slightly
+better version than what we had before.</p>
+<h3 id="wrapping-up">Wrapping up <a class="header-anchor" href="#wrapping-up" aria-hidden="true">&#128279;</a></h3>
+<p>Since last time, we've got our site auto-building itself on changes, and it
+looks oh-so-much better (lulz).  Next time, we'll start putting together some
+real content, complete with syntax highlighting of any code snippets we add.
+Same as last time, everything I've done here is availble <a href="https://github.com/t3hpr1m3/metalsmith-example/tree/part2">on
+Github</a>.</p>
+
+        </section>
+      </article>
+      <div id="disqus_thread">
+        <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = 'codingprime'; // required: replace example with your forum shortname
+          
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the<a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="container clearfix">
+        <p class="text"><span>&copy;2016 Josh Williams</span><a href="https://github.com/t3hpr1m3"><i class="fa fa-github fa-3x"></i></a><a href="https://twitter.com/t3hpr1m3"><i class="fa fa-twitter fa-3x"></i></a></p>
+      </div>
+    </footer>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-18124207-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
+</html>

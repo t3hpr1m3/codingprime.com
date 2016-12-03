@@ -19,6 +19,26 @@
     <main class="container">
       <article class="post">
         <header>
+          <time datetime="2012-07-12T17:20:00.000Z">July 12, 2012</time>
+          <h2><a href="/blog/2012/07/skipping-asset-precompile">Skipping asset precompile</a></h2>
+        </header>
+        <section>
+          <p><p>Waiting on asset precompilation is a PITA, especially if no assets have been
+changed.  Thankfully,
+<a href="http://www.bencurtis.com/2011/12/skipping-asset-compilation-with-capistrano/">Ben Curtis</a>
+came up with a workable solution.  Except...</p>
+<p>Ben's method fails on the initial deployment, because <em>current_revision</em> tries to
+read <em>/path/to/app/current/REVISION</em>, which won't exist yet.  After trying several
+approaches, I have arrived at one which works for me.  There are probably other,
+more elegant approaches, but this one seems clear enough for my purposes.
+Posting it here for posterity.</p></p>
+        </section>
+        <footer>
+          <nav><a class="btn" href="/blog/2012/07/skipping-asset-precompile">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
           <time datetime="2010-12-06T18:19:00.000Z">December 6, 2010</time>
           <h2><a href="/blog/2010/12/rspec-autotest-rails3-and-engines">RSpec, Autotest, Rails3, and Engines</a></h2>
         </header>
@@ -124,31 +144,6 @@ and automatically selects the right environment (test, production, etc).</p></p>
         </section>
         <footer>
           <nav><a class="btn" href="/blog/2010/08/site-config-config-yml-for-rails">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
-        </footer>
-      </article>
-      <article class="post">
-        <header>
-          <time datetime="2010-08-21T18:12:00.000Z">August 21, 2010</time>
-          <h2><a href="/blog/2010/08/dual-booting-raided-windows-non-raid-linux">Dual-booting Raided Windows/Non-Raid Linux</a></h2>
-        </header>
-        <section>
-          <p><p>If you're following along at home, I got my Gentoo install
-<a href="/blog/2010/08/moving-from-virtualbox-to-physical-disk">extracted</a> and running on physical
-disk.  Now I have a problem to solve: Dual booting with Windows.  This is
-only a problem because my Windows install is on a RAID0 array using an Intel
-fakeraid controller.  I found all kinds of info on dual-booting Windows/Linux
-while both are installed in the raid array, but nothing to help with my
-situation.  So here we go.</p>
-<h3 id="attempt-1-grub-on-the-linux-drive">Attempt #1 :: GRUB on the Linux drive <a class="header-anchor" href="#attempt-1-grub-on-the-linux-drive" aria-hidden="true">&#128279;</a></h3>
-<p>My first attempt was to setup GRUB on the Linux drive, and tell the BIOS to
-boot off that.  I knew I should add an entry to <code>grub.conf</code> to reference the
-Windows drive and call <code>chainloader+</code>, but as I was typing it out I realized
-that I didn't have a way to reference it.  My Spidey Sense� was telling
-me I'd need an initrd with all the raid info in it, so GRUB would know how to
-talk to the entire RAID drive.  That sounds like work.  Moving on.</p></p>
-        </section>
-        <footer>
-          <nav><a class="btn" href="/blog/2010/08/dual-booting-raided-windows-non-raid-linux">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
         </footer>
       </article>
       <nav class="pagination"><a class="btn pull-right" href="/blog/page/4">Older<i class="fa fa-chevron-circle-right"></i></a><a class="btn pull-left" href="/blog/page/2"><i class="fa fa-chevron-circle-left"></i>Newer</a>
