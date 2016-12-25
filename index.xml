@@ -1,0 +1,1062 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>http://codingprime.com</id>
+  <link href="http://codingprime.com"/>
+  <link href="http://codingprime.com/index.xml" rel="self"/>
+  <title>CodingPrime</title>
+  <updated>2016-12-25T21:25:11.389Z</updated>
+  <entry>
+    <title>True engineers are a dying breed</title>
+    <id>http://codingprime.com/blog/2016/12/true-engineers-are-a-dying-breed</id>
+    <link href="http://codingprime.com/blog/2016/12/true-engineers-are-a-dying-breed"/>
+    <updated>2016-12-25T13:49:00.000Z</updated>
+    <author/>
+    <content>&lt;p&gt;I am a software engineer.  Not a front-end developer.  Not a back-end developer.
+Not a &lt;em&gt;full-stack&lt;/em&gt; developer (whatever the fuck that means today).  I am an
+engineer.  I understand how to devipher technology, figure out how it works, and
+build things up using said technology.&lt;/p&gt;
+&lt;p&gt;If you spend more than 15 minutes lurking around the various tech hangouts these
+days, you will undoubtedly come across some bit of tech that smells.  It may
+work as advertised, it may not crash your system, but its just...wrong.  When
+you go digging into its guts, you find that it's a well polished pile of shit,
+put together by some well-intentioned flunkie who wanted to &amp;quot;be somebody&amp;quot; on
+the web.&lt;/p&gt;
+&lt;!--more --&gt;
+&lt;figure&gt;&lt;img src="http://i3.kym-cdn.com/photos/images/newsfeed/000/901/986/0e0.jpg" alt="hopefully this isn't you" /&gt;&lt;figcaption&gt;hopefully this isn't you&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;By itself, this isn't really a problem.  Bad software has been around since
+software was first invented.  The issue today is that these really bad &lt;em&gt;parts&lt;/em&gt;
+are being cobbled together into really, really bad &lt;em&gt;apps&lt;/em&gt; by developers less
+skilled than the original author of the shitty bits.&lt;/p&gt;
+&lt;p&gt;If this sounds elitist, good.  Chances are, if you're in the software world, I'm
+better at whatever you do than you are.  And this isn't because of some innate
+gift I possess, or a trip I made to a mountaintop to visit the oracle of &lt;em&gt;teh
+codez&lt;/em&gt;.  I got this good by making damn sure I understood what I was doing
+&lt;em&gt;before&lt;/em&gt; I did it.  When I've moved into a new arena (Node.js development, for
+instance), I've taken the time to get the lay of the land, determine the
+right and wrong ways to implement features, and how best to interact with the
+community at large.&lt;/p&gt;
+&lt;p&gt;More than anything, I make sure I develop my own best-practices, usually
+heavily influenced by the opinions of others, and follow them religiously.  I'm
+constantly re-evaluating my positions, based on my own experiences as well as
+those presented by others.  The key here is &lt;em&gt;evaluating&lt;/em&gt;, which requires an
+understanding.  I never take anyone's opinion or suggestions at face value.  I
+prove them out on my own, making sure there aren't fallacies, or even room for
+improvement.  In short, I'm always trying to hone my craft.&lt;/p&gt;
+&lt;figure&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Shaq77.jpg" alt="dis mah triggrd face" /&gt;&lt;figcaption&gt;dis mah triggrd face&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;I was doing some of the aforementioned research when I came across &lt;a href="https://gist.github.com/markerikson/ead940a93a2a877dc97824e5f839840f"&gt;this
+gem&lt;/a&gt;,
+which is apparently a transcript of a conversation between a self-labeled
+&amp;quot;front-end&amp;quot; dev and some of the maintainers of the
+&lt;a href="https://webpack.github.io/"&gt;webpack&lt;/a&gt; packaging tool.  I'm posting this not to
+poke fun at &amp;quot;Steven&amp;quot; (if that &lt;em&gt;is&lt;/em&gt; in fact your real name?!?), but to hopefully
+highlight some of the issues Steven's side of this conversation highlights in
+the development community at large.&lt;/p&gt;
+&lt;p&gt;His issue comes down to a lack of understanding around what he's trying to
+accomplish.  He's been getting by with just copying/pasting &amp;quot;solutions&amp;quot; he's
+found on SO/Github/HN, and he's finally come up against a problem that doesn't
+make any sense to him.  We already have a problem, but it's about to get a lot
+better.  When confronted with his ignorance, instead of acknowledging it and
+resigning himself to do the requisite research, he lashes out at the webpack
+devs for not spoonfeeding him said requisite knowledge in their docs.  Actually,
+its worse than that.  He doesn't want the knowledge, he just wants to
+short-circuit the learning altogether.  Just give him the what, not the
+why.  And this is one of the fundamental issues I see in software
+development today.&lt;/p&gt;
+&lt;p&gt;I've been dabbling in React lately (doing some universal stuff, how sexy!), and
+have been dumbfounded by the amount of misinformation present.  I must have
+reviewed a dozen or so &amp;quot;boilerplate&amp;quot; repos, and each one seemed to be more
+over-engineered than the last.  Rather than stop and try and understand &lt;em&gt;what&lt;/em&gt;
+they were trying to accomplish, these authors were just trying to throw as many
+external resources at a problem until it went away.  If your &amp;quot;boilerplate&amp;quot; has
+more than 10 dependencies, it's not boilerplate, sir.&lt;/p&gt;
+&lt;p&gt;Not taking the time to understand what you're doing is basically your way of
+pushing that responsibility off onto somebody else (be it a library author, a
+		coworker, or some guy on SO).  I've been around long enough to know that
+there are times where this is required due to time constraints, budget, etc.
+But if you want to graduate from being just a front-end guy to being a real
+engineer, those instances need to be thorns in your side, itches you aren't
+comfortable until you can really scratch them.&lt;/p&gt;
+&lt;p&gt;This has been a bit ranty, but I'm getting old, and I can't help it.  While the
+vast array of tooling available today does make the task of carrying out your
+day to day duties much less taxing than in years past, at the core of it all,
+somebody still has to know how shit works.  If you look around your team and
+can't point to anybody who fits that description, take it upon yourself to
+step up and be an engineer.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Metalsmith is Awesome (Part 2)</title>
+    <id>http://codingprime.com/blog/2016/10/metalsmith-is-awesome-part-2</id>
+    <link href="http://codingprime.com/blog/2016/10/metalsmith-is-awesome-part-2"/>
+    <updated>2016-10-28T00:00:00.000Z</updated>
+    <author/>
+    <content>&lt;p&gt;&lt;a href="blog/2010/10/metalsmith-is-awesome"&gt;Last time&lt;/a&gt;, we got
+&lt;a href="http://metalsmith.io"&gt;Metalsmith&lt;/a&gt; up and running, generating a single static
+page.  This was a good first step, but we need more.  If we intend to build a
+fully functional blog or documentation site, we need things like style and
+syntax highlighting.  We'll also need to add some structure to the site, as well
+as the ability to generate sane permalinks.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h3 id="faster-development"&gt;Faster development &lt;a class="header-anchor" href="#faster-development" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Before we get started with any of that, though, we need to tighten our feedback
+loop.  We're going to be making lots of changes to the site quickly, and we need
+a way to see our results.  Dropping out to a shell to run &lt;code&gt;node build&lt;/code&gt; after
+each change, then opening the resulting file is just too slow.  So we're going
+to set up a watcher for our files, and run a simple static &lt;code&gt;Node.js&lt;/code&gt; server to
+handle serving our content.&lt;/p&gt;
+&lt;figure&gt;&lt;img src="https://c1.staticflickr.com/9/8494/8432392004_39d1505f6c_b.jpg" alt="wait time: 0" /&gt;&lt;figcaption&gt;wait time: 0&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;We're going to be using &lt;a href="http://expressjs.com/"&gt;Express&lt;/a&gt; to serve our site
+locally, so we'll start by installing it and the &lt;code&gt;serve-static&lt;/code&gt; plugin.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;npm install express serve-static --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We need to create a script to hand over control to Express:&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;index.js&lt;/span&gt;&lt;code class="hljs javascript"&gt;&lt;span class="hljs-keyword"&gt;var&lt;/span&gt; express = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'express'&lt;/span&gt;),
+    serveStatic = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'serve-static'&lt;/span&gt;);
+
+&lt;span class="hljs-keyword"&gt;var&lt;/span&gt; app = express();
+
+&lt;span class="hljs-comment"&gt;// Port can be overrideen with an environment variable.&lt;/span&gt;
+&lt;span class="hljs-keyword"&gt;var&lt;/span&gt; port = process.env.PORT || &lt;span class="hljs-number"&gt;3003&lt;/span&gt;;
+
+app.use(serveStatic(&lt;span class="hljs-string"&gt;'build'&lt;/span&gt;));
+app.listen(port);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Very simple.  Just point &lt;code&gt;serve-static&lt;/code&gt; at our build directory, and default to
+listening on port &lt;em&gt;3003&lt;/em&gt;.  We can crank up the server directly with &lt;code&gt;node index.js&lt;/code&gt;, but let's do this the &lt;code&gt;npm way&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;package.json&lt;/span&gt;&lt;code class="hljs json"&gt;{
+	/* ... */
+
+	"scripts": {
+		"server": "node index.js"
+	}
+	/* ... */
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With this in place, we should be able to simply:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;npm run server
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Our &amp;quot;site&amp;quot; should now be served on port 3003.  We can confirm this by pointing a
+browser at &lt;code&gt;http://localhost:3003/about.html&lt;/code&gt;.  We should see our super mega
+awesome about page in all its glory.  Now we need our site to be automatically
+rebuilt every time we change a file.  For starters, let's add an npm task to
+handle the building.&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;package.json&lt;/span&gt;&lt;code class="hljs json"&gt;{
+  /* ... */
+  "scripts": {
+    "server": "node index.js",
+    "build": "node build.js"
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can now use&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;npm run build
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;to rebuild the site.  The trick is tying these 2 together, so they both run back
+to back when we make changes.  For this, we're going to use a utility called
+&lt;a href="http://nodemon.io/"&gt;nodemon&lt;/a&gt;.  Let's get it installed.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;npm install -g nodemon
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We install it globally so we can execute it directly from the CLI.  Now we need
+to tweak the scripts in our &lt;code&gt;package.json&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;package.json&lt;/span&gt;&lt;code class="hljs json"&gt;{
+  /* ... */
+  "scripts": {
+    "server": "node index.js",
+    "build": "node build.js",
+    "start": "npm run build &amp;amp;&amp;amp; npm run server",
+    "run-watch": "nodemon -e js,md,pug,scss --ignore build/ --exec npm start"
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What this does is allow us some flexibility.  &lt;code&gt;npm run server&lt;/code&gt; will just start
+the express server, &lt;code&gt;npm run build&lt;/code&gt; will invoke the Metalsmith pipeline to
+generate the site, &lt;code&gt;npm run start&lt;/code&gt; will build the site, and immediately start
+the express server, and &lt;code&gt;npm run run-watch&lt;/code&gt; will build the site, run the server,
+and repeat both steps when any changes are made.  There are many more
+elegant ways to accomplish this, but this one will work for our purposes.
+For now, just crank the environment up with&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;npm run run-watch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You should be able to visit &lt;code&gt;http://localhost:3003/about.html&lt;/code&gt;, and our about
+page should be accessible.  From here on out, we should not need to restart the
+server to see our changes take effect.&lt;/p&gt;
+&lt;h3 id="giving-it-some-flair"&gt;Giving it some flair &lt;a class="header-anchor" href="#giving-it-some-flair" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Now that we can quickly see our changes, it's time to add some styling to
+our little site.  I prefer &lt;a href="http://sass-lang.com"&gt;Sass&lt;/a&gt;, so that's what we will
+be using here.  If you prefer &lt;a href="http://lesscss.org"&gt;Less&lt;/a&gt; or
+&lt;a href="http://stylus-lang.com"&gt;Stylus&lt;/a&gt;, there are Metalsmith
+&lt;a href="https://www.npmjs.com/package/metalsmith-less"&gt;packages&lt;/a&gt;
+&lt;a href="https://www.npmjs.com/package/metalsmith-stylus"&gt;available&lt;/a&gt; as well.&lt;/p&gt;
+&lt;p&gt;To get started, we need to add
+&lt;a href="https://www.npmjs.com/package/metalsmith-sass"&gt;metalsmith-sass&lt;/a&gt; to our project.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;npm install metalsmith-sass --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, we need to add a basic stylesheet.&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;src/assets/style.scss&lt;/span&gt;&lt;code class="hljs scss"&gt;&lt;span class="hljs-selector-tag"&gt;html&lt;/span&gt; {
+	&lt;span class="hljs-attribute"&gt;line-height&lt;/span&gt;: &lt;span class="hljs-number"&gt;1.6em&lt;/span&gt;;
+	&lt;span class="hljs-attribute"&gt;font-family&lt;/span&gt;: &lt;span class="hljs-string"&gt;'Helvetica Neue'&lt;/span&gt;, Helvetica, Arial, sans-serif;
+	&lt;span class="hljs-attribute"&gt;font-size&lt;/span&gt;: &lt;span class="hljs-number"&gt;100%&lt;/span&gt;;
+	&lt;span class="hljs-attribute"&gt;color&lt;/span&gt;: &lt;span class="hljs-number"&gt;#333333&lt;/span&gt;;
+	
+	&lt;span class="hljs-selector-tag"&gt;a&lt;/span&gt; {
+		&lt;span class="hljs-attribute"&gt;color&lt;/span&gt;: &lt;span class="hljs-number"&gt;#123eab&lt;/span&gt;;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That's about as basic as it gets, and bare includes any Sass, but will
+do for our purposes.  Full styling is really out of scope for this discussion.&lt;/p&gt;
+&lt;p&gt;We need to now get Metalsmith to preprocess this file and dump the result in our
+build directory.&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;build.js&lt;/span&gt;&lt;code class="hljs javascript"&gt;&lt;span class="hljs-keyword"&gt;var&lt;/span&gt; metalsmith = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'metalsmith'&lt;/span&gt;),
+    layouts = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'metalsmith-layouts'&lt;/span&gt;),
+    markdown = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'metalsmith-markdownit'&lt;/span&gt;),
+    sass = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'metalsmith-sass'&lt;/span&gt;);
+
+metalsmith(__dirname)
+  &lt;span class="hljs-comment"&gt;// ...&lt;/span&gt;
+  .use(sass({
+    &lt;span class="hljs-attr"&gt;outputDir&lt;/span&gt;: &lt;span class="hljs-string"&gt;'assets/css/'&lt;/span&gt;,
+    &lt;span class="hljs-attr"&gt;outputStyle&lt;/span&gt;: &lt;span class="hljs-string"&gt;'expanded'&lt;/span&gt;
+  }))
+  .use(markdown(&lt;span class="hljs-string"&gt;'commonmark'&lt;/span&gt;, { &lt;span class="hljs-attr"&gt;html&lt;/span&gt;: &lt;span class="hljs-literal"&gt;true&lt;/span&gt; }))
+  &lt;span class="hljs-comment"&gt;// ...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All that's left is to get our stylesheet actually included in our pages.  We do
+this by adding it to our site's template.&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;layouts/main.pug&lt;/span&gt;&lt;code class="hljs no-highlight"&gt;doctype html
+// ...
+      meta(name='viewport', content='width=device-width,initial-scale=1')
+      link(rel='stylesheet', href='assets/style.css')
+// ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If everything is wired up properly, the app should kick off a new build, and
+restart the server.  Refreshing our page should show you a newer, slightly
+better version than what we had before.&lt;/p&gt;
+&lt;h3 id="wrapping-up"&gt;Wrapping up &lt;a class="header-anchor" href="#wrapping-up" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Since last time, we've got our site auto-building itself on changes, and it
+looks oh-so-much better (lulz).  Next time, we'll start putting together some
+real content, complete with syntax highlighting of any code snippets we add.
+Same as last time, everything I've done here is availble &lt;a href="https://github.com/t3hpr1m3/metalsmith-example/tree/part2"&gt;on
+Github&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Metalsmith is Awesome</title>
+    <id>http://codingprime.com/blog/2016/10/metalsmith-is-awesome</id>
+    <link href="http://codingprime.com/blog/2016/10/metalsmith-is-awesome"/>
+    <updated>2016-10-24T00:00:00.000Z</updated>
+    <author/>
+    <content>&lt;p&gt;I've decided to get serious about blogging (and participating on the web in
+general), and as such, I need this site to be ready.  I started reviewing the
+bits involved here, and realized that much of what I'm using is woefully out of
+date.  So it's time to get busy.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;I started this post as a recap of the steps I followed to get the site up to
+date.  When I was finished, I realized it was 98% of the way to being a &amp;quot;How to
+build a site with Metalsmith&amp;quot; post, only shitty.  So I've revised it to be a
+&amp;quot;How to build a site with Metalsmith&amp;quot; post, slightly less shitty.  There are
+&lt;a href="https://segment.com/blog/building-technical-documentation-with-metalsmith/"&gt;many&lt;/a&gt;
+&lt;a href="http://www.okaythree.com/2015/03/building-a-blog-with-metalsmith/"&gt;examples&lt;/a&gt;
+&lt;a href="https://www.sitepoint.com/create-static-site-metalsmith/"&gt;already&lt;/a&gt;
+&lt;a href="http://www.petermorlion.com/creating-static-sites-with-metalsmith/"&gt;available&lt;/a&gt;,
+but I'm me.  Plus, there were some interesting gotchyas I ran into along the
+way, and I want to document those somewhere for my own sanity.  Now, on with the
+show.&lt;/p&gt;
+&lt;h3 id="metalsmith"&gt;Metalsmith &lt;a class="header-anchor" href="#metalsmith" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This site is built with &lt;a href="http://metalsmith.io"&gt;Metalsmith&lt;/a&gt;.  It's simple, but
+extremely flexible and extensible.  It definitely isn't perfect, but it checks
+several of my boxes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[x] it's clean&lt;/li&gt;
+&lt;li&gt;[x] it's malleable&lt;/li&gt;
+&lt;li&gt;[x] it isn't Ruby&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Metalsmith is really at its core a build pipeline.  It works similarly to
+&lt;a href="http://gulpjs.com"&gt;Gulp&lt;/a&gt;, in that source files flow through the pipeline,
+getting poked and prodded along the way, until they come out the other side ready
+to be deployed.  The end result of the Metalsmith pipeline is a collection of
+static files that could be FTP'd to a webserver somewhere and run old-school.
+No fancy server-side rendering, no platform requirements.  Just static files,
+the way &lt;a href="https://en.wikipedia.org/wiki/Tim_Berners-Lee"&gt;Sir Timothy&lt;/a&gt; intended.&lt;/p&gt;
+&lt;figure&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/1924_Old_Forge_High_School_Basketball_-_Surburban_League_Champions.jpg" alt="These guys didn't need dynamic languages." /&gt;&lt;figcaption&gt;These guys didn't need dynamic languages.&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;For something like a personal website/blog, this is really what you want.  It's
+also great for technical documentation, since you only need to speak markdown to
+be able to author content.  And combined with &lt;a href="https://pages.github.com"&gt;GitHub
+Pages&lt;/a&gt; (which we will be doing here), you get free
+hosting as well.  Free is good.  So let's get started.&lt;/p&gt;
+&lt;h3 id="starting-from-scratch"&gt;Starting from scratch &lt;a class="header-anchor" href="#starting-from-scratch" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Well, not quite from scratch.  I'll be assuming you have
+&lt;a href="https://nodejs.org/en/"&gt;Node.js&lt;/a&gt; installed.  I do all of my development in
+containers now, so my process is different.  In any event, you need at the very
+least Node.  Go get it.  I'll wait.&lt;/p&gt;
+&lt;p&gt;We're going to start with a fresh directory here:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;$ mkdir mysite
+$ cd mysite
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and build it out to have the following structure:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;|-- build/
+|-- layouts/
+|-- src/
+    |-- assets/
+    `-- blog/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now, we need a &lt;code&gt;package.json&lt;/code&gt; to include all of our dependencies.  We could use
+&lt;code&gt;npm init&lt;/code&gt; here, but I've found it's easier to just copy/paste some boilerplate
+and go from there:&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;package.json&lt;/span&gt;&lt;code class="hljs json"&gt;{
+  &lt;span class="hljs-attr"&gt;"name"&lt;/span&gt;: &lt;span class="hljs-string"&gt;"mysite"&lt;/span&gt;,
+  &lt;span class="hljs-attr"&gt;"version"&lt;/span&gt;: &lt;span class="hljs-string"&gt;"0.0.1"&lt;/span&gt;,
+  &lt;span class="hljs-attr"&gt;"private"&lt;/span&gt;: &lt;span class="hljs-literal"&gt;true&lt;/span&gt;,
+  &lt;span class="hljs-attr"&gt;"description"&lt;/span&gt;: &lt;span class="hljs-string"&gt;"My awesome Metalsmith site!"&lt;/span&gt;,
+  &lt;span class="hljs-attr"&gt;"author"&lt;/span&gt;: &lt;span class="hljs-string"&gt;"Average Joe"&lt;/span&gt;,
+  &lt;span class="hljs-attr"&gt;"license"&lt;/span&gt;: &lt;span class="hljs-string"&gt;"MIT"&lt;/span&gt;,
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With a &lt;code&gt;package.json&lt;/code&gt; in place, we can get Metalsmith installed.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;npm install metalsmith --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that Metalsmith is installed, let's create our initial build script.  This
+will be run every time we make changes to the site contents.&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;build.js&lt;/span&gt;&lt;code class="hljs javascript"&gt;&lt;span class="hljs-comment"&gt;/*
+ * Pull in Metalsmith
+ */&lt;/span&gt;
+&lt;span class="hljs-keyword"&gt;var&lt;/span&gt; metalsmith = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'metalsmith'&lt;/span&gt;);
+
+&lt;span class="hljs-comment"&gt;/*
+ * Start the metalsmith build pipeline.  Give it the current directory to work with.
+ */&lt;/span&gt;
+metalsmith(__dirname)
+  &lt;span class="hljs-comment"&gt;/*
+   * Setup the site metadata.  More on this later.
+   */&lt;/span&gt;
+  .metadata({
+    &lt;span class="hljs-attr"&gt;site&lt;/span&gt;: {
+      &lt;span class="hljs-attr"&gt;title&lt;/span&gt;: &lt;span class="hljs-string"&gt;'Metalsmith Awesomeness'&lt;/span&gt;
+    }
+  })
+  &lt;span class="hljs-comment"&gt;/*
+   * Tell Metalsmith where our site's code lives
+   */&lt;/span&gt;
+  .source(&lt;span class="hljs-string"&gt;'src'&lt;/span&gt;)
+  &lt;span class="hljs-comment"&gt;/*
+   * And where to place the build artifacts
+   */&lt;/span&gt;
+  .destination(&lt;span class="hljs-string"&gt;'build'&lt;/span&gt;)
+  &lt;span class="hljs-comment"&gt;/*
+   * Finally, magic time.  Build us some internets.
+   */&lt;/span&gt;
+  .build(&lt;span class="hljs-function"&gt;&lt;span class="hljs-keyword"&gt;function&lt;/span&gt;(&lt;span class="hljs-params"&gt;err, files&lt;/span&gt;) &lt;/span&gt;{
+    &lt;span class="hljs-keyword"&gt;if&lt;/span&gt; (err) { &lt;span class="hljs-keyword"&gt;throw&lt;/span&gt; err; }
+    &lt;span class="hljs-built_in"&gt;console&lt;/span&gt;.log(&lt;span class="hljs-string"&gt;'Build complete.'&lt;/span&gt;);
+  });
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This won't give us anything usable, but is enough to actually get Metalsmith to
+start working.  Let's add a source file to feed to Metalsmith:&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;src/about.md&lt;/span&gt;&lt;code class="hljs markdown"&gt;---
+title: About Me
+date: 2016-10-24
+&lt;span class="hljs-section"&gt;author: Average Joe
+---&lt;/span&gt;
+&lt;span class="hljs-section"&gt;## About Me&lt;/span&gt;
+
+I build sites with Metalsmith.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Not really much of an about page, but you get the idea.  We can run our build
+script to generate the build:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;$ node build.js
+Build complete.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you look at the build directory, you'll see there is a single file there
+(&lt;code&gt;about.md&lt;/code&gt;), with the contents of the above markdown file (minus the
+front-matter).  Metalsmith has built your site for you.&lt;/p&gt;
+&lt;figure&gt;&lt;img src="http://orig07.deviantart.net/d1d5/f/2012/111/1/6/avillum__blacksmith_tools_by_juanico_el_muertes-d4x1s3m.jpg" alt="Your website is ready my liege." /&gt;&lt;figcaption&gt;Your website is ready my liege.&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;h3 id="processing-markdown"&gt;Processing markdown &lt;a class="header-anchor" href="#processing-markdown" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;So far, we don't really have anything useful.  A single file with some
+unformatted markdown isn't going to get us to the top of
+&lt;a href="https://news.ycombinator.com/"&gt;HackerNews&lt;/a&gt;.  We need some
+&lt;a href="http://www.eatough.net/images/2014/2014-05-03.jpg"&gt;flair&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The first thing we need to do is teach Metalsmith to transform markdown into
+HTML.  There are several packages available to help with this, notably:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/segmentio/metalsmith-markdown"&gt;metalsmith-markdown&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/mayo/metalsmith-markdownit"&gt;metalsmith-markdownit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/attentif/metalsmith-markdown-remarkable"&gt;metalsmith-markdown-remarkable&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;They each have their own pros and cons.  I've decided to go with
+&lt;em&gt;metalsmith-markdownit&lt;/em&gt;.  It wraps
+&lt;a href="https://github.com/markdown-it/markdown-it"&gt;markdown-it&lt;/a&gt;, which has a ton of
+&lt;a href="https://www.npmjs.com/browse/keyword/markdown-it-plugin"&gt;extensions&lt;/a&gt; available
+to handle a number of tasks.  With this decision out of the way, let's get it
+installed and into the build pipeline.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;npm install metalsmith-markdownit --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;span&gt;build.js&lt;/span&gt;&lt;code class="hljs javascript"&gt;&lt;span class="hljs-keyword"&gt;var&lt;/span&gt; metalsmith = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'metalsmith'&lt;/span&gt;),
+    markdown = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'metalsmith-markdownit'&lt;/span&gt;);
+
+metalsmith(__dirname)
+  &lt;span class="hljs-comment"&gt;// ...&lt;/span&gt;
+  .destination(&lt;span class="hljs-string"&gt;'build'&lt;/span&gt;)
+  .use(markdown(&lt;span class="hljs-string"&gt;"commonmark"&lt;/span&gt;, { &lt;span class="hljs-attr"&gt;html&lt;/span&gt;: &lt;span class="hljs-literal"&gt;true&lt;/span&gt; }))
+  .build(&lt;span class="hljs-function"&gt;&lt;span class="hljs-keyword"&gt;function&lt;/span&gt;(&lt;span class="hljs-params"&gt;err, files&lt;/span&gt;) &lt;/span&gt;{
+    &lt;span class="hljs-comment"&gt;// ...&lt;/span&gt;
+  });
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can check the
+&lt;a href="https://markdown-it.github.io/markdown-it/#MarkdownIt.new"&gt;docs&lt;/a&gt; for
+markdown-it, but what we're doing here is telling it to use its &amp;quot;commonmark&amp;quot;
+preset, and allow HTML in our markdown.  This will be a requirement later on,
+when we add in syntax highlighting and excerpts.&lt;/p&gt;
+&lt;p&gt;Let's run our build script.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;node build.js
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Again, there should be a single file in the build directory, but now it should
+have an &lt;code&gt;.html&lt;/code&gt; extension, and should look more like a web page:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs html"&gt;&lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;h1&lt;/span&gt;&amp;gt;&lt;/span&gt;About Me&lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;h2&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;I build sites with Metalsmith.&lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is better.  Metalsmith has understood our markdown, and generated the appropriate
+HTML.  Our next step is to add the containing HTML to turn this into a full-fledged web page.&lt;/p&gt;
+&lt;h3 id="templating"&gt;Templating &lt;a class="header-anchor" href="#templating" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Templating in Metalsmith is handled by &lt;code&gt;metalsmith-layouts&lt;/code&gt;.
+&lt;em&gt;(NOTE: This used to be done using &lt;code&gt;metalsmith-templates&lt;/code&gt;, but that package was
+split in two.  The other became &lt;code&gt;metalsmith-in-place&lt;/code&gt;, which we won't be using
+here.)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I will be using &lt;a href="https://pugjs.org"&gt;&lt;em&gt;pug&lt;/em&gt;&lt;/a&gt; (formerly &lt;code&gt;jade&lt;/code&gt;) as the templating
+engine of choice.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlight"&gt;npm install metalsmith-layouts pug --save-dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We want the layout to be applied &lt;strong&gt;after&lt;/strong&gt; the markdown conversion, so we add it
+to the appropriate place in the build pipeline.&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;build.js&lt;/span&gt;&lt;code class="hljs javascript"&gt;&lt;span class="hljs-keyword"&gt;var&lt;/span&gt; metalsmith = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'metalsmith'&lt;/span&gt;),
+    layouts = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'metalsmith-layouts'&lt;/span&gt;),
+    markdown = &lt;span class="hljs-built_in"&gt;require&lt;/span&gt;(&lt;span class="hljs-string"&gt;'metalsmith-markdownit'&lt;/span&gt;);
+
+metalsmith(__dirname)
+  &lt;span class="hljs-comment"&gt;// ...&lt;/span&gt;
+  .use(markdown(&lt;span class="hljs-string"&gt;'commonmark'&lt;/span&gt;, { &lt;span class="hljs-attr"&gt;html&lt;/span&gt;: &lt;span class="hljs-literal"&gt;true&lt;/span&gt; }))
+  .use(layouts({
+    &lt;span class="hljs-attr"&gt;engine&lt;/span&gt;: &lt;span class="hljs-string"&gt;'pug'&lt;/span&gt;,
+    &lt;span class="hljs-attr"&gt;directory&lt;/span&gt;: &lt;span class="hljs-string"&gt;'layouts'&lt;/span&gt;,
+    &lt;span class="hljs-attr"&gt;pretty&lt;/span&gt;: &lt;span class="hljs-literal"&gt;true&lt;/span&gt;
+  }))
+  .build(&lt;span class="hljs-function"&gt;&lt;span class="hljs-keyword"&gt;function&lt;/span&gt;(&lt;span class="hljs-params"&gt;err, files&lt;/span&gt;) &lt;/span&gt;{
+    &lt;span class="hljs-comment"&gt;// ...&lt;/span&gt;
+  });
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And now, we need to add a layout.  If this were a real site, we would be adding
+lots of styling and flashy graphics.  For this example, we're going to keep it
+simple.&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;layouts/main.pug&lt;/span&gt;&lt;code class="hljs no-highlight"&gt;doctype html
+html(lang='en')
+  head
+    block head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width,initial-scale=1')
+      block title
+        title= site.title
+  body
+    header
+      section.container
+        h1
+          a(href='/')= site.title
+    main.container
+      block content
+        != contents
+    footer.site-footer
+      p.text
+        span &amp;copy;2016 Joe Awesomesauce
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Just some simple wrapper HTML to contain our awesome About page.  The only thing
+of note here is the use of &lt;code&gt;site.title&lt;/code&gt;.  If you remember, when we put together
+the &lt;code&gt;build.js&lt;/code&gt;, we included site metatadata.  That metadata is available in any
+templates.&lt;/p&gt;
+&lt;p&gt;Finally, we need to tell Metalsmith that we want to use this layout.&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;src/about.md&lt;/span&gt;&lt;code class="hljs markdown"&gt;---
+&lt;span class="hljs-section"&gt;# ...&lt;/span&gt;
+author: Average Joe
+&lt;span class="hljs-section"&gt;layout: main.pug
+---&lt;/span&gt;
+...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If we re-run the build script:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs no-highlibht"&gt;node build.js
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and check the &lt;code&gt;build&lt;/code&gt; directory, we should now have a complete &lt;code&gt;.html&lt;/code&gt; page that
+could be served and viewed properly.&lt;/p&gt;
+&lt;pre&gt;&lt;span&gt;build/about.html&lt;/span&gt;&lt;code class="hljs html"&gt;&lt;span class="hljs-meta"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;html&lt;/span&gt; &lt;span class="hljs-attr"&gt;lang&lt;/span&gt;=&lt;span class="hljs-string"&gt;"en"&lt;/span&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;head&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;meta&lt;/span&gt; &lt;span class="hljs-attr"&gt;charset&lt;/span&gt;=&lt;span class="hljs-string"&gt;"utf-8"&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;meta&lt;/span&gt; &lt;span class="hljs-attr"&gt;name&lt;/span&gt;=&lt;span class="hljs-string"&gt;"viewport"&lt;/span&gt; &lt;span class="hljs-attr"&gt;content&lt;/span&gt;=&lt;span class="hljs-string"&gt;"width=device-width,initial-scale=1"&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;title&lt;/span&gt;&amp;gt;&lt;/span&gt;Metalsmith Awesomeness&lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;title&lt;/span&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;head&lt;/span&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;body&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;header&lt;/span&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;h1&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;a&lt;/span&gt; &lt;span class="hljs-attr"&gt;href&lt;/span&gt;=&lt;span class="hljs-string"&gt;"/"&lt;/span&gt;&amp;gt;&lt;/span&gt;Metalsmith Awesomeness&lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;a&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;h1&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;header&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;main&lt;/span&gt; &lt;span class="hljs-attr"&gt;class&lt;/span&gt;=&lt;span class="hljs-string"&gt;"container"&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;h2&lt;/span&gt;&amp;gt;&lt;/span&gt;About Me&lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;h2&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;I build sites with Metalsmith.&lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;main&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;footer&lt;/span&gt; &lt;span class="hljs-attr"&gt;class&lt;/span&gt;=&lt;span class="hljs-string"&gt;"site-footer"&lt;/span&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;p&lt;/span&gt; &lt;span class="hljs-attr"&gt;class&lt;/span&gt;=&lt;span class="hljs-string"&gt;"text"&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class="hljs-tag"&gt;&amp;lt;&lt;span class="hljs-name"&gt;span&lt;/span&gt;&amp;gt;&lt;/span&gt;&amp;amp;copy;2016 Average Joe&lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;span&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;footer&lt;/span&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;body&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="hljs-tag"&gt;&amp;lt;/&lt;span class="hljs-name"&gt;html&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cool.  Metalsmith is now fully capable of creating real, publishable web pages.
+This is the awesomeness of Metalsmith.  It's just a pipeline for building up
+functionality using plugins, with each one adding its own secret sauce.&lt;/p&gt;
+&lt;p&gt;I've uploaded the code from this post to
+&lt;a href="https://github.com/t3hpr1m3/metalsmith-example/tree/part1"&gt;Github&lt;/a&gt;.  Feel free
+to give it a whirl.&lt;/p&gt;
+&lt;p&gt;&lt;a href="/blog/2016/10/metalsmith-is-awesome-part-2"&gt;Next time&lt;/a&gt;, we'll add some stylesheets and syntax highlighting.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Ch-ch-changes</title>
+    <id>http://codingprime.com/blog/2016/06/ch-ch-changes</id>
+    <link href="http://codingprime.com/blog/2016/06/ch-ch-changes"/>
+    <updated>2016-06-13T10:59:00.000Z</updated>
+    <author/>
+    <content>&lt;p&gt;Man, its been too long.  I found about 10 posts I've started over the last 2
+years that had reached various levels of completion, but realized that
+completing any of them would require me to recommend things that I now know to
+be wrong.  So instead, I thought I'd relay some of the things I've experienced
+and what I've learned from them.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h3 id="startups-are-still-cool"&gt;Startups are still cool &lt;a class="header-anchor" href="#startups-are-still-cool" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When last we met, I was just starting to fall in love with my new Macbook Air,
+and getting settled into my new job working for a startup again.  During my time
+there (which ended in January), I built lots of apps, did quite a bit of DevOps
+things, and just generally settled into the culture.  It was quite refreshing,
+having spent the last few years in a very corporate environment.&lt;/p&gt;
+&lt;h3 id="tech-is-moving-really-fast"&gt;Tech is moving REALLY fast &lt;a class="header-anchor" href="#tech-is-moving-really-fast" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This is exciting, but can also be extremely frustrating.  For someone like me,
+who considers things like best practices to be extremely important to producing
+quality product, the pace at which things tend to change at the paradigm level
+is a bit unnerving.  Take isomorphic (recently relabeled as
+&lt;a href="https://medium.com/@mjackson/universal-javascript-4761051b7ae9#.19v96xwxh"&gt;universal&lt;/a&gt;)
+javascript.  On the surface, this sounded like the most amazing idea in the
+history of amazing ideas (not because Javascript is good, but because isomorphic
+apps have been something I've begged my genie for).  Having looked at countless
+apps built using libraries like React.js, I've come to the conclusion that being
+first to market has become much more important than making sure the tooling is
+solid and easily testable/supportable/understandable.&lt;/p&gt;
+&lt;h3 id="devops-got-its-sexy-back"&gt;DevOps got its sexy (back?) &lt;a class="header-anchor" href="#devops-got-its-sexy-back" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I still remeber the days when admins had their toolbox of system-fu they carried
+with them on a usb-stick or (gasp!) CD-ROM.  It was their secret set of
+preferred scripts to help automate some of the more mundane aspects of systems
+administration.  Fast-forward to today, and the landscape is much more pleasing
+to the eye.  Tools like Ansible and Terraform, while not perfect, make building
+reproducible systems at scale seem like childs play.  Add in some Kubernetes, or
+even just plain Docker, and you've got infrastructure that's almost a joy to
+manage.  And monitoring?  NewRelic. Prometheus.io. DataDog.  There's a veritable
+cornucopia of goodies available for building out the &amp;quot;system around the system&amp;quot;.&lt;/p&gt;
+&lt;h3 id="simpler-is-still-better"&gt;Simpler is still better &lt;a class="header-anchor" href="#simpler-is-still-better" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Even with newer toys like &lt;a href="https://atom.io/"&gt;Atom&lt;/a&gt; making an appearance, I
+still feel like tried and tested tools, like vim and tmux, make for the best,
+most universally available development environment around.  A buddy recently
+showed me a screenshot of tmux+vim running on his Windows desktop using Docker.
+Its not something I'd ever do, but it does illustrate that ubiquity is really
+important.&lt;/p&gt;
+&lt;h3 id="the-new-hotness"&gt;The new hotness &lt;a class="header-anchor" href="#the-new-hotness" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This was a rambling post, mainly because my brain is elsewhere right now.  I've
+got several things in the process of being completed, and plan on documenting
+them all.  Expect more newness (and less black holes in posting) soon.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Tmux + Vagrant = win!</title>
+    <id>http://codingprime.com/blog/2014/03/tmux-vagrant-win</id>
+    <link href="http://codingprime.com/blog/2014/03/tmux-vagrant-win"/>
+    <updated>2014-03-16T16:33:00.000Z</updated>
+    <author/>
+    <content>&lt;p&gt;In my quest to &lt;a href="/blog/2014/02/adapting-to-mac"&gt;become one with my Air&lt;/a&gt;, I've been in
+search of the best tooling to keep my workflow smooth.  I did some playing
+around with MacVim, running rbenv in OSX, and various IRC clients.  After
+a lot of hand-wringing and head-scratching, I think I've come up with the
+best solution.&lt;/p&gt;
+&lt;h3 id="cheaters-always-win"&gt;Cheaters always win! &lt;a class="header-anchor" href="#cheaters-always-win" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;My fix is to give up and give in.  &lt;a href="https://www.vagrantup.com/"&gt;Vagrant&lt;/a&gt; to
+the rescue!  In all fairness, the choice to use Vagrant was sort of a team
+decision.  We have quite a few devs, and find a way for them to work
+consistently seems like the perfect use case for Vagrant.  So for
+day-to-day work, I spin up the project specific VM using the Vagrantfile in
+the repo, then just pull in &lt;a href="https://github.com/t3hpr1m3/dotfiles"&gt;my dotfiles&lt;/a&gt;
+using &lt;a href="https://github.com/andsens/homeshick"&gt;homeshick&lt;/a&gt;.  This workflow
+allows me to always work in a consistent environment, no matter where I'm
+working from (even from a Putty session).&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h3 id="gui-gotta-go"&gt;GUI Gotta Go! &lt;a class="header-anchor" href="#gui-gotta-go" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;In my quest to find the ultimate dev environment, I decided that, optimally,
+I should only need 2 windows open at any given time: a terminal and a browser.
+In order to accomplish this, I had to find console based replacements for
+everything I currently had gui apps for.  This list included:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Colloquy (IRC)&lt;/li&gt;
+&lt;li&gt;Mail (duh)&lt;/li&gt;
+&lt;li&gt;Pandora (yeah, I'm one of those people)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="http://irssi.org/"&gt;Irssi&lt;/a&gt; filled the first need nicely, as I've used it
+extensively in the past.  I should have been using it anyway.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.mutt.org/"&gt;Mutt&lt;/a&gt; took care of mail.  I still have Gmail running
+in a browser window for complicated attachments and alternate accounts, but
+Mutt is my primary mail reader, and it works great.&lt;/p&gt;
+&lt;p&gt;Pandora was a little harder, but I was finally able to get
+&lt;a href="http://6xq.net/projects/pianobar/"&gt;pianobar&lt;/a&gt; working, and working well.  I was
+finally ready to commit to using the terminal to handle everything.  The
+problem was visibility.  Constantly switching tabs to check email or skip a
+song was becoming a huge chore.  There had to be a better way.  Then I remembered
+multiplexers.&lt;/p&gt;
+&lt;h3 id="tmux-is-the-new-screen"&gt;Tmux is the new screen &lt;a class="header-anchor" href="#tmux-is-the-new-screen" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I've been using &lt;a href="http://www.gnu.org/software/screen/"&gt;screen&lt;/a&gt; for years to
+crank up long-running processes on servers, so my terminal wasn't tied up
+waiting for some 12 hour database rebuild to finish, only for the connection
+to drop at 99.7%, forcing me to start the whole thing over again.  I had also
+used it to do some quick and dirty pair programming, but nothing fancy.&lt;/p&gt;
+&lt;p&gt;I rediscovered &lt;a href="http://tmux.sourceforge.net/"&gt;tmux&lt;/a&gt;, pushed through the initial
+pain of learning something new, and found the awesomeness that is true
+multiplexing.&lt;/p&gt;
+&lt;figure&gt;&lt;a href="http://i.imgur.com/4helvtT.png"&gt;&lt;img src="http://i.imgur.com/4helvtT.png" alt="Tmux is AWESOME!" /&gt;&lt;/a&gt;&lt;figcaption&gt;Tmux is AWESOME!&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;It took some getting used to, and my setup would require a post all on its own,
+but I'm back to being productive again.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Adapting to Mac</title>
+    <id>http://codingprime.com/blog/2014/02/adapting-to-mac</id>
+    <link href="http://codingprime.com/blog/2014/02/adapting-to-mac"/>
+    <updated>2014-02-23T15:25:00.000Z</updated>
+    <author/>
+    <content>&lt;p&gt;I am a Linux guy.  Ever since my first install of RedHat 5.1, I've been hooked.
+My home router/firewall is a &lt;a href="http://www.gentoo.org"&gt;Gentoo box&lt;/a&gt;, ffs.  For
+servers, I've migrated from &lt;a href="http://vpslink.com"&gt;VPSLink&lt;/a&gt; to
+&lt;a href="https://www.linode.com"&gt;Linode&lt;/a&gt;, with a few one off droplets on
+&lt;a href="http://www.digitalocean.com"&gt;DigitalOcean&lt;/a&gt;.  There isn't a machine in my
+house that doesn't at least dual-boot Linux.  In fact, I inherited a Mac Mini
+when one of the startups I joined closed its doors, and even it runs Linux.&lt;/p&gt;
+&lt;p&gt;For the last few years, my primary dev box has been my &lt;a href="http://www.asus.com/ROG_ROG/G74SX/"&gt;ASUS behemoth&lt;/a&gt;.
+It's nowhere near an ultrabook, but it was mine.  Mine in the sense that it
+has become an extension of my hands.  It's heavy, it's massive, and I love it.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;The shop I just joined is pretty much Apple-happy.  Cinema displays, Powerbooks,
+Time Capsules, the whole shebang.  On day 1, I was handed a &lt;a href="http://support.apple.com/kb/SP670"&gt;13&amp;quot; MacBook Air&lt;/a&gt;.
+This thing is everything my ASUS isn't; small, lightweight, possibly even delicate.
+Given that I've been using a split keyboard for the last 10 years or so, typing
+on this keyboard feels...weird.&lt;/p&gt;
+&lt;h3 id="when-in-rome"&gt;When in Rome &lt;a class="header-anchor" href="#when-in-rome" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Given all of the above, I figure the only solution to the problem is to just
+go all in, using the MacBook exclusively for everything.  I'm not even going to
+use a keyboard or mouse.  I'm just going to use a secondary cinema display for
+increased desktop space while in the office.  I want to make sure I give this
+machine a fair shake, without going all fanboi with a Magic Mouse and bluetooth
+keyboard.&lt;/p&gt;
+&lt;h3 id="same-but-different"&gt;Same, but different &lt;a class="header-anchor" href="#same-but-different" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A few of the features I've come to rely on (Exposé, multiple desktops, quick
+application launch) are thankfully present.  iTerm is a decent terminal, and
+&lt;a href="http://ethanschoonover.com/solarized"&gt;Solarized&lt;/a&gt; works flawlessly.&lt;/p&gt;
+&lt;p&gt;There are a few oddities, though.  The backspace key is labeled &amp;quot;delete&amp;quot;, and there
+is no delete key (&lt;em&gt;fn&lt;/em&gt; + delete seems to work).  Also, the &lt;em&gt;control&lt;/em&gt;, &lt;em&gt;option&lt;/em&gt;,
+and &lt;em&gt;command&lt;/em&gt; keys are kind of insane.  I'm still not entirely sure what they do,
+but I know that &lt;em&gt;command&lt;/em&gt; takes the place of &lt;em&gt;ctrl&lt;/em&gt; in many operations (cut, copy, etc).&lt;/p&gt;
+&lt;p&gt;The dock is also a little strange.  Closing windows doesn't seem to &amp;quot;exit&amp;quot; the
+application (it still shows up in the window list when alt+tabbing).&lt;/p&gt;
+&lt;p&gt;The ssh-agent also seems to be fairly unpredictable.  After a restart, I'm never sure
+if it's active, and I usually don't find out until I'm trying to commit code
+on some remote server.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://brew.sh"&gt;Homebrew&lt;/a&gt; has helped tremendously.  For someone coming from the
+world of package managers, installing from the CLI makes things seem familiar.  I'm
+having a hard time resisting the urge to install Gentoo in a VM and do all my
+development there.&lt;/p&gt;
+&lt;h3 id="work-in-progress"&gt;Work in progress &lt;a class="header-anchor" href="#work-in-progress" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I plan on giving this at least a month before giving up.  Currently, my biggest
+issue is that I actually have to think about what I'm trying to do, which sort
+of prevents me from ever getting in the zone.  I'm sure that will get better
+with time, so stay tuned.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Evolution of a Dev (Part 4)</title>
+    <id>http://codingprime.com/blog/2014/01/evolution-of-a-dev-part-4</id>
+    <link href="http://codingprime.com/blog/2014/01/evolution-of-a-dev-part-4"/>
+    <updated>2014-01-19T16:23:00.000Z</updated>
+    <author/>
+    <content>&lt;p&gt;My most recent career stop was also my longest.  With the collapse of my startup dreams,&lt;/p&gt;
+&lt;p&gt;I had to find employment back in the real world.  I took a position with a local company
+that wrote Credit Union software in Delphi (basically Pascal).  The only Delphi I had
+ever used was in writing &lt;a href="http://www.jrsoftware.org/isinfo.php"&gt;InnoSetup&lt;/a&gt; scripts,
+so I really had no idea what to expect.  Thankfully, I found out my first day that:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;They had some server components written in C++, and&lt;/li&gt;
+&lt;li&gt;They also had a &amp;quot;web&amp;quot; department, which allegedly did internet stuff.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Rather than summarize what I actually DID during my time there, I'll instead
+highlight some of the issues I encountered, my attempts to solve their problems,
+and the ultimate reason for my departure.  I won't address the fact they were
+still using Microsoft's Visual SourceSafe for version control.  I think it speaks for
+itself.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h3 id="propietary-much"&gt;Propietary much? &lt;a class="header-anchor" href="#propietary-much" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Ok, so this was rampant.  This place seriously suffered from &lt;a href="https://www.google.com/url?sa=t&amp;amp;rct=j&amp;amp;q=&amp;amp;esrc=s&amp;amp;source=web&amp;amp;cd=1&amp;amp;cad=rja&amp;amp;uact=8&amp;amp;ved=0CB4QFjAA&amp;amp;url=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FNot_invented_here&amp;amp;ei=JNCEVODoG8qgNsC8gIgO&amp;amp;usg=AFQjCNE0yQm5D4-SULmI8By1wQVTN3k-sg&amp;amp;bvm=bv.80642063,d.eXY"&gt;NIV&lt;/a&gt;
+syndrome.  First of all, they were still using this really strangely concocted
+pseudo ORM to abstract SQL.  I say strangely concocted because it was not really an ORM, nor
+was it really a query builder.  It was this sort of abomination that made little
+sense to anyone but the guy who created it (who, coincidentally, gave birth to a few of
+the other monstosities I'll cover later).  About its only redeeming quality was that
+it was written in C++, so I could almost understand what it was doing.&lt;/p&gt;
+&lt;p&gt;They also had a sort of network API for communicating with the core system.  Problem was,
+it didn't use any sort of standard mechanism of communication (HTTP, SOAP, XML-RPC, etc).
+It was this really limited and fragile service that needed constant tweaking to stay
+in sync with the core, and for which no even semi-standard tools existed for interfacing
+with it.&lt;/p&gt;
+&lt;h3 id="standards-i-dont-understand"&gt;Standards?  I don't understand. &lt;a class="header-anchor" href="#standards-i-dont-understand" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Then there was the web department.  First of all, there wasn't a single employee on
+staff that had any professional experience developing web apps, yet they were offering,
+as one of their cornerstone products, an online banking solution.  When I joined the team,
+I joined a converted graphical artist (read: ad designer) and recovering DBA.  Seriously.
+These guys were trying to kludge together a cohesive &lt;strong&gt;banking&lt;/strong&gt; application, in Classic
+ASP, with no real understanding of web technology.  I could immediately tell that
+almost all the Javascript and CSS was copypasta, and simple things like includes weren't
+being used anywhere.  It was horrible.&lt;/p&gt;
+&lt;p&gt;But the biggest issue was the apparent distaste for anything Open Source.  After I got
+the current web offerings under control (within reason), I set about finding a more
+modern environment to start building in.  Since they were a self-proclaimed Microsoft
+Shop (seriously?  In the 21st century, how can that still be a thing?), I tried
+to get ASP.NET MVC to work, but at that time it was just too immature to be viable.
+I proposed moving to Linux as a platform and Rails as a framework for building the
+new version of the app.  I was immediately labeled a heretic and sent to my room.&lt;/p&gt;
+&lt;h3 id="lets-do-this"&gt;Let's do this. &lt;a class="header-anchor" href="#lets-do-this" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Luckily, being the only person qualified to have an opinion, and based on several
+conversations I had with the President/CEO (who is actually &lt;a href="https://www.linkedin.com/vsearch/p?firstName=Daryl&amp;amp;lastName=Tanner&amp;amp;orig=SEO_SN&amp;amp;trk=SEO_SN&amp;amp;domainCountryName=&amp;amp;csrfToken=ajax%3A5966742831050947461"&gt;extremely knowledgeable&lt;/a&gt;,
+and highly &lt;a href="http://www.cutimes.com/2012/12/11/daryl-tanner-retiring-from-share-one-at-years-end"&gt;respected&lt;/a&gt;,
+it was decided that I be given some leeway to pursue the Rails course.&lt;/p&gt;
+&lt;p&gt;In the course of this decision, I was given my own department (management again?), and,
+as far as the rest of the management team was concerned, just enough rope to hang myself.
+I hired a &lt;a href="http://joshwlewis.com/"&gt;really good dev&lt;/a&gt;, recruited another &lt;a href="https://www.linkedin.com/pub/joshua-bryant/40/a65/401"&gt;from within&lt;/a&gt;,
+and even roped in &lt;a href="http://www.linkedin.com/pub/jacob-williams/80/b08/436"&gt;my brother&lt;/a&gt; to handle
+PM stuff.&lt;/p&gt;
+&lt;p&gt;A short list of the technologies we used:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.atlassian.com/software/jira"&gt;JIRA&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.atlassian.com/software/bamboo"&gt;Bamboo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://campfirenow.com/"&gt;Campfire&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://basecamp.com/"&gt;Basecamp&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/"&gt;Github&lt;/a&gt; (obviously)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And these are just the administrative type bits.  The stack was typical Rails (MySQL, Memcache, Redis, etc).
+It was beautiful.  We were effecient.  TDD worked.  In essence, we manged to write &amp;gt;100k lines
+of production quality code in &amp;lt; 12 months.  At the time I turned in my notice, JIRA contained a
+whopping total of 2 bugs, and 1 of those was actually due to an issue one of our partners had
+with their web service.  Considering, for most of us, it was our first real foray into
+full-on agile, I'm extremely proud of our accomplishments.&lt;/p&gt;
+&lt;h3 id="we-are-not-impressed"&gt;We are not impressed. &lt;a class="header-anchor" href="#we-are-not-impressed" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;So after all of that, you'd think that the powers that be would be overjoyed at the
+success of the &amp;quot;experiment&amp;quot;, right?  Well, no.  As expected, the status quo is
+difficult to upset.  And we punched it in the face.  Most of the management team (the CTO
+in particular) took even the smallest opportunities to undermine our progress.&lt;/p&gt;
+&lt;p&gt;However, it wasn't all bad.  Quietly, certain other groups within the organization
+borrowed some of our methods.  Educational services started using Camtasia to put together
+tutorials, instead of putting on giant webinars, multiple times, to explain new features.&lt;/p&gt;
+&lt;p&gt;The other development teams migrated away from VSS to Subversion, and started implementing
+unit tests in their code.  The manager even tried implementing Scrum (short lived, but A for effort).&lt;/p&gt;
+&lt;p&gt;Since my departure, I've found that the plan is to dismantle everything we accomplished, and
+migrate back to VisualSourcesafe, with the original ASP code being migrated to ASP.NET (again,
+by non-web people).  Sigh.&lt;/p&gt;
+&lt;h3 id="theres-always-a-silver-lining"&gt;There's always a silver lining &lt;a class="header-anchor" href="#theres-always-a-silver-lining" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;It hasn't been a total loss.  I learned a lot about mentoring, and about when to stand
+your ground.  There was a point where I threw down the gauntlet, and could just as easily
+have been unemployed again.  The difference this time was that, unlike before, I
+never made it personal.  I merely let the facts speak for themselves, and offered
+up my job as collateral.  Maybe it was maturity.  Or I just liked the people I worked with.
+Whatever the reason, I tried something, and in my opinion, the record will record it
+as a success.&lt;/p&gt;
+&lt;p&gt;I also, however, learned even more about the relationship between development and
+business.  Especially in a product-focused company.  Every minute I spend at work has
+to be financed by someone.  If we're not turning a profit on the product, or the time
+I'm spending won't directly raise the bottom line, I'm wasting both time and money,
+and that's a no-no.  In short, you can experiment all you want, so long as there's
+a profitable product at the end.&lt;/p&gt;
+&lt;h3 id="the-next-chapter"&gt;The next chapter &lt;a class="header-anchor" href="#the-next-chapter" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I'm moving on to a new opportunity, but on much unlike my last.  As a self-proclaimed
+&lt;a href="http://www.webopedia.com/TERM/S/skunkworks.html"&gt;skunkworks&lt;/a&gt;, I don't expect to
+be required to justify my actions quite as much, and there probably won't be as
+many rediculous practices in place that need fixing.&lt;/p&gt;
+&lt;p&gt;I'm also entering with that &amp;quot;Senior&amp;quot; title I coveted so long ago, but it has a much
+different meaning for me now.  Most of my new team is younger (quite younger), but eager
+to learn.  Mentoring is something I've grown quite fond of.  Not because I think I know it
+all, but because I understand the value of someone helping you learn the right way to
+approach a problem, which is an intangible that usually takes years of trial and error.&lt;/p&gt;
+&lt;p&gt;More than anything, I'm excited to be moving into an environment where its mostly about
+the code, which is where my heart still truly lies.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Evolution of a Dev (Part 3)</title>
+    <id>http://codingprime.com/blog/2014/01/evolution-of-a-dev-part-3</id>
+    <link href="http://codingprime.com/blog/2014/01/evolution-of-a-dev-part-3"/>
+    <updated>2014-01-19T14:41:00.000Z</updated>
+    <author/>
+    <content>&lt;p&gt;Recapping the &lt;a href="/blog/2014/01/evolution-of-a-dev-part-2/"&gt;last chapter&lt;/a&gt;,
+I'm managing a dev team, doing a fair bit of C and Java development mixed with
+some TCL and the occasional RPG IV.  I've gained a bit of arrogance, but also
+quite a bit of real-world development experience.  Technically, I'm doing fairly
+well.  I've also been able to develop some fairly decent team management
+skills.  Unfortunately, I still have a problem with authority.&lt;/p&gt;
+&lt;p&gt;During a management meeting, I had a difference of opinion (fairly loudly and colorfully)
+with the president of the company, and it was decided (surprise!) that my services were no
+longer needed.  By this time, I had moved home and been telecommuting for over 2 years,
+so logistically this wasn't as big of a blow as it could have been (thankfully).  This
+was, however, the first time I had been unemployeed since I got my first job almost 8 years
+prior.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;I took some contract jobs that were lucrative in the sort term, and even took a job at
+another Fortune 500 company doing nCurses development.  While that may not sound sexy,
+I felt like I came home.  This was also my introduction to &lt;a href="http://www.vim.org/"&gt;vim&lt;/a&gt;,
+one of two takeaways from my time there.  The other was the concept of the &lt;em&gt;Senior Dev&lt;/em&gt;.
+He was like the oracle.  All of his answers didn't make sense immediately, but were
+always (after hours or days of pouring over the problem) found to be spot on. I didn't
+care how long it would take, but I wanted to be one of those guys.&lt;/p&gt;
+&lt;p&gt;After another falling out (where I called the CIO a name you apparently can't call
+the CIO of a Fortune 500 company in his presence), I was escorted from the building
+and forced to find work elsewhere.&lt;/p&gt;
+&lt;p&gt;Luckily, I had been &amp;quot;helping&amp;quot; a buddy of mine get his startup off the ground (basically,
+doing a lot of the low level coding while he took care of a lot of front-end stuff).
+He had been trying to convince me to come out to OKC and join him for quite some time,
+but with a family, I preferred the stability and benefits of a &amp;quot;corporate&amp;quot; job.  Now
+that both were gone, I packed my bags and headed out West.&lt;/p&gt;
+&lt;p&gt;Start-ups.  They truly are magical.  All the money you can spend.  Nothing to do but
+dream up cool shit.  Build awesome stuff all day, with nobody to answer to.  We'll
+figure out how to make money later.&lt;/p&gt;
+&lt;p&gt;I did my first serious web development here using Python and Twistd.  We used MochiKit
+mostly for the front-end stuff (jQuery wasn't really a &amp;quot;thing&amp;quot; yet).  I learned tons
+about technology, but I also learned quite a bit about the technology world at large.&lt;/p&gt;
+&lt;p&gt;Almost as importantly, this experience solidified my belief that technologies were almost
+interchangable.  Language was unimportant, so long as you understood the basic constructs.
+This has enabled me to accept positions for which I had 0 applicable experience.&lt;/p&gt;
+&lt;p&gt;At one point, I found myself with the title of CTO (not as glamorous when the employee
+count is 5, but still looks good on a resume), sitting down at the virtual negotiating
+table with &lt;a href="http://www.yahoo.com"&gt;Yahoo!&lt;/a&gt; to discuss acquisition.  For a few brief moments,
+I was worth a little over $2 million.  In one of the few regrettable decisions of my life,
+I agreed with the rest of the team that we should hold out.  &lt;a href="http://flickr.com"&gt;Flickr&lt;/a&gt; was
+about to be acquired by Google (or so we thought), so Yahoo! would be forced to return and
+accept our slightly higher asking price.&lt;/p&gt;
+&lt;figure&gt;&lt;img src="http://www.quickmeme.com/img/73/73ef5f06a4b19f7f5ff738661ecfe587a694068b3573a07e83eb71b0a79ac7f5.jpg" alt="Yeah....our bad" /&gt;&lt;figcaption&gt;Yeah....our bad&lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Needless to say, there weren't any other opportunities that even came close, and a year or so
+later we decided to shutter the virtual doors (half the team was remote) and ride off
+into the sunset.&lt;/p&gt;
+&lt;p&gt;Over the last several years, I had matured to something just before middle-age developer.  A short
+list of the main lessons:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Developers are craftsmen, who have an entire toolbox at their disposal.  Knowing
+which tool fits the current task is not always obvious.&lt;/li&gt;
+&lt;li&gt;The best product doesn't mean anything if you can't market it properly.&lt;/li&gt;
+&lt;li&gt;There's always some new way to build software just over the horizon.
+Don't get comfortable.&lt;/li&gt;
+&lt;li&gt;Code is fleeting.  Today's masterpiece is tomorrow's rubbish.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Even with all that newfound knowledge, I was still an arrogant little whelp who still didn't
+fully understand the relationship between business and software.  That knowledge comes in the
+&lt;a href="../evolution-of-a-dev-part-4/"&gt;next chapter&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Evolution of a Dev (Part 2)</title>
+    <id>http://codingprime.com/blog/2014/01/evolution-of-a-dev-part-2</id>
+    <link href="http://codingprime.com/blog/2014/01/evolution-of-a-dev-part-2"/>
+    <updated>2014-01-19T10:22:00.000Z</updated>
+    <author/>
+    <content>&lt;p&gt;When we &lt;a href="/blog/2014/01/evolution-of-a-dev-part-1/"&gt;last left&lt;/a&gt; our hero (me),
+he was basking in the wonderment that is pure software development.  &amp;quot;I wanna
+go do this fo realz!&amp;quot; So I set about finding a new job, one that would allow me
+to throw off the shackles of ops and focus solely on writing code.&lt;/p&gt;
+&lt;p&gt;Luckily for me, I didn't have to spend very long looking.  All it took was moving
+300 miles away from everything I had ever known, with a wife and our 2 children
+in tow.  An easy decision for me, and since I'm a pretty good salesman as well,
+they followed with little resistance.&lt;/p&gt;
+&lt;p&gt;I accepted a position as an RPG IV programmer (because that's still where my
+only real professional experience lie) and learned what it meant to do real
+programming work for a real product that was to be purchased by real customers.
+And I hated it.  It was boring.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;Well, that's not entirely fair.  Some of the problems we had to solve were
+quite complex, and the solutions were sometimes ingenious.  But all in all,
+it wasn't quite as fulfilling as I had hoped.  In hindsight, however, this was
+a good thing.  I was getting paid to write code.  While it might not have been
+exactly what I had expected, it was still better than any of the alternative
+means of supporting myself I could think of.  Major lesson: every programming session
+isn't a rock-star moment.&lt;/p&gt;
+&lt;p&gt;On the brighter side, I discovered that I was actually pretty good at it.  In
+some ways, I was slightly better than the others, who were in some cases twice
+my age.  This is where I started to lose some humility, which again, might sound
+like a bad thing, but will come into play later on.&lt;/p&gt;
+&lt;p&gt;There was also a group within the shop devoted to PC and mobile device development.
+No, we're not talking iPad's and smartphones here.  This was old-school 5250 emulation
+on warehouse barcode scanners.  We're talking C, Java, and TCL.  I love C.  I mean, I
+love it.  I hear people say you should use the best tool for the job, but I still think
+that, from a puritanical point of view, C is that tool.  For every job.  But I digress.&lt;/p&gt;
+&lt;p&gt;I befriended the manager of PC development and he sort of took me under his wing.  I
+say sort of, because he was a windows guy, and I was predominantly Linux.  So there
+was a bit of a language barrier of sorts (ipconfig vs. ifconfig, etc).  Nevertheless,
+he introduced me to real-world development of complex systems using software.
+The term he used was &amp;quot;architecture&amp;quot;, and I've been obsessed with it ever since.&lt;/p&gt;
+&lt;p&gt;When he decided to move on, I was offered his position as manager.  Given I had little
+humility (see above), I obviously accepted.  I figured I was the best dev in the shop,
+regardless of the platform or language.  No big deal.&lt;/p&gt;
+&lt;p&gt;Boy, was I wrong.  Managing developers and being a developer almost require entirely
+different skillsets.  I was not horrible at the job, per se, but I did realize it
+was an either/or proposition.  Either I was one of them, or I was above them.  You
+can't be both.  Anyone who has tried to make that transition knows what I mean.&lt;/p&gt;
+&lt;p&gt;Then there was the administration side of things.  Interfacing with upper management
+was extremely frustrating, because they didn't care about the code, only the bottom
+line.  Results, no matter how much had to be sacrificed, were all that mattered.
+I found myself agreeing to things as a manager that my developer side would have
+given the middle finger to.&lt;/p&gt;
+&lt;p&gt;Over time, I started to realize that it wasn't quite as bad as my naive self wanted to
+believe.  Business pays the bills.  Paying customers allow us devs to do
+the things we love, even if there are limits.  I'd say this was when I entered my
+teenage years as a budding software engineer.  Next time,
+&lt;a href="/blog/2014/01/evolution-of-a-dev-part-3/"&gt;I hop on the startup train&lt;/a&gt;, and
+experience development in its purest form.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Evolution of a Dev (Part 1)</title>
+    <id>http://codingprime.com/blog/2014/01/evolution-of-a-dev-part-1</id>
+    <link href="http://codingprime.com/blog/2014/01/evolution-of-a-dev-part-1"/>
+    <updated>2014-01-19T08:25:00.000Z</updated>
+    <author/>
+    <content>&lt;p&gt;I am a career developer.  That makes me extremely lucky, since I get to earn
+a living doing the kind of things I'd be doing anyway.   Basically, I have
+the coolest hobby in the world, and I get paid for it.&lt;/p&gt;
+&lt;p&gt;I've changed jobs many, many times in my career, and it's hardly ever been for
+the same reasons.  Sometimes (usually), there has been an increase in salary
+involved.  Others, it was an opportunity to move into a different environment,
+be that technology used, ethos, or a new role to try out.  A few times, it
+wasn't even a choice (early termination due to philosophical differences would
+be a kind way of putting it).&lt;/p&gt;
+&lt;p&gt;Tomorrow, a new challenge awaits, in a new place, with a lot of new faces.
+Starting a new job always triggers a bit of reflection (probably because
+the process involves reviewing your resume), and this time is no exception.
+I know I'm not unique, but that's kind of the point.  I've been around a lot
+of devs throughout the course of my career, and (for the most part) it's fairly
+easy to tell where they are in their evolution.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h3 id="prologue"&gt;Prologue &lt;a class="header-anchor" href="#prologue" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;My own journey really began back in the 80's, hacking away on the family's
+&lt;a href="http://en.wikipedia.org/wiki/Commodore_VIC-20"&gt;Commodore VIC-20&lt;/a&gt;.  I had almost
+no idea what I was doing, but something about making a machine interact with
+you, even though it was entirely scripted, blew my mind.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="hljs basic"&gt;&lt;span class="hljs-symbol"&gt;10 &lt;/span&gt;&lt;span class="hljs-keyword"&gt;INPUT&lt;/span&gt; &lt;span class="hljs-string"&gt;"What is your name?"&lt;/span&gt;, NAME$
+&lt;span class="hljs-symbol"&gt;20 &lt;/span&gt;&lt;span class="hljs-keyword"&gt;PRINT&lt;/span&gt; &lt;span class="hljs-string"&gt;"Hello, "&lt;/span&gt;; NAME$
+&lt;span class="hljs-symbol"&gt;30 &lt;/span&gt;&lt;span class="hljs-keyword"&gt;END&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I upgraded to an IBM 8088 my Dad &amp;quot;borrowed&amp;quot; from the government, and started
+writing things that were a bit more complicated, using dBase to build address
+books and accounting registers.  Nothing worth sharing, but cool enough to
+show me, even then, that a computer guy (I didn't even know what they were
+called back then) was what I wanted to be when I grew up.&lt;/p&gt;
+&lt;h3 id="careerengage"&gt;career.engage() &lt;a class="header-anchor" href="#careerengage" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;My first real job in computers came in 1995, when I got a job as an operator
+in the Data Processing Department for the local county government (as an aside,
+I was working as a jailor across the street when I accepted the job).  The
+shop consisted of an &lt;a href="http://en.wikipedia.org/wiki/IBM_System/36"&gt;IBM System/36&lt;/a&gt;,
+&lt;a href="http://en.wikipedia.org/wiki/IBM_System_i"&gt;AS/400&lt;/a&gt;, and a really, really
+shitty PC running &lt;a href="http://en.wikipedia.org/wiki/NetWare"&gt;Novell Netware&lt;/a&gt;.  By day,
+I took care of a number of fairly mundane non-programming tasks.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;changing tapes and catalogging their use&lt;/li&gt;
+&lt;li&gt;making and replacing twinaxial, coaxial, and cat3 cables&lt;/li&gt;
+&lt;li&gt;troubleshooting issues on the few actual PC's that existed&lt;/li&gt;
+&lt;li&gt;babysitting the Netware server (seriously, it was shit)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By night (and during dead times during the day), I taught myself as much
+&lt;a href="http://en.wikipedia.org/wiki/Operational_Control_Language"&gt;OCL&lt;/a&gt;,
+&lt;a href="http://en.wikipedia.org/wiki/IBM_i_Control_Language"&gt;CL&lt;/a&gt;,
+&lt;a href="http://en.wikipedia.org/wiki/IBM_RPG_II"&gt;RPGII&lt;/a&gt;,
+and &lt;a href="http://en.wikipedia.org/wiki/Batch_file"&gt;DOS&lt;/a&gt; as I possibly could.  I
+wrote programs to track inventory, automated the backup process as much as
+possible, and just generally soaked it all in.  I knew absolutely nothing
+about best practices, memory optimization, or even computer architecture.
+I just wrote code.&lt;/p&gt;
+&lt;p&gt;I was beginning to start a family, so my expenses (as well as my thirst for
+knowledge) were beginning to outgrow the job.  I moved on to a sort of &lt;em&gt;super-operator&lt;/em&gt;
+position with a &lt;a href="https://www.internationalpaper.com/"&gt;Fortune 100 company&lt;/a&gt;, where
+about half of my job consisted of ops work and simple automation type
+programming tasks.  It was all still CL and RPG, but I was developing.  It was
+this period in my career that I was introduced to 2 technologies that would
+shape the remainder of my career: &lt;a href="http://www.java.com/en/"&gt;Java&lt;/a&gt; and
+&lt;a href="https://www.kernel.org/"&gt;Linux&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id="java-love-at-first-sight"&gt;Java: love at first sight &lt;a class="header-anchor" href="#java-love-at-first-sight" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The guy I shared a cubical with was about 60, and loved his Range Rover.  I mean
+really loved it.  I'd say 20-30% of his day was spent relaying stories about
+how he tracked down parts, or what clubs he belonged to, or how everyone should
+own one, or how awesome it was to have sex with it.  I'd like to say he made up
+for this by being a fountain of technical knowledge, but alas, he was a
+converted stock broker or something (I was young and didn't really understand...I
+know it had something to do with money).  He hunted and pecked on his keyboard
+with these sausage fingers, and took &lt;em&gt;forever&lt;/em&gt; to do anything.  I didn't hate him,
+I just never fully understood why he was there.  It wasn't his passion, obviously.&lt;/p&gt;
+&lt;p&gt;One day, however, he revealed to me that he had been trying out this new thing called
+Java.  With it, he had created a calculator or something equally boring.  He
+tried to explain how it worked, but&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;He was about as captivating as an oak sapling, and&lt;/li&gt;
+&lt;li&gt;I don't think he really understood wtf he was doing.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I did pick up on the important points, though.  First, this was programming I
+could do &lt;em&gt;ON MY OWN&lt;/em&gt;.  No &lt;a href="http://en.wikipedia.org/wiki/Midrange_computer"&gt;midrange&lt;/a&gt;
+required.  Have PC, will travel.  I don't want to over-dramatize the moment, but
+it really was life changing.&lt;/p&gt;
+&lt;p&gt;Secondly, I realized if this guy could &amp;quot;get it&amp;quot;, surely I could figure it out.
+All I needed was a decent resource to help guide me through the learning
+process.  I honestly don't remember where I got it, but I acquired a Core Java
+book, and tore through it like I was going to be tested on the entire thing.
+I wasn't very good, but I was writing a prolific amount of really bad code.
+It was awesome.  For the first time, I could actually write a program and show
+people I know the results.  I consider this the point where I really decided
+programming was what I wanted to do.&lt;/p&gt;
+&lt;h3 id="linus-is-my-hero"&gt;Linus is my hero &lt;a class="header-anchor" href="#linus-is-my-hero" aria-hidden="true"&gt;&amp;#128279;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;At the other end of the spectrum, there was David (I really, really, really
+wish I could remember David's last name, because he changed my life).  David
+worked with me on the ops side of things, working to keep the mix of AS/400,
+AIX, and Mainframe systems running.  We had a good time finding better ways
+to perform otherwise mundane tasks (using programming, of course), but our
+tinkering was limited to work hours.  Then, one day, the company acquired a
+competitor, and we were tasked with assimilating their fleet of HP/UX machines
+into our datacenter.  On the outside, these systems looked almost the same
+as the rest of the lot.  But once we were at the terminal, the landscape
+was entirely different.  Instead of the very single purpose languages of
+the other systems, these Unix machines felt almost limitless.  The systems
+were malleable.  This was also my first experience with both Bash and C, both
+of which felt amazing.  But I was still only able to monkey around with things
+as long as I was in the office.&lt;/p&gt;
+&lt;p&gt;Then, one day, David walked up to me with a CD he had obviously burned.  Written
+in Sharpie across the front was the label &amp;quot;RedHat 5.1&amp;quot;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    Me: &amp;quot;What is it?&amp;quot;
+    David: &amp;quot;Linux.&amp;quot;
+    Me: &amp;quot;What's 'Linux'?&amp;quot;
+    David: &amp;quot;It's Unix that you can install on your PC.&amp;quot;
+    Me: (I was already running for my laptop)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Overnight, I had an entire operating system I could decipher, from the bowels of
+the kernel all the way up to the &lt;code&gt;ls&lt;/code&gt; command.  On the one hand, this was
+like being reborn.  On the other, I started to realize that this world of
+programming had been right in front of me for years while I was stuck in the
+Windows world.  I did my best to make up for time, tinkering with the
+kernel (my first real foray was writing a USB camera driver), writing socket
+libraries, and just diving head-first into being a true developer.&lt;/p&gt;
+&lt;p&gt;This was also my first introduction to Open Source in general; millions of
+developers all putting their efforts into developing software solely for the
+joy of it (yes, I was a bit naive on that point, and blind to the politics of OSS).&lt;/p&gt;
+&lt;p&gt;Toward the end of this period, I was a horrible developer.  I had no concept of the
+rules, or what role business played in all this.  I just wanted to code.  About the
+only thing I did have going for me was unwavering determination to solve any
+problem, no matter how much reading, searching (Google still hadn't supplanted
+DogPile as my SE of choice), and trial and error it took.  That would be important,
+since the next phase would not be quite so happy-go-lucky.&lt;/p&gt;
+&lt;p&gt;Next up, &lt;a href="/blog/2014/01/evolution-of-a-dev-part-2/"&gt;the real world comes knocking&lt;/a&gt;.
+The second magical moment came when a co-worker handed me a homemade CD...&lt;/p&gt;
+</content>
+  </entry>
+</feed>
