@@ -19,6 +19,30 @@
     <main class="container">
       <article class="post">
         <header>
+          <time datetime="2010-08-21T23:20:00.000Z">August 21, 2010</time>
+          <h2><a href="/blog/2010/08/site-config-config-yml-for-rails">Site Config (config.yml) for Rails</a></h2>
+        </header>
+        <section>
+          <p><p>Over at <a href="http://railscasts.com/">Railscasts</a>, The Honourable Ryan Bates,
+Esquire<sup>1</sup> has been churning out quality screencasts FOREVER.  And
+while some of them become somewhat obsolete as Rails itself changes, they're
+still a better starting point than most of what's available on the web.</p>
+<p>One that I happened to view recently concerned
+<a href="http://railscasts.com/episodes/85-yaml-configuration-file">application configuration</a>
+for your Rails app being stored in a <code>.yml</code> file.  This brings site
+configuration in line with database, fixtures, etc.  As usual, Ryan gives you
+exactly what you need to adapt things to your situation.  So I did.  This is
+my ApplicationConfiguration class.<sup>2</sup>  It basically gives you a global
+<code>::AppConfig</code> object, which allows you to reverence any of your configuration
+settings from a single place.  It supports nested configuration,
+and automatically selects the right environment (test, production, etc).</p></p>
+        </section>
+        <footer>
+          <nav><a class="btn" href="/blog/2010/08/site-config-config-yml-for-rails">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
+        </footer>
+      </article>
+      <article class="post">
+        <header>
           <time datetime="2010-08-21T18:12:00.000Z">August 21, 2010</time>
           <h2><a href="/blog/2010/08/dual-booting-raided-windows-non-raid-linux">Dual-booting Raided Windows/Non-Raid Linux</a></h2>
         </header>
@@ -103,23 +127,7 @@ all the other ActiveRecord goodness in the app.  Enter:
           <nav><a class="btn" href="/blog/2010/08/findable-plugin">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
         </footer>
       </article>
-      <article class="post">
-        <header>
-          <time datetime="2010-02-18T00:45:00.000Z">February 18, 2010</time>
-          <h2><a href="/blog/2010/02/first-post">First Post</a></h2>
-        </header>
-        <section>
-          <p><p>Yep.  It's live.</p>
-<pre><code class="hljs shell">josh@komos: pts/0 -> uptime
- 00:44:31 up 20 days,  7:44,  2 users,  load average: 0.20, 0.06, 0.02
-</code></pre>
-</p>
-        </section>
-        <footer>
-          <nav><a class="btn" href="/blog/2010/02/first-post">Read More/Comment<i class="fa fa-arrow-right"></i></a></nav>
-        </footer>
-      </article>
-      <nav class="pagination"><a class="btn pull-left" href="/blog/page/3"><i class="fa fa-chevron-circle-left"></i>Newer</a>
+      <nav class="pagination"><a class="btn pull-right" href="/blog/page/5">Older<i class="fa fa-chevron-circle-right"></i></a><a class="btn pull-left" href="/blog/page/3"><i class="fa fa-chevron-circle-left"></i>Newer</a>
       </nav>
     </main>
     <footer class="site-footer">
