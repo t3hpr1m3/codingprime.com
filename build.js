@@ -1,5 +1,6 @@
 var metalsmith = require('metalsmith'),
     anchor = require('markdown-it-anchor'),
+    atomfeed = require('metalsmith-feed-atom'),
     collections = require('metalsmith-collections'),
     drafts = require('metalsmith-drafts'),
     hljs = require('highlight.js'),
@@ -90,6 +91,13 @@ metalsmith(__dirname)
       pattern: 'blog/:date/:title'
     }],
     relative: false
+  }))
+  .use(atomfeed({
+    collection: 'articles',
+    metadata: {
+      title: 'CodingPrime',
+      url: 'http://codingprime.com'
+    }
   }))
   .use(ignore([
     'blog/page/1/index.html',

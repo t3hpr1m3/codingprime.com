@@ -13,6 +13,7 @@
     "metalsmith": "^2.2.0",
     "metalsmith-collections": "^0.7.0",
     "metalsmith-drafts": "0.0.1",
+    "metalsmith-feed-atom": "^1.0.0",
     "metalsmith-ignore": "^0.1.2",
     "metalsmith-in-place": "^1.4.4",
     "metalsmith-layouts": "^1.6.5",
